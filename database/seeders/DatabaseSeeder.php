@@ -9,6 +9,6 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        $this->call(LyricSeeder::class);
+        $this->call(SongSeeder::class);
     }
 }

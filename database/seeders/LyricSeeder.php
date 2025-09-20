@@ -5,11 +5,11 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class LyricSeeder extends Seeder
+class SongSeeder extends Seeder
 {
     public function run(): void
     {
-        \App\Models\Lyric::factory()
+        \App\Models\Song::factory()
             ->count(10)
             ->hasTitles(3)
             ->create();

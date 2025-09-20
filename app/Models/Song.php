@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lyric extends Model
+class Song extends Model
 {
     use HasFactory;
 
@@ -16,6 +16,6 @@ class Lyric extends Model
      */
     public function titles()
     {
-        return $this->hasMany(\App\Models\Title::class, 'lyric_id');
+        return $this->hasMany(\App\Models\Title::class, 'song_id');
     }
 }

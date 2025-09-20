@@ -10,15 +10,15 @@ class Title extends Model
     use HasFactory;
 
     protected $fillable = [
-        'lyric_id',
+        'song_id',
         'title',
     ];
 
     /**
      * Get the song that owns this title.
      */
-    public function lyric()
+    public function song()
     {
-        return $this->belongsTo(Lyric::class, 'lyric_id');
+        return $this->belongsTo(Song::class, 'song_id');
     }
 }

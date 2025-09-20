@@ -15,7 +15,7 @@ class TitleFactory extends Factory
     public function definition(): array
     {
         return [
-            'lyric_id' => \App\Models\Lyric::factory(),
+            'song_id' => \App\Models\Song::factory(),
             'title' => $this->faker->sentence(3),
         ];
     }
