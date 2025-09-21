@@ -15,7 +15,7 @@ class SongFactory extends Factory
     public function definition(): array
     {
         return [
-            'body' => $this->faker->paragraph(3),
+            'lyrics' => $this->faker->paragraph(3),
         ];
     }
 }

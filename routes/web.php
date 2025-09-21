@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\SongController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    return Inertia::render('Users/Index');
-});
+Route::get('/', [SongController::class, 'index'])->name('songs.index');
