@@ -41,7 +41,11 @@ class SongController extends Controller
      */
     public function show(string $id)
     {
-        dd($id);
+        $song = Song::with('titles')->findOrFail($id);
+
+        return Inertia::render('Songs/Show', [
+            'song' => $song,
+        ]);
     }
 
     /**

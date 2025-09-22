@@ -3,9 +3,9 @@
         class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center sm:text-start"
     >
         <div v-for="song in songs">
-            <div>{{ song.titles[0].title }}</div>
-
-            <Link :href="route('songs.show', song.id)">Users</Link>
+            <Link :href="route('songs.show', song.id)">
+                {{ song.titles[0].title }}
+            </Link>
         </div>
     </div>
 </template>
