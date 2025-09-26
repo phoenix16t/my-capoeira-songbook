@@ -12,7 +12,7 @@ class UserController extends Controller
     {
         // $users = User::all();
         // return Inertia::render('Users/Index', ['users' => $users]);
-        return Inertia::render('Users/Index');
+        return Inertia::render('users/Index');
     }
 
     // public function create()

@@ -1,6 +1,6 @@
 import "./bootstrap";
 import "../css/app.css";
-import DefaultLayout from "./Layouts/Default.vue";
+import DefaultLayout from "./layouts/Default.vue";
 import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/vue3";
 import { ZiggyVue } from "ziggy-js";
