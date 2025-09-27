@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Title;
+use App\Models\SongTitle;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,6 +17,6 @@ class Song extends Model
      */
     public function titles()
     {
-        return $this->hasMany(Title::class, 'song_id');
+        return $this->hasMany(SongTitle::class, 'song_id');
     }
 }
