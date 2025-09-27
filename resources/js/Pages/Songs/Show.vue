@@ -16,17 +16,15 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
+import type { Song } from "./types";
 
-const props = defineProps({
-    song: {
-        type: Object,
-        required: true,
-    },
-});
+interface Props {
+    song: Song;
+}
 
-const lines = computed(() => {
-    return props.song.lyrics.split("\n");
-});
+const props = defineProps<Props>();
+
+const lines = computed(() => props.song.lyrics.split("\n"));
 </script>

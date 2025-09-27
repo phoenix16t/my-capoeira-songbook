@@ -26,7 +26,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { router, usePage } from "@inertiajs/vue3";
 import { BookOpen, DoorOpen, KeyRound } from "lucide-vue-next";
 import { route } from "ziggy-js";
