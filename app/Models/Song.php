@@ -12,11 +12,13 @@ class Song extends Model
 
     protected $fillable = ['lyrics'];
 
-    /**
-     * Get the titles for this song.
-     */
     public function titles()
     {
         return $this->hasMany(SongTitle::class, 'song_id');
+    }
+
+    public function songbooks()
+    {
+        return $this->belongsToMany(Songbook::class, 'songbook_songs');
     }
 }
