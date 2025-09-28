@@ -1,8 +1,8 @@
 <template>
     <div class="flex justify-center bg-gray-500">
-        <div class="flex flex-col h-screen max-w-[1000px] w-full">
+        <div class="flex h-screen w-full max-w-[1000px] flex-col">
             <header
-                class="flex items-center justify-between h-16 bg-red-500 px-4 text-xl"
+                class="flex h-16 items-center justify-between bg-red-500 px-4 text-xl"
             >
                 <span class="text-white">My Capoeira Songbook</span>
                 <span class="flex gap-4">
@@ -19,7 +19,7 @@
                     </a>
                 </span>
             </header>
-            <div class="bg-white flex-grow p-4">
+            <div class="flex-grow bg-white p-4">
                 <slot />
             </div>
         </div>

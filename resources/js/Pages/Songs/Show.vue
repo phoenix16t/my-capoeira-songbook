@@ -18,6 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from "vue";
+
 import type { Song } from "./types";
 
 interface Props {
