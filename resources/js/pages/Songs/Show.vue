@@ -9,7 +9,7 @@
     </div>
 
     <div>
-        Song:
+        Lyrics:
         <template v-for="line in lines">
             <div :class="{ 'font-bold': line.includes('(coro)') }">
                 {{ line.replaceAll("(coro)", "") }}

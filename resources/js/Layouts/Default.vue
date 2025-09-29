@@ -6,7 +6,13 @@
             <header
                 class="flex h-16 min-h-16 items-center justify-between bg-red-500 px-4 text-xl"
             >
-                <span class="text-white">My Capoeira Songbook</span>
+                <span class="flex items-center gap-1">
+                    <span class="hidden text-white sm:inline">
+                        My Capoeira Songbook
+                    </span>
+                    <BerimbauIcon class="h-12 w-12 fill-current" />
+                </span>
+
                 <span class="flex gap-4">
                     <template v-if="user">
                         <Link
@@ -45,6 +51,8 @@ import { Link, router, usePage } from "@inertiajs/vue3";
 import { BookOpen, DoorOpen, KeyRound, Music } from "lucide-vue-next";
 import { computed } from "vue";
 import { route } from "ziggy-js";
+
+import BerimbauIcon from "@/icons/berimbau.svg";
 
 const page = usePage();
 

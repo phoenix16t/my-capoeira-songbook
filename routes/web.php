@@ -16,4 +16,5 @@ Route::get('/songs/{id}', [SongController::class, 'show'])->name('songs.show');
 Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/logout', [GoogleAuthController::class, 'logout'])->name('logout');
     Route::get('/songbooks', [SongbookController::class, 'index'])->name('songbooks.index');
+    Route::get('/songbooks/{id}', [SongbookController::class, 'show'])->name('songbooks.show');
 });

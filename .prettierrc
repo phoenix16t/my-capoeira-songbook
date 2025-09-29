@@ -9,6 +9,7 @@
         "^@/pages",
         "^@/components",
         "^@/hooks",
+        "^@/icons",
         "^[./]"
     ],
     "importOrderSeparation": true,

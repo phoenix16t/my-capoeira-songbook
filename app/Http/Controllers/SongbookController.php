@@ -16,4 +16,13 @@ class SongbookController extends Controller
             'songbooks' => $songbooks,
         ]);
     }
+
+    public function show(string $id)
+    {
+        $songbook = Songbook::with('songs.titles')->findOrFail($id);
+
+        return Inertia::render('songbooks/Show', [
+            'songbook' => $songbook,
+        ]);
+    }
 }
