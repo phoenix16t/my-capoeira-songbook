@@ -1,12 +1,14 @@
 <template>
-    <div>
-        Titles:
-        <div v-for="titleData in song.titles">
+    <h1 class="text-3xl">{{ song.titles[0]?.title }}</h1>
+
+    <div v-if="song.titles.slice(1)">
+        Other names:
+        <div v-for="titleData in song.titles.slice(1)">
             {{ titleData.title }}
         </div>
     </div>
 
-    <div class="mt-4">
+    <div>
         Song:
         <template v-for="line in lines">
             <div :class="{ 'font-bold': line.includes('(coro)') }">

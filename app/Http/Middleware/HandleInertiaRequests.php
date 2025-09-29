@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
 
@@ -45,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                         : null,
                 ];
             },
+            'currentRouteName' => Route::currentRouteName(),
             'ziggy' => function () use ($request) {
                 return (new Ziggy)->toArray();
             },
