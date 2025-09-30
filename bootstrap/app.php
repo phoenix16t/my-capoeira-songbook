@@ -20,6 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+        $middleware->redirectGuestsTo('/');
+
         $middleware->alias([
             'auth' => Authenticate::class,
             'inertia' => HandleInertiaRequests::class,

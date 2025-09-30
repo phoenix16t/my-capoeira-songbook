@@ -6,11 +6,15 @@
             <header
                 class="flex h-16 min-h-16 items-center justify-between bg-red-500 px-4 text-xl"
             >
-                <span class="flex items-center gap-1">
+                <span class="flex items-center">
+                    <div class="[transform:scaleX(-1)]">
+                        <BerimbauIcon
+                            class="h-12 w-12 -rotate-z-15 fill-current text-white"
+                        />
+                    </div>
                     <span class="hidden text-white sm:inline">
                         My Capoeira Songbook
                     </span>
-                    <BerimbauIcon class="h-12 w-12 fill-current" />
                 </span>
 
                 <span class="flex gap-4">
