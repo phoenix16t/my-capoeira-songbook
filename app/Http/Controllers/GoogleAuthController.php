@@ -33,7 +33,7 @@ class GoogleAuthController extends Controller
             }
         }
         Auth::login($user);
-        return redirect('/');
+        return redirect('/?welcome=1');
     }
 
     public function logout()
@@ -41,6 +41,6 @@ class GoogleAuthController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect('/');
+        return redirect('/')->with('message', 'logout');
     }
 }

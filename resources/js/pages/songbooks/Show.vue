@@ -1,7 +1,9 @@
 <template>
     <h1 class="text-3xl">{{ songbook.title }}</h1>
 
-    <div v-for="song in songbook.songs" class="flex flex-col gap-8">
+    <div v-for="(song, i) in songbook.songs" class="flex flex-col gap-8">
+        <hr v-if="i !== 0" />
+
         <div class="flex flex-col gap-4">
             <div>
                 Title(s):
@@ -19,8 +21,6 @@
                 </div>
             </div>
         </div>
-
-        <hr />
     </div>
 </template>
 

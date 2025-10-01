@@ -1,4 +1,5 @@
 import { createInertiaApp } from "@inertiajs/vue3";
+import { Link, router, usePage } from "@inertiajs/vue3";
 import { createApp, h } from "vue";
 import { ZiggyVue } from "ziggy-js";
 

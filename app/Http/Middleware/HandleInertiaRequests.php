@@ -47,6 +47,9 @@ class HandleInertiaRequests extends Middleware
                 ];
             },
             'currentRouteName' => Route::currentRouteName(),
+            'flash' => [
+                'message' => fn () => $request->session()->get('message'),
+            ],
             'ziggy' => function () use ($request) {
                 return (new Ziggy)->toArray();
             },

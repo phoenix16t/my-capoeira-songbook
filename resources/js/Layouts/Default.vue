@@ -45,6 +45,7 @@
                 class="flex flex-grow flex-col gap-8 overflow-auto bg-white p-4"
             >
                 <slot />
+                <Toaster />
             </div>
         </div>
     </div>
@@ -53,10 +54,15 @@
 <script setup lang="ts">
 import { Link, router, usePage } from "@inertiajs/vue3";
 import { BookOpen, DoorOpen, KeyRound, Music } from "lucide-vue-next";
-import { computed } from "vue";
+import { computed, onMounted, watch } from "vue";
+import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
+import { Toaster } from "@/components/ui/sonner";
+
 import BerimbauIcon from "@/icons/berimbau.svg";
+
+import "vue-sonner/style.css";
 
 const page = usePage();
 
@@ -64,4 +70,25 @@ const user = computed(() => page.props.auth.user);
 const currentRouteName = computed(() => page.props.currentRouteName);
 
 const logout = () => router.post(route("logout"));
+
+onMounted(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has("welcome")) {
+        toast("Welcome!");
+        params.delete("welcome");
+        const url =
+            window.location.pathname +
+            (params.toString() ? "?" + params.toString() : "");
+        window.history.replaceState({}, "", url);
+    }
+});
+
+watch(
+    () => page.props.flash.message,
+    (message) => {
+        if (message === "logout") {
+            toast("Goodbye!");
+        }
+    },
+);
 </script>

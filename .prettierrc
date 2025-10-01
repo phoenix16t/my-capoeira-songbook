@@ -10,7 +10,8 @@
         "^@/components",
         "^@/hooks",
         "^@/icons",
-        "^[./]"
+        "^[./]",
+        ".*\\.(css|scss|less|sass)$"
     ],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true
