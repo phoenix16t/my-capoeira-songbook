@@ -15,12 +15,11 @@
 
         <span class="flex items-center gap-4">
             <template v-if="user">
-                <Dialog>
-                    <DialogTrigger as-child>
-                        <Button size="icon" variant="ghost">
-                            <Plus class="size-6" />
-                        </Button>
-                    </DialogTrigger>
+                <Button size="icon" variant="ghost" @click="isModalOpen = true">
+                    <Plus class="size-6" />
+                </Button>
+
+                <Dialog v-model:open="isModalOpen">
                     <DialogContent class="sm:max-w-[425px]">
                         <DialogHeader>
                             <DialogTitle>Create a new songbook?</DialogTitle>
@@ -30,11 +29,17 @@
                                 <Label for="name" class="text-right">
                                     Name
                                 </Label>
-                                <Input id="name" class="col-span-3" />
+                                <Input
+                                    v-model="title"
+                                    id="name"
+                                    class="col-span-3"
+                                />
                             </div>
                         </div>
                         <DialogFooter>
-                            <Button type="submit"> Save changes </Button>
+                            <Button type="submit" @click="createSongbook">
+                                Save changes
+                            </Button>
                         </DialogFooter>
                     </DialogContent>
                 </Dialog>
@@ -77,7 +82,8 @@
 <script setup lang="ts">
 import { Link, router, usePage } from "@inertiajs/vue3";
 import { BookOpen, DoorOpen, KeyRound, Music, Plus } from "lucide-vue-next";
-import { computed } from "vue";
+import { computed, ref } from "vue";
+import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
 import { Button } from "@/components/ui/button";
@@ -87,7 +93,6 @@ import {
     DialogFooter,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -96,8 +101,28 @@ import BerimbauIcon from "@/icons/berimbau.svg";
 
 const page = usePage();
 
+const title = ref("");
+const isModalOpen = ref(false);
+
 const user = computed(() => page.props.auth.user);
 const currentRouteName = computed(() => page.props.currentRouteName);
 
 const logout = () => router.post(route("logout"));
+
+const createSongbook = () => {
+    router.post(
+        "/songbooks",
+        {
+            title: title.value,
+        },
+        {
+            onSuccess: () => {
+                isModalOpen.value = false;
+            },
+            onError: () => {
+                toast(`Error creating songbook`);
+            },
+        },
+    );
+};
 </script>
