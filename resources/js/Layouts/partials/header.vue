@@ -1,14 +1,12 @@
 <template>
-    <header
-        class="flex items-center justify-between bg-red-500 px-8 py-2 text-xl"
-    >
+    <header class="flex items-center justify-between bg-red-500 px-8 py-2">
         <span class="flex items-center">
             <div class="[transform:scaleX(-1)]">
                 <BerimbauIcon
                     class="h-12 w-12 -rotate-z-15 fill-current text-white"
                 />
             </div>
-            <span class="hidden text-white sm:inline">
+            <span class="hidden text-xl text-white sm:inline">
                 My Capoeira Songbook
             </span>
         </span>
