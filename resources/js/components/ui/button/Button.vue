@@ -11,10 +11,12 @@ interface Props extends /* @vue-ignore */ PrimitiveProps {
     variant?: ButtonVariants["variant"];
     size?: ButtonVariants["size"];
     class?: HTMLAttributes["class"];
+    disabled?: boolean;
 }
 
 const props = withDefaults(defineProps<Props>(), {
     as: "button",
+    disabled: false,
 });
 </script>
 
@@ -23,7 +25,15 @@ const props = withDefaults(defineProps<Props>(), {
         data-slot="button"
         :as="as"
         :as-child="asChild"
-        :class="cn(buttonVariants({ variant, size }), props.class)"
+        :disabled="disabled"
+        class="cursor-pointer"
+        :class="
+            cn(
+                buttonVariants({ variant, size }),
+                props.class,
+                disabled ? 'cursor-not-allowed opacity-50' : '',
+            )
+        "
     >
         <slot />
     </Primitive>

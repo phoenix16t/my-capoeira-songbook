@@ -5,7 +5,7 @@
         >
             <Header />
             <div
-                class="flex flex-grow flex-col gap-8 overflow-auto bg-white p-4"
+                class="flex flex-grow flex-col gap-8 overflow-auto bg-white px-8 py-4"
             >
                 <slot />
                 <Toaster />
@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
+import Header from "@/layouts/partials/header.vue";
 import { usePage } from "@inertiajs/vue3";
 import { onMounted, watch } from "vue";
 import { toast } from "vue-sonner";
 
-import Header from "@/components/header.vue";
 import { Toaster } from "@/components/ui/sonner";
 
 import "vue-sonner/style.css";

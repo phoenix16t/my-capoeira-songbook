@@ -16,10 +16,9 @@
 </template>
 
 <script setup lang="ts">
+import type { Song } from "@/types";
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
-
-import type { Song } from "./types";
 
 interface Props {
     songs: Song[];

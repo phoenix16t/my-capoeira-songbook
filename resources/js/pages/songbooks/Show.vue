@@ -1,27 +1,30 @@
 <template>
     <h1 class="text-3xl">{{ songbook.title }}</h1>
 
-    <div v-for="(song, i) in songbook.songs" class="flex flex-col gap-8">
-        <hr v-if="i !== 0" />
+    <template v-if="songbook.songs.length">
+        <div v-for="(song, i) in songbook.songs" class="flex flex-col gap-8">
+            <hr v-if="i !== 0" />
 
-        <div class="flex flex-col gap-4">
-            <div>
-                Title(s):
-                <div v-for="titleData in song.titles">
-                    {{ titleData.title }}
+            <div class="flex flex-col gap-4">
+                <div>
+                    Title(s):
+                    <div v-for="titleData in song.titles">
+                        {{ titleData.title }}
+                    </div>
                 </div>
-            </div>
 
-            <div>
-                Lyrics:
-                <div v-for="line in song.lyrics.split('\n')">
-                    <div :class="{ 'font-bold': line.includes('(coro)') }">
-                        {{ line.replaceAll("(coro)", "") }}
+                <div>
+                    Lyrics:
+                    <div v-for="line in song.lyrics.split('\n')">
+                        <div :class="{ 'font-bold': line.includes('(coro)') }">
+                            {{ line.replaceAll("(coro)", "") }}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </template>
+    <span v-else>You don't have any songs in this songbook yet!</span>
 </template>
 
 <script setup lang="ts">

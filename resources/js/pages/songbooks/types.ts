@@ -1,16 +1,4 @@
-interface SongTitle {
-    title: string;
-}
-
-interface Song {
-    id: number;
-    titles: SongTitle[];
-    lyrics: string;
-    translation: string;
-    groupId: number;
-    count: string;
-    typeId: number;
-}
+import { type Song } from "@/types.js";
 
 export interface Songbook {
     id: number;
