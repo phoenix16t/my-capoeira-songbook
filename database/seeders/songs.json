@@ -26,7 +26,8 @@
         "group": null,
         "count": "3",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Abalou capoeira abalou"],
@@ -55,7 +56,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["A cancela bateu, está na hora"],
@@ -84,7 +86,8 @@
         "group": null,
         "count": null,
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["A canoa virou, marinheiro"],
@@ -113,7 +116,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Boa viagem"],
@@ -140,7 +144,8 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["São Bento me chama", "Ai ai ai ai"],
@@ -173,7 +178,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Ai ai, Aidê"],
@@ -202,7 +208,8 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Angola ê ê, Angola ê, Angola"],
@@ -233,7 +240,8 @@
         "group": null,
         "count": "2",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Angolinha, Angola"],
@@ -258,7 +266,8 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["A onça morreu, o mato é meu"],
@@ -287,7 +296,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Baraúna caiu, quanto mais eu"],
@@ -320,7 +330,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Gameleira no chão"],
@@ -351,7 +362,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Beriba é pau", "Pra fazer berimbau"],
@@ -378,7 +390,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Camungerê"],
@@ -407,7 +420,8 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Canarinho da Alemanha"],
@@ -432,7 +446,8 @@
         "group": null,
         "count": "X",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Chora menino"],
@@ -463,7 +478,8 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Chora"],
@@ -496,7 +512,8 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     },
     {
         "titles": ["Devagar, devagar"],
@@ -521,6 +538,7 @@
         "group": null,
         "count": "1",
         "type": 1,
-        "links": []
+        "links": [],
+        "author": ""
     }
 ]

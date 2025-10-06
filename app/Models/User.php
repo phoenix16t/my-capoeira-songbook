@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Songbook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -15,12 +16,19 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'google_id',
+        'email_verified_at'
+    ];
+
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at'
     ];
 
     protected $hidden = [
         'password',
-        'remember_token',
+        'remember_token'
     ];
 
     protected function casts(): array

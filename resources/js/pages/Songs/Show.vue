@@ -1,32 +1,19 @@
 <template>
-    <h1 class="text-3xl">{{ song.titles[0]?.title }}</h1>
-
-    <div v-if="song.titles.slice(1)">
-        Other names:
-        <div v-for="titleData in song.titles.slice(1)">
-            {{ titleData.title }}
-        </div>
-    </div>
-
-    <div>
-        Lyrics:
-        <template v-for="line in lines">
-            <div :class="{ 'font-bold': line.includes('(coro)') }">
-                {{ line.replaceAll("(coro)", "") }}
-            </div>
-        </template>
+    <div class="grid grid-cols-2">
+        <Lyrics :song="song" :should-highlight-title="true" />
+        <SongDetails :song="song" />
     </div>
 </template>
 
 <script setup lang="ts">
 import type { Song } from "@/types";
-import { computed } from "vue";
+
+import Lyrics from "@/components/Lyrics.vue";
+import SongDetails from "@/components/SongDetails.vue";
 
 interface Props {
     song: Song;
 }
 
-const props = defineProps<Props>();
-
-const lines = computed(() => props.song.lyrics.split("\n"));
+defineProps<Props>();
 </script>

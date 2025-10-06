@@ -30,6 +30,7 @@ class SongsSeeder extends Seeder
                 'type_id' => $songData['type'],
                 'created_at' => now(),
                 'updated_at' => now(),
+                'author' => ''
             ]);
 
             foreach ($songData['titles'] as $title) {

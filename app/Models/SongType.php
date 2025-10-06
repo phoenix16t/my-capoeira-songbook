@@ -3,16 +3,12 @@
 namespace App\Models;
 
 use App\Models\Song;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SongTitle extends Model
+class SongType extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
-        'song_id',
-        'title',
+        'name',
     ];
 
     protected $guarded = [
@@ -21,8 +17,8 @@ class SongTitle extends Model
         'updated_at'
     ];
 
-    public function song()
+    public function songs()
     {
-        return $this->belongsTo(Song::class);
+        return $this->hasMany(Song::class, 'type_id');
     }
 }

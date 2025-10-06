@@ -19,7 +19,7 @@ class SongController extends Controller
 
     public function show(string $id)
     {
-        $song = Song::with('titles')->findOrFail($id);
+        $song = Song::with('titles', 'group', 'type')->findOrFail($id);
 
         return Inertia::render('songs/Show', [
             'song' => $song,
