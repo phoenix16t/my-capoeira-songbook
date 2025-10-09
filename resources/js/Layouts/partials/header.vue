@@ -1,5 +1,7 @@
 <template>
-    <header class="flex items-center justify-between bg-red-500 px-8 py-2">
+    <header
+        class="sticky top-0 flex items-center justify-between bg-red-500 px-8 py-2"
+    >
         <span class="flex items-center">
             <div class="-ml-3 [transform:scaleX(-1)]">
                 <BerimbauIcon
