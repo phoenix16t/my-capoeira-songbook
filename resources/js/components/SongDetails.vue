@@ -1,5 +1,7 @@
 <template>
     <div class="flex flex-col gap-4">
+        <h2>Details</h2>
+
         <div v-if="song.titles.slice(1).length" class="flex flex-col gap-2">
             <Label> Other names for this song: </Label>
             <div class="flex flex-col rounded border p-2 italic">

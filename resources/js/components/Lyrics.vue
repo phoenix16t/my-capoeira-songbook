@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-4">
+    <div class="flex flex-col items-center gap-4">
         <div>
             <div
                 v-for="line in song.lyrics.split('\n')"

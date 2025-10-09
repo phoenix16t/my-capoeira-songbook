@@ -3,7 +3,7 @@
         <div class="flex h-[100dvh] w-full max-w-[1000px] flex-col">
             <Header />
             <div
-                class="flex flex-grow flex-col gap-8 overflow-auto bg-white px-8 py-4"
+                class="flex flex-grow flex-col gap-8 overflow-auto bg-white px-12 py-4"
             >
                 <slot />
                 <Toaster />
