@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FakeLoginController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\SongbookController;
@@ -8,6 +9,7 @@ use Inertia\Inertia;
 
 Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect'])->name('auth.google.redirect');
 Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('auth.google.callback');
+Route::get('/fake-login/{id?}', [FakeLoginController::class, 'loginAsUser']);
 
 Route::get('/', [SongController::class, 'index'])->name('songs.index');
 Route::redirect('/songs', '/');

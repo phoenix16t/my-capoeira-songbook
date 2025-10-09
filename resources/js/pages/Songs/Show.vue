@@ -1,6 +1,9 @@
 <template>
+    <h1 class="text-3xl">
+        {{ song.titles[0]?.title }}
+    </h1>
     <div class="grid grid-cols-2">
-        <Lyrics :song="song" :should-highlight-title="true" />
+        <Lyrics :song="song" />
         <SongDetails :song="song" />
     </div>
 </template>

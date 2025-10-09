@@ -1,7 +1,7 @@
 <template>
     <header class="flex items-center justify-between bg-red-500 px-8 py-2">
         <span class="flex items-center">
-            <div class="[transform:scaleX(-1)]">
+            <div class="-ml-3 [transform:scaleX(-1)]">
                 <BerimbauIcon
                     class="h-12 w-12 -rotate-z-15 fill-current text-white"
                 />
