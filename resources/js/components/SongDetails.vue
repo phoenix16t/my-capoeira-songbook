@@ -33,9 +33,9 @@
         </div>
 
         <div>
-            <Label> Starting count: </Label>
+            <Label> Beat count: </Label>
             <div class="rounded border p-2 italic">
-                {{ song.count }}
+                {{ song.beat }}
             </div>
         </div>
     </div>

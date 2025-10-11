@@ -51,9 +51,9 @@
                         </li>
                         <li class="flex items-baseline gap-2">
                             <Label class="font-bold whitespace-nowrap">
-                                Count:
+                                Beat count:
                             </Label>
-                            <div class="leading-none">{{ song.count }}</div>
+                            <div class="leading-none">{{ song.beat }}</div>
                         </li>
                         <li class="flex items-baseline gap-2">
                             <Label class="font-bold whitespace-nowrap">

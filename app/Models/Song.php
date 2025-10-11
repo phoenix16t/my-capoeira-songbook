@@ -18,7 +18,7 @@ class Song extends Model
         'translation',
         'lyrics',
         'group_id',
-        'count',
+        'beat',
         'type_id',
         'author'
     ];

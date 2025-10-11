@@ -28,7 +28,7 @@ export interface Song {
     translation: string;
     groupId: number;
     group?: Group;
-    count: string;
+    beat: string;
     typeId: number;
     type?: Type;
     author: string;
