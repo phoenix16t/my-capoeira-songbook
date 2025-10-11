@@ -25,4 +25,13 @@ class SongController extends Controller
             'song' => $song,
         ]);
     }
+
+    public function show2(string $id)
+    {
+        $song = Song::with('titles', 'group', 'type', 'links')->findOrFail($id);
+
+        return Inertia::render('songs/Show2', [
+            'song' => $song,
+        ]);
+    }
 }

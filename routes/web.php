@@ -14,6 +14,7 @@ Route::get('/fake-login/{id?}', [FakeLoginController::class, 'loginAsUser']);
 Route::get('/', [SongController::class, 'index'])->name('songs.index');
 Route::redirect('/songs', '/');
 Route::get('/songs/{id}', [SongController::class, 'show'])->name('songs.show');
+Route::get('/hello2/{id}', [SongController::class, 'show2'])->name('songs.show2');
 
 Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/logout', [GoogleAuthController::class, 'logout'])->name('logout');

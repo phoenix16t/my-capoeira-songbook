@@ -2,7 +2,9 @@
     <h1 class="text-3xl">
         {{ song.titles[0]?.title }}
     </h1>
+
     <hr />
+
     <div class="grid grid-cols-1 gap-14 sm:grid-cols-2">
         <Lyrics :song="song" />
         <SongDetails :song="song" />

@@ -8,9 +8,7 @@
                     class="h-12 w-12 -rotate-z-15 fill-current text-white"
                 />
             </div>
-            <span class="hidden text-xl text-white sm:inline">
-                My Capoeira Songbook
-            </span>
+            <span class="text-xl text-white"> My Capoeira Songbook </span>
         </span>
 
         <span class="flex items-center gap-4">
