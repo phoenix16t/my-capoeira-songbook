@@ -22,3 +22,17 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/songbooks/{id}', [SongbookController::class, 'show'])->name('songbooks.show');
     Route::post('/songbooks', [SongbookController::class, 'store'])->name('songbooks.store');
 });
+
+Route::get('/hello', function () {
+    return Inertia::render('Hello');
+});
+
+// Route::get('/hello2', function () {
+//     return Inertia::render('Hello2');
+// });
+
+
+// Route::get('/', function () {
+//     return "Hello from Laravel!";
+// });
+
