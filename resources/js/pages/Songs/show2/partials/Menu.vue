@@ -12,10 +12,21 @@
                     <Label class="flex items-center space-x-2">
                         <input
                             type="checkbox"
+                            v-model="showTranslation"
+                            class="accent-blue-600"
+                        />
+                        <span>Show Translation</span>
+                    </Label>
+                </div>
+
+                <div>
+                    <Label class="flex items-center space-x-2">
+                        <input
+                            type="checkbox"
                             v-model="showDetails"
                             class="accent-blue-600"
                         />
-                        <span>Show Song Details</span>
+                        <span>Show Details</span>
                     </Label>
                 </div>
             </div>
@@ -32,4 +43,5 @@ import SheetTitle from "@/components/ui/sheet/SheetTitle.vue";
 import SheetTrigger from "@/components/ui/sheet/SheetTrigger.vue";
 
 const showDetails = defineModel("showDetails", { default: true });
+const showTranslation = defineModel("showTranslation", { default: false });
 </script>
