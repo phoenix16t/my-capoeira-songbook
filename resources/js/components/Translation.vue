@@ -1,6 +1,6 @@
 <template>
     <Card>
-        <h3 class="mb-2 text-lg font-semibold">Translation</h3>
+        <h3 class="mb-4 text-lg font-semibold">Translation</h3>
         <p
             v-for="line in translation"
             class="text-base text-gray-600 italic"

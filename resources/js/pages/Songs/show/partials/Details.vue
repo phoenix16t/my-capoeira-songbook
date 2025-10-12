@@ -1,8 +1,11 @@
 <template>
     <Card>
-        <h3 class="mb-2 text-lg font-semibold">Song Info</h3>
+        <h3 class="mb-4 text-lg font-semibold">Song Info</h3>
         <ul class="flex flex-col gap-3 text-gray-700">
-            <li class="flex items-baseline gap-2">
+            <li
+                v-if="song.titles.slice(1).length"
+                class="flex items-baseline gap-2"
+            >
                 <Label class="font-bold whitespace-nowrap">
                     Alternate Titles:
                 </Label>
@@ -17,8 +20,8 @@
             </li>
             <li class="flex items-baseline gap-2">
                 <Label class="font-bold whitespace-nowrap"> Author: </Label>
-                <div class="leading-none">
-                    {{ song.author }}
+                <div class="leading-none" :class="!song.author && 'italic'">
+                    {{ song.author || "Unknown" }}
                 </div>
             </li>
             <li class="flex items-baseline gap-2">
@@ -33,8 +36,11 @@
             </li>
             <li class="flex items-baseline gap-2">
                 <Label class="font-bold whitespace-nowrap"> Group: </Label>
-                <div class="leading-none">
-                    {{ song.group?.name }}
+                <div
+                    class="leading-none"
+                    :class="!song.group?.name && 'italic'"
+                >
+                    {{ song.group?.name || "Unknown" }}
                 </div>
             </li>
         </ul>

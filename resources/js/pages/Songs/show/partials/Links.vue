@@ -1,6 +1,6 @@
 <template>
     <Card>
-        <h3 class="mb-2 text-lg font-semibold">Listen</h3>
+        <h3 class="mb-4 text-lg font-semibold">Listen</h3>
         <ul class="flex flex-col text-gray-700">
             <li v-for="link in song.links">
                 <a :href="link.url" target="_blank">

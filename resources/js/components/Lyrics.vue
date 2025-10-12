@@ -1,6 +1,6 @@
 <template>
     <Card>
-        <h3 class="mb-2 text-lg font-semibold">{{ song.titles[0]?.title }}</h3>
+        <h3 class="mb-4 text-lg font-semibold">{{ song.titles[0]?.title }}</h3>
         <div
             v-for="(line, i) in lyrics"
             :class="{

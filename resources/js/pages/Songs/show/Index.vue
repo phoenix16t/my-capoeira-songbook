@@ -23,7 +23,7 @@
                 <div class="flex flex-col gap-8">
                     <Translation v-if="showSideTranslation" :song="song" />
                     <Details v-if="showDetails" :song="song" />
-                    <Links v-if="showDetails" :song="song" />
+                    <Links v-if="showDetails && song.lyrics" :song="song" />
                 </div>
             </aside>
         </div>

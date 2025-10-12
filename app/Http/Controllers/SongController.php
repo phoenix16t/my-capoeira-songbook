@@ -19,18 +19,9 @@ class SongController extends Controller
 
     public function show(string $id)
     {
-        $song = Song::with('titles', 'group', 'type')->findOrFail($id);
-
-        return Inertia::render('songs/Show', [
-            'song' => $song,
-        ]);
-    }
-
-    public function show2(string $id)
-    {
         $song = Song::with('titles', 'group', 'type', 'links')->findOrFail($id);
 
-        return Inertia::render('songs/show2/Index', [
+        return Inertia::render('songs/show/Index', [
             'song' => $song,
         ]);
     }
