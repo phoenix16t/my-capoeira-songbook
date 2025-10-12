@@ -10,25 +10,19 @@
             />
         </header>
 
-        <!-- <button @click="showDetails = !showDetails">lskdjf</button> -->
-
-        <div class="flex px-8 py-4 duration-300 ease-in-out">
-            <section class="w-1/2 flex-grow pb-1 duration-300 ease-in-out">
+        <div
+            class="grid gap-8 px-8 py-4"
+            :class="shouldShowDataColumn ? 'grid-cols-2' : 'grid-cols-1'"
+        >
+            <section class="pb-1">
                 <Lyrics :song="song" />
             </section>
 
-            <aside
-                class="relative overflow-hidden pb-1 duration-300 ease-in-out"
-                :class="
-                    showDetails
-                        ? 'ml-8 max-w-md min-w-md'
-                        : 'ml-0 max-w-0 min-w-0'
-                "
-            >
-                <div class="flex min-w-md flex-col gap-8 whitespace-nowrap">
-                    <Translation :song="song" />
-                    <Details :song="song" />
-                    <Links :song="song" />
+            <aside v-if="shouldShowDataColumn" class="pb-1">
+                <div class="flex flex-col gap-8">
+                    <Translation v-if="showTranslation" :song="song" />
+                    <Details v-if="showDetails" :song="song" />
+                    <Links v-if="showDetails" :song="song" />
                 </div>
             </aside>
         </div>
@@ -38,7 +32,7 @@
 <script setup lang="ts">
 import Default2Layout from "@/layouts/Default2.vue";
 import type { Song } from "@/types";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 
 import Lyrics from "@/components/Lyrics.vue";
 import Translation from "@/components/Translation.vue";
@@ -57,4 +51,8 @@ defineProps<Props>();
 
 const showDetails = ref(true);
 const showTranslation = ref(false);
+
+const shouldShowDataColumn = computed(
+    () => showDetails.value || showTranslation.value,
+);
 </script>
