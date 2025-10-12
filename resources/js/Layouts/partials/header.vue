@@ -18,7 +18,7 @@
                 <Button
                     v-if="currentRouteName !== 'songs.index'"
                     size="icon"
-                    variant="ghost"
+                    variant="whiteGhost"
                     asChild
                 >
                     <Link :href="route('songs.index')">
@@ -29,7 +29,7 @@
                 <Button
                     v-if="currentRouteName !== 'songbooks.index'"
                     size="icon"
-                    variant="ghost"
+                    variant="whiteGhost"
                     asChild
                 >
                     <Link :href="route('songbooks.index')">
@@ -38,10 +38,15 @@
                 </Button>
             </template>
 
-            <Button v-if="user" size="icon" variant="ghost" @click="logout">
+            <Button
+                v-if="user"
+                size="icon"
+                variant="whiteGhost"
+                @click="logout"
+            >
                 <DoorOpen class="size-6" />
             </Button>
-            <Button v-else size="icon" variant="ghost" asChild>
+            <Button v-else size="icon" variant="whiteGhost" asChild>
                 <a :href="route('auth.google.redirect')">
                     <KeyRound class="size-6" />
                 </a>

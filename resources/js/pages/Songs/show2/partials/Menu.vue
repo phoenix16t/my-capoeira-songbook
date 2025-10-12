@@ -1,11 +1,13 @@
 <template>
     <Sheet>
         <SheetTrigger asChild>
-            <Button variant="outline">Config</Button>
+            <Button size="icon" variant="ghost">
+                <SettingsIcon class="inline h-6 w-6" />
+            </Button>
         </SheetTrigger>
         <SheetContent>
             <SheetHeader>
-                <SheetTitle>Config</SheetTitle>
+                <SheetTitle> Config </SheetTitle>
             </SheetHeader>
             <div className="grid flex-1 auto-rows-min gap-6 mt-4">
                 <div>
@@ -56,6 +58,8 @@
 </template>
 
 <script setup lang="ts">
+import { SettingsIcon } from "lucide-vue-next";
+
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
