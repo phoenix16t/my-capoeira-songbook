@@ -7,20 +7,21 @@
             <Menu
                 v-model:showDetails="showDetails"
                 v-model:showTranslation="showTranslation"
+                v-model:translationMode="translationMode"
             />
         </header>
 
         <div
-            class="grid gap-8 px-8 py-4"
-            :class="shouldShowDataColumn ? 'grid-cols-2' : 'grid-cols-1'"
+            class="grid grid-cols-1 gap-8 px-8 py-4"
+            :class="shouldShowDataColumn && 'sm:grid-cols-2'"
         >
             <section class="pb-1">
-                <Lyrics :song="song" />
+                <Lyrics :showInlineTranslation :song="song" />
             </section>
 
             <aside v-if="shouldShowDataColumn" class="pb-1">
                 <div class="flex flex-col gap-8">
-                    <Translation v-if="showTranslation" :song="song" />
+                    <Translation v-if="showSideTranslation" :song="song" />
                     <Details v-if="showDetails" :song="song" />
                     <Links v-if="showDetails" :song="song" />
                 </div>
@@ -51,8 +52,15 @@ defineProps<Props>();
 
 const showDetails = ref(true);
 const showTranslation = ref(false);
+const translationMode = ref("inline");
 
 const shouldShowDataColumn = computed(
     () => showDetails.value || showTranslation.value,
+);
+const showInlineTranslation = computed(
+    () => showTranslation.value && translationMode.value === "inline",
+);
+const showSideTranslation = computed(
+    () => showTranslation.value && translationMode.value === "side",
 );
 </script>

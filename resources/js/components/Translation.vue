@@ -1,12 +1,15 @@
 <template>
     <Card>
         <h3 class="mb-2 text-lg font-semibold">Translation</h3>
-        <div
+        <p
             v-for="line in translation"
-            :class="{ 'font-bold': line.includes('(chorus)') }"
+            class="text-base text-gray-600 italic"
+            :class="{
+                'py-2 font-bold': line.includes('(chorus)'),
+            }"
         >
-            {{ line.replaceAll("(chorus)", "") }}
-        </div>
+            {{ line?.replaceAll("(chorus)", "") }}
+        </p>
     </Card>
 </template>
 
@@ -17,7 +20,6 @@ import { computed } from "vue";
 import Card from "@/components/Card.vue";
 
 interface Props {
-    shouldHighlightTitle?: boolean;
     song: Song;
 }
 
