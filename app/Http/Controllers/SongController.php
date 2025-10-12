@@ -30,7 +30,7 @@ class SongController extends Controller
     {
         $song = Song::with('titles', 'group', 'type', 'links')->findOrFail($id);
 
-        return Inertia::render('songs/Show2', [
+        return Inertia::render('songs/show2/Index', [
             'song' => $song,
         ]);
     }
