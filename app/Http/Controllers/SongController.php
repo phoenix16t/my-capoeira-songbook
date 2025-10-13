@@ -12,7 +12,7 @@ class SongController extends Controller
     {
         $songs = Song::with('titles')->get();
 
-        return Inertia::render('songs/Index', [
+        return Inertia::render('songs/index/Index', [
             'songs' => $songs,
         ]);
     }

@@ -1,6 +1,16 @@
 <template>
     <Card>
-        <h3 class="mb-4 text-lg font-semibold">{{ song.titles[0]?.title }}</h3>
+        <h3 class="mb-4 text-lg font-semibold">
+            <Link
+                v-if="route().current() !== 'songs.show'"
+                :href="route('songs.show', song.id)"
+                class="hover:underline"
+            >
+                {{ song.titles[0]?.title }}
+            </Link>
+            <template v-else> {{ song.titles[0]?.title }}</template>
+        </h3>
+
         <div
             v-for="(line, i) in lyrics"
             :class="{
@@ -21,7 +31,9 @@
 
 <script setup lang="ts">
 import type { Song } from "@/types";
+import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
+import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
 

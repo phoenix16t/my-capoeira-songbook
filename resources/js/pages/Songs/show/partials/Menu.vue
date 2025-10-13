@@ -12,12 +12,9 @@
             <div className="grid flex-1 auto-rows-min gap-6 mt-4">
                 <div>
                     <Label class="flex items-center gap-2">
-                        <input
-                            type="checkbox"
-                            v-model="showTranslation"
-                            class="accent-blue-600"
-                        />
-                        <span>Show Translation</span>
+                        <Switch v-model="showTranslation" />
+                        <span v-if="showTranslation">Showing Translation</span>
+                        <span v-else>Not Showing Translation</span>
                     </Label>
                     <div
                         v-if="showTranslation"
@@ -45,12 +42,9 @@
                 </div>
 
                 <Label class="flex items-center gap-2">
-                    <input
-                        type="checkbox"
-                        v-model="showDetails"
-                        class="accent-blue-600"
-                    />
-                    <span>Show Details</span>
+                    <Switch v-model="showDetails" />
+                    <span v-if="showDetails">Showing Details</span>
+                    <span v-else>Not Showing Details</span>
                 </Label>
             </div>
         </SheetContent>
@@ -66,6 +60,7 @@ import Sheet from "@/components/ui/sheet/Sheet.vue";
 import SheetContent from "@/components/ui/sheet/SheetContent.vue";
 import SheetTitle from "@/components/ui/sheet/SheetTitle.vue";
 import SheetTrigger from "@/components/ui/sheet/SheetTrigger.vue";
+import Switch from "@/components/ui/switch/Switch.vue";
 
 const showDetails = defineModel("showDetails", { default: true });
 const showTranslation = defineModel("showTranslation", { default: false });

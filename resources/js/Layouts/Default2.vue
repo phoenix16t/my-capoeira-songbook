@@ -4,7 +4,6 @@
             class="flex h-[100dvh] w-full max-w-[1000px] flex-col bg-gray-50 text-gray-900 shadow-2xl"
         >
             <Header />
-            <!-- <div class="flex flex-grow flex-col gap-8 overflow-auto bg-white"> -->
             <div class="flex flex-grow flex-col overflow-hidden bg-gray-50">
                 <slot />
                 <Toaster />
