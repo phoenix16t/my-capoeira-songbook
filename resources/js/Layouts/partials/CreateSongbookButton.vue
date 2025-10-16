@@ -1,5 +1,5 @@
 <template>
-    <Button size="icon" variant="ghost" @click="isModalOpen = true">
+    <Button size="icon" variant="whiteGhost" @click="isModalOpen = true">
         <Plus class="size-6" />
     </Button>
 
