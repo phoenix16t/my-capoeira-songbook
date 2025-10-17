@@ -50,7 +50,10 @@ const props = defineProps<Props>();
 const columnSongs = (col: number) => {
     const result = [];
     for (let i = col - 1; i < props.songs.length; i += props.numberOfColumns) {
-        result.push(props.songs[i]);
+        const song = props.songs[i];
+        if (song !== undefined) {
+            result.push(song);
+        }
     }
     return result;
 };

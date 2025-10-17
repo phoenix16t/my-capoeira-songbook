@@ -9,13 +9,22 @@
             :href="route('songbooks.show', songbook.id)"
         >
             <Card class="transition-all hover:shadow-lg">
-                {{ songbook.title }}
+                <div class="flex items-center justify-start gap-2">
+                    <component
+                        v-if="songbook.icon"
+                        :is="Icons[songbook.icon]"
+                        class="size-5 w-8"
+                        :color="songbook.color"
+                    />
+                    {{ songbook.title }}
+                </div>
             </Card>
         </Link>
     </div>
 </template>
 
 <script setup lang="ts">
+import { Icons } from "@/lib/icons";
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 

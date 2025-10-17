@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import Header from "@/layouts/partials/header.vue";
+import Header from "@/layouts/partials/Header.vue";
 import { usePage } from "@inertiajs/vue3";
 import { onMounted, watch } from "vue";
 import { toast } from "vue-sonner";

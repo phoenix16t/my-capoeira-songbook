@@ -9,8 +9,10 @@ use Illuminate\Database\Eloquent\Model;
 class Songbook extends Model
 {
     protected $fillable = [
+        'user_id',
         'title',
-        'user_id'
+        'icon',
+        'color'
     ];
 
     protected $guarded = [

@@ -7,7 +7,7 @@
         <Sheet>
             <SheetTrigger asChild>
                 <Button size="icon" variant="ghost">
-                    <SettingsIcon class="inline h-6 w-6" />
+                    <SettingsIcon class="inline size-5" />
                 </Button>
             </SheetTrigger>
             <SheetContent>

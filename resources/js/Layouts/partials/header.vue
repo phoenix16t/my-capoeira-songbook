@@ -22,7 +22,7 @@
                     asChild
                 >
                     <Link :href="route('songs.index')">
-                        <Music class="size-6" />
+                        <Music class="size-5" />
                     </Link>
                 </Button>
 
@@ -33,7 +33,7 @@
                     asChild
                 >
                     <Link :href="route('songbooks.index')">
-                        <BookOpen class="size-6" />
+                        <BookOpen class="size-5" />
                     </Link>
                 </Button>
             </template>
@@ -44,11 +44,11 @@
                 variant="whiteGhost"
                 @click="logout"
             >
-                <DoorOpen class="size-6" />
+                <DoorOpen class="size-5" />
             </Button>
             <Button v-else size="icon" variant="whiteGhost" asChild>
                 <a :href="route('auth.google.redirect')">
-                    <KeyRound class="size-6" />
+                    <KeyRound class="size-5" />
                 </a>
             </Button>
         </span>
