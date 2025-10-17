@@ -4,20 +4,22 @@
     <div
         class="grid grid-cols-1 gap-4 text-center sm:grid-cols-2 sm:text-start"
     >
-        <div v-for="songbook in songbooks">
-            <Link :href="route('songbooks.show', songbook.id)">
-                <template v-if="songbook.title">
-                    {{ songbook.title }}
-                </template>
-                <span v-else class="text-red-500"> Missing title </span>
-            </Link>
-        </div>
+        <Link
+            v-for="songbook in songbooks"
+            :href="route('songbooks.show', songbook.id)"
+        >
+            <Card class="transition-all hover:shadow-lg">
+                {{ songbook.title }}
+            </Card>
+        </Link>
     </div>
 </template>
 
 <script setup lang="ts">
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
+
+import Card from "@/components/Card.vue";
 
 import type { Songbook } from "./types";
 

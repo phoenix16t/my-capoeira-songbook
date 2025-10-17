@@ -1,34 +1,43 @@
 <template>
-    <div class="flex gap-4">
-        <h1 class="text-3xl">{{ songbook.title }}</h1>
+    <div class="overflow-auto">
+        <SubHeader :title="`Songbook - ${songbook.title}`">
+            <SongMenu
+                v-model:showTitlesOnly="showTitlesOnly"
+                v-model:numberOfColumns="numberOfColumns"
+            />
+        </SubHeader>
     </div>
 
-    <template v-if="songbook.songs.length">
-        <div v-for="(song, i) in songbook.songs" class="flex flex-col gap-8">
-            <hr v-if="i !== 0" />
-
-            <Link :href="route('songs.show', song.id)">
-                <h2 class="text-2xl hover:underline">
-                    {{ song.titles[0]?.title }}
-                </h2>
-            </Link>
-            <Lyrics :song="song" />
-        </div>
-    </template>
-    <span v-else>You don't have any songs in this songbook yet!</span>
+    <SongList
+        v-if="songbook.songs.length"
+        :numberOfColumns="numberOfColumns"
+        :showTitlesOnly="showTitlesOnly"
+        :songs="songbook.songs"
+    />
+    <div v-else class="px-8 pt-4 pb-1">
+        <Card>You don't have any songs in this songbook yet!</Card>
+    </div>
 </template>
 
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
-import { route } from "ziggy-js";
+import Default2Layout from "@/layouts/Default2.vue";
+import { ref } from "vue";
 
-import Lyrics from "@/components/Lyrics.vue";
+import Card from "@/components/Card.vue";
+import SongList from "@/components/SongList.vue";
+import SongMenu from "@/components/SongMenu.vue";
+import SubHeader from "@/components/SubHeader.vue";
 
 import type { Songbook } from "./types";
+
+defineOptions({ layout: Default2Layout });
 
 interface Props {
     songbook: Songbook;
 }
 
 defineProps<Props>();
+
+const showTitlesOnly = ref(true);
+const numberOfColumns = ref(2);
 </script>
