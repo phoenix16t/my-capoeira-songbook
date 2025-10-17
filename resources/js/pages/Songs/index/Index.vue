@@ -39,5 +39,5 @@ interface Props {
 defineProps<Props>();
 
 const showTitlesOnly = ref(true);
-const numberOfColumns = ref(2);
+const numberOfColumns = ref(1);
 </script>

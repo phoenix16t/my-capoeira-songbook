@@ -16,18 +16,19 @@
                     v-model:showTitlesOnly="showTitlesOnly"
                     v-model:numberOfColumns="numberOfColumns"
                 />
+                <!-- TODO: add ability to change icon and color -->
             </template>
         </SubHeader>
-    </div>
 
-    <SongList
-        v-if="songbook.songs.length"
-        :numberOfColumns="numberOfColumns"
-        :showTitlesOnly="showTitlesOnly"
-        :songs="songbook.songs"
-    />
-    <div v-else class="px-8 pt-4 pb-1">
-        <Card>You don't have any songs in this songbook yet!</Card>
+        <SongList
+            v-if="songbook.songs.length"
+            :numberOfColumns="numberOfColumns"
+            :showTitlesOnly="showTitlesOnly"
+            :songs="songbook.songs"
+        />
+        <div v-else class="px-8 pt-4 pb-1">
+            <Card>You don't have any songs in this songbook yet!</Card>
+        </div>
     </div>
 </template>
 
@@ -54,5 +55,5 @@ interface Props {
 defineProps<Props>();
 
 const showTitlesOnly = ref(true);
-const numberOfColumns = ref(2);
+const numberOfColumns = ref(1);
 </script>

@@ -6,7 +6,7 @@
             <slot name="title" />
         </h2>
 
-        <Sheet>
+        <Sheet v-if="slots.menu">
             <SheetTrigger asChild>
                 <Button size="icon" variant="ghost">
                     <SettingsIcon class="inline size-5" />
@@ -26,10 +26,13 @@
 
 <script setup lang="ts">
 import { SettingsIcon } from "lucide-vue-next";
+import { useSlots } from "vue";
 
 import { Button } from "@/components/ui/button";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
 import SheetContent from "@/components/ui/sheet/SheetContent.vue";
 import SheetTitle from "@/components/ui/sheet/SheetTitle.vue";
 import SheetTrigger from "@/components/ui/sheet/SheetTrigger.vue";
+
+const slots = useSlots();
 </script>

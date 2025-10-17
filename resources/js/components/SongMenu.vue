@@ -10,7 +10,7 @@
             <NumberField
                 v-model="numberOfColumns"
                 id="columns"
-                :default-value="2"
+                :default-value="1"
                 :min="1"
                 :max="10"
             >
@@ -37,5 +37,5 @@ import {
 import Switch from "@/components/ui/switch/Switch.vue";
 
 const showTitlesOnly = defineModel("showTitlesOnly", { default: true });
-const numberOfColumns = defineModel("numberOfColumns", { default: 2 });
+const numberOfColumns = defineModel("numberOfColumns");
 </script>
