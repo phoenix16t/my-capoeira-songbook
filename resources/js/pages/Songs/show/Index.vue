@@ -16,11 +16,11 @@
             class="grid grid-cols-1 gap-4 px-8 pt-4"
             :class="shouldShowDataColumn && 'sm:grid-cols-2'"
         >
-            <section class="pb-1">
+            <section class="pb-4">
                 <Lyrics :showInlineTranslation :song="song" />
             </section>
 
-            <aside v-if="shouldShowDataColumn" class="pb-1">
+            <aside v-if="shouldShowDataColumn" class="pb-4">
                 <div class="flex flex-col gap-4">
                     <Translation v-if="showSideTranslation" :song="song" />
                     <Details v-if="showDetails" :song="song" />

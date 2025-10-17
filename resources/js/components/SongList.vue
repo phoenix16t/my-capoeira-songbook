@@ -1,17 +1,6 @@
 <template>
-    <div class="px-8 pt-4 pb-1">
-        <Card
-            v-if="showTitlesOnly"
-            class="grid gap-4"
-            :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
-        >
-            <Link v-for="song in songs" :href="route('songs.show', song.id)">
-                {{ song.titles?.[0]?.title }}
-            </Link>
-        </Card>
-
+    <div class="px-8 pt-4 pb-4">
         <div
-            v-else
             class="grid gap-4"
             :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
         >
@@ -20,11 +9,25 @@
                 :key="col"
                 class="flex flex-col gap-4"
             >
-                <Lyrics
-                    v-for="(song, index) in columnSongs(col)"
-                    :key="index"
-                    :song="song"
-                />
+                <template v-if="showTitlesOnly">
+                    <Link
+                        v-for="song in columnSongs(col)"
+                        :href="route('songs.show', song.id)"
+                        class="flex"
+                        :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
+                    >
+                        <Card class="w-full transition-all hover:shadow-lg">
+                            {{ song.titles?.[0]?.title }}
+                        </Card>
+                    </Link>
+                </template>
+                <template v-else>
+                    <Lyrics
+                        v-for="(song, index) in columnSongs(col)"
+                        :key="index"
+                        :song="song"
+                    />
+                </template>
             </div>
         </div>
     </div>

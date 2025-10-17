@@ -26,7 +26,7 @@
             :showTitlesOnly="showTitlesOnly"
             :songs="songbook.songs"
         />
-        <div v-else class="px-8 pt-4 pb-1">
+        <div v-else class="px-8 pt-4 pb-4">
             <Card>You don't have any songs in this songbook yet!</Card>
         </div>
     </div>
