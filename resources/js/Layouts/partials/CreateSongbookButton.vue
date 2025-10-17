@@ -89,8 +89,6 @@
 </template>
 
 <script setup lang="ts">
-import { Icons } from "@/lib/icons";
-import type { IconKeys } from "@/types";
 import { router } from "@inertiajs/vue3";
 import { PlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
@@ -114,6 +112,10 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
+
+import type { IconKeys } from "@/types";
+
+import { Icons } from "@/lib/icons";
 
 const title = ref("");
 const selectedIcon = ref<IconKeys | undefined>(undefined);

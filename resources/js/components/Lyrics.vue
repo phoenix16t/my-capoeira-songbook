@@ -30,12 +30,13 @@
 </template>
 
 <script setup lang="ts">
-import type { Song } from "@/types";
 import { Link } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
+
+import type { Song } from "@/types";
 
 interface Props {
     showInlineTranslation?: boolean;

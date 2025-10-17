@@ -31,13 +31,15 @@
 </template>
 
 <script setup lang="ts">
-import Default2Layout from "@/layouts/Default2.vue";
-import type { Song } from "@/types";
 import { computed, ref } from "vue";
+
+import Default2Layout from "@/layouts/Default2.vue";
 
 import Lyrics from "@/components/Lyrics.vue";
 import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
+
+import type { Song } from "@/types";
 
 import Details from "./partials/Details.vue";
 import Links from "./partials/Links.vue";

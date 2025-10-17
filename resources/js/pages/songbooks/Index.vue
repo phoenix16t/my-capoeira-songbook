@@ -24,11 +24,12 @@
 </template>
 
 <script setup lang="ts">
-import { Icons } from "@/lib/icons";
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
+
+import { Icons } from "@/lib/icons";
 
 import type { Songbook } from "./types";
 

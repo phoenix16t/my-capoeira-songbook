@@ -20,8 +20,9 @@
 </template>
 
 <script setup lang="ts">
-import Default2Layout from "@/layouts/Default2.vue";
 import { ref } from "vue";
+
+import Default2Layout from "@/layouts/Default2.vue";
 
 import Card from "@/components/Card.vue";
 import SongList from "@/components/SongList.vue";

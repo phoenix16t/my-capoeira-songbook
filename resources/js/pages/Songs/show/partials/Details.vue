@@ -48,10 +48,10 @@
 </template>
 
 <script setup lang="ts">
-import type { Song } from "@/types";
-
 import Card from "@/components/Card.vue";
 import { Label } from "@/components/ui/label";
+
+import type { Song } from "@/types";
 
 interface Props {
     song: Song;

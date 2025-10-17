@@ -14,10 +14,11 @@
 </template>
 
 <script setup lang="ts">
-import type { Song } from "@/types";
 import { computed } from "vue";
 
 import Card from "@/components/Card.vue";
+
+import type { Song } from "@/types";
 
 interface Props {
     song: Song;
