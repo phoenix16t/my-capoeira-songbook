@@ -1,10 +1,14 @@
 <template>
     <div class="overflow-auto">
-        <SubHeader title="Songs">
-            <SongMenu
-                v-model:showTitlesOnly="showTitlesOnly"
-                v-model:numberOfColumns="numberOfColumns"
-            />
+        <SubHeader>
+            <template #title> Song list </template>
+
+            <template #menu>
+                <SongMenu
+                    v-model:showTitlesOnly="showTitlesOnly"
+                    v-model:numberOfColumns="numberOfColumns"
+                />
+            </template>
         </SubHeader>
 
         <SongList

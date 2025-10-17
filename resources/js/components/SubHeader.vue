@@ -2,7 +2,9 @@
     <header
         class="flex h-15 items-center justify-between border-b bg-white px-8 py-4 shadow-sm"
     >
-        <h2 class="text-xl font-semibold">{{ title }}</h2>
+        <h2 class="flex items-center text-xl font-semibold">
+            <slot name="title" />
+        </h2>
 
         <Sheet>
             <SheetTrigger asChild>
@@ -15,7 +17,7 @@
                     <SheetTitle> Config </SheetTitle>
                 </SheetHeader>
                 <div className="grid flex-1 auto-rows-min gap-6 mt-4">
-                    <slot />
+                    <slot name="menu" />
                 </div>
             </SheetContent>
         </Sheet>
@@ -30,8 +32,4 @@ import Sheet from "@/components/ui/sheet/Sheet.vue";
 import SheetContent from "@/components/ui/sheet/SheetContent.vue";
 import SheetTitle from "@/components/ui/sheet/SheetTitle.vue";
 import SheetTrigger from "@/components/ui/sheet/SheetTrigger.vue";
-
-defineProps<{
-    title: string;
-}>();
 </script>

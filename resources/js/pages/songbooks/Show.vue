@@ -1,10 +1,22 @@
 <template>
     <div class="overflow-auto">
-        <SubHeader :title="`Songbook - ${songbook.title}`">
-            <SongMenu
-                v-model:showTitlesOnly="showTitlesOnly"
-                v-model:numberOfColumns="numberOfColumns"
-            />
+        <SubHeader>
+            <template #title>
+                <component
+                    v-if="songbook.icon"
+                    :is="Icons[songbook.icon]"
+                    class="size-5 w-8"
+                    :color="songbook.color"
+                />
+                {{ songbook.title }}
+            </template>
+
+            <template #menu>
+                <SongMenu
+                    v-model:showTitlesOnly="showTitlesOnly"
+                    v-model:numberOfColumns="numberOfColumns"
+                />
+            </template>
         </SubHeader>
     </div>
 
@@ -28,6 +40,8 @@ import Card from "@/components/Card.vue";
 import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
+
+import { Icons } from "@/lib/icons";
 
 import type { Songbook } from "./types";
 

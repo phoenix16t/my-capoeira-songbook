@@ -1,11 +1,15 @@
 <template>
     <div class="overflow-auto">
-        <SubHeader title="Song Details">
-            <Menu
-                v-model:showDetails="showDetails"
-                v-model:showTranslation="showTranslation"
-                v-model:translationMode="translationMode"
-            />
+        <SubHeader>
+            <template #title> Song Details </template>
+
+            <template #menu>
+                <Menu
+                    v-model:showDetails="showDetails"
+                    v-model:showTranslation="showTranslation"
+                    v-model:translationMode="translationMode"
+                />
+            </template>
         </SubHeader>
 
         <div
