@@ -36,6 +36,6 @@ import {
 } from "@/components/ui/number-field";
 import Switch from "@/components/ui/switch/Switch.vue";
 
-const showTitlesOnly = defineModel("showTitlesOnly", { default: true });
+const showTitlesOnly = defineModel("showTitlesOnly");
 const numberOfColumns = defineModel("numberOfColumns");
 </script>

@@ -34,6 +34,15 @@ export interface Song {
     typeId: number;
     type?: Type;
     author: string;
+    songbooks?: Songbook[];
 }
 
 export type IconKeys = keyof typeof Icons;
+
+export interface Songbook {
+    id: number;
+    title: string;
+    songs: Song[];
+    icon?: IconKeys;
+    color?: string;
+}

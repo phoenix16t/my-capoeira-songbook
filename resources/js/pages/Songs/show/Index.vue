@@ -8,6 +8,7 @@
                     v-model:showDetails="showDetails"
                     v-model:showTranslation="showTranslation"
                     v-model:translationMode="translationMode"
+                    v-model:showSongbooks="showSongbooks"
                 />
             </template>
         </SubHeader>
@@ -28,6 +29,11 @@
                         v-if="showDetails && song.links.length"
                         :song="song"
                     />
+                    <SongbookList
+                        v-if="showSongbooks"
+                        :song="song"
+                        :songbooks="songbooks"
+                    />
                 </div>
             </aside>
         </div>
@@ -43,26 +49,29 @@ import Lyrics from "@/components/Lyrics.vue";
 import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
 
-import type { Song } from "@/types";
+import type { Song, Songbook } from "@/types";
 
 import Details from "./partials/Details.vue";
 import Links from "./partials/Links.vue";
 import Menu from "./partials/Menu.vue";
+import SongbookList from "./partials/SongbookList.vue";
 
 defineOptions({ layout: Default2Layout });
 
 interface Props {
     song: Song;
+    songbooks: Songbook[];
 }
 
 defineProps<Props>();
 
-const showDetails = ref(true);
+const showDetails = ref(false);
 const showTranslation = ref(false);
 const translationMode = ref("inline");
+const showSongbooks = ref(true);
 
 const shouldShowDataColumn = computed(
-    () => showDetails.value || showSideTranslation.value,
+    () => showDetails.value || showSideTranslation.value || showSongbooks.value,
 );
 const showInlineTranslation = computed(
     () => showTranslation.value && translationMode.value === "inline",

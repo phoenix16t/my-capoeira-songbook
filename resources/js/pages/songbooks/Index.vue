@@ -37,9 +37,9 @@ import Default2Layout from "@/layouts/Default2.vue";
 import Card from "@/components/Card.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
-import { Icons } from "@/lib/icons";
+import type { Songbook } from "@/types";
 
-import type { Songbook } from "./types";
+import { Icons } from "@/lib/icons";
 
 defineOptions({ layout: Default2Layout });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Songbook;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -19,10 +20,12 @@ class SongController extends Controller
 
     public function show(string $id)
     {
-        $song = Song::with('titles', 'group', 'type', 'links')->findOrFail($id);
+        $song = Song::with('titles', 'group', 'type', 'links', 'songbooks')->findOrFail($id);
+        $songbooks = Songbook::all();
 
         return Inertia::render('songs/show/Index', [
             'song' => $song,
+            'songbooks' => $songbooks,
         ]);
     }
 }

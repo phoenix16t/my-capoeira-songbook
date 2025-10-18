@@ -42,6 +42,6 @@ class SongbookController extends Controller
             'color' => $request->input('color'),
         ]);
 
-        return redirect()->back()->with('success', 'Songbook created successfully.');
+        return redirect()->back()->with('success');
     }
 }

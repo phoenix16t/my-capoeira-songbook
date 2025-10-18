@@ -42,9 +42,9 @@ import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
-import { Icons } from "@/lib/icons";
+import type { Songbook } from "@/types";
 
-import type { Songbook } from "./types";
+import { Icons } from "@/lib/icons";
 
 defineOptions({ layout: Default2Layout });
 
