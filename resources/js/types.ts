@@ -1,3 +1,5 @@
+import type { Icons } from "@/lib/icons.js";
+
 interface SongTitle {
     title: string;
 }
@@ -12,15 +14,35 @@ interface Type {
     name: string;
 }
 
+interface Link {
+    id: number;
+    song_id: number;
+    url: string;
+    start_time: string;
+    end_time: string;
+}
+
 export interface Song {
     id: number;
     titles: SongTitle[];
     lyrics: string;
+    links: Link[];
     translation: string;
     groupId: number;
     group?: Group;
-    count: string;
+    beat: string;
     typeId: number;
     type?: Type;
     author: string;
+    songbooks?: Songbook[];
+}
+
+export type IconKeys = keyof typeof Icons;
+
+export interface Songbook {
+    id: number;
+    title: string;
+    songs: Song[];
+    icon?: IconKeys;
+    color?: string;
 }

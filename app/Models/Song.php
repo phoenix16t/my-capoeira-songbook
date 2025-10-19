@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Group;
 use App\Models\Songbook;
+use App\Models\SongLink;
 use App\Models\SongTitle;
 use App\Models\SongType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +18,7 @@ class Song extends Model
         'translation',
         'lyrics',
         'group_id',
-        'count',
+        'beat',
         'type_id',
         'author'
     ];
@@ -46,5 +47,10 @@ class Song extends Model
     public function type()
     {
         return $this->belongsTo(SongType::class);
+    }
+
+    public function links()
+    {
+        return $this->hasMany(SongLink::class);
     }
 }

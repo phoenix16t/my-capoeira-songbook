@@ -4,6 +4,7 @@ use App\Http\Controllers\FakeLoginController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\SongbookController;
+use App\Http\Controllers\SongbookSongController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -20,4 +21,6 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/songbooks', [SongbookController::class, 'index'])->name('songbooks.index');
     Route::get('/songbooks/{id}', [SongbookController::class, 'show'])->name('songbooks.show');
     Route::post('/songbooks', [SongbookController::class, 'store'])->name('songbooks.store');
+    Route::post('/songbooks_songs', [SongbookSongController::class, 'store'])->name('songbooks.songs.store');
+    Route::delete('/songbooks_songs', [SongbookSongController::class, 'destroy'])->name('songbooks.songs.destroy');
 });

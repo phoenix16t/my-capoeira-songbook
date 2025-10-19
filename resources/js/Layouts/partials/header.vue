@@ -8,9 +8,7 @@
                     class="h-12 w-12 -rotate-z-15 fill-current text-white"
                 />
             </div>
-            <span class="hidden text-xl text-white sm:inline">
-                My Capoeira Songbook
-            </span>
+            <span class="text-xl text-white"> My Capoeira Songbook </span>
         </span>
 
         <span class="flex items-center gap-4">
@@ -20,32 +18,37 @@
                 <Button
                     v-if="currentRouteName !== 'songs.index'"
                     size="icon"
-                    variant="ghost"
+                    variant="whiteGhost"
                     asChild
                 >
                     <Link :href="route('songs.index')">
-                        <Music class="size-6" />
+                        <Music class="size-5" />
                     </Link>
                 </Button>
 
                 <Button
                     v-if="currentRouteName !== 'songbooks.index'"
                     size="icon"
-                    variant="ghost"
+                    variant="whiteGhost"
                     asChild
                 >
                     <Link :href="route('songbooks.index')">
-                        <BookOpen class="size-6" />
+                        <BookOpen class="size-5" />
                     </Link>
                 </Button>
             </template>
 
-            <Button v-if="user" size="icon" variant="ghost" @click="logout">
-                <DoorOpen class="size-6" />
+            <Button
+                v-if="user"
+                size="icon"
+                variant="whiteGhost"
+                @click="logout"
+            >
+                <DoorOpen class="size-5" />
             </Button>
-            <Button v-else size="icon" variant="ghost" asChild>
+            <Button v-else size="icon" variant="whiteGhost" asChild>
                 <a :href="route('auth.google.redirect')">
-                    <KeyRound class="size-6" />
+                    <KeyRound class="size-5" />
                 </a>
             </Button>
         </span>

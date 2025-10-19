@@ -1,0 +1,21 @@
+<script setup lang="ts">
+import { cn } from "@/lib/utils";
+import { reactiveOmit } from "@vueuse/core";
+import { NumberFieldRoot, useForwardPropsEmits } from "reka-ui";
+
+const props = defineProps();
+const emits = defineEmits();
+
+const delegatedProps = reactiveOmit(props, "class");
+
+const forwarded = useForwardPropsEmits(delegatedProps, emits);
+</script>
+
+<template>
+    <NumberFieldRoot
+        v-bind="forwarded"
+        :class="cn('grid gap-1.5', props.class)"
+    >
+        <slot />
+    </NumberFieldRoot>
+</template>

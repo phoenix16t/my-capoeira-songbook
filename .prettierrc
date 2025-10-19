@@ -4,11 +4,13 @@
         "prettier-plugin-tailwindcss"
     ],
     "importOrder": [
-        "^react(.*)$",
         "<THIRD_PARTY_MODULES>",
+        "^@/layouts",
         "^@/pages",
         "^@/components",
         "^@/hooks",
+        "^@/types",
+        "^@/lib",
         "^@/icons",
         "^[./]",
         ".*\\.(css|scss|less|sass)$"

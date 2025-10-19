@@ -31,13 +31,17 @@ class SongbookController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
+            'icon' => ['nullable', 'string', 'max:255'],
+            'color' => ['nullable', 'string', 'max:255'],
         ]);
 
         Songbook::create([
-            'title' => $request->input('title'),
             'user_id' => Auth::id(),
+            'title' => $request->input('title'),
+            'icon' => $request->input('icon'),
+            'color' => $request->input('color'),
         ]);
 
-        return redirect()->back()->with('success', 'Songbook created successfully.');
+        return redirect()->back()->with('success');
     }
 }

@@ -24,7 +24,7 @@
             "Paraná hey, Paraná hey, Paraná (chorus)"
         ],
         "group": null,
-        "count": "3",
+        "beat": "3",
         "type": 1,
         "links": [],
         "author": ""
@@ -54,7 +54,7 @@
             "Capoeira shook, it shook (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -84,7 +84,7 @@
             "The gate slammed shut, it's time (chorus)"
         ],
         "group": null,
-        "count": null,
+        "beat": null,
         "type": 1,
         "links": [],
         "author": ""
@@ -114,7 +114,7 @@
             "The canoe capsized, sailor (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -142,7 +142,7 @@
             "Good trip (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""
@@ -176,7 +176,7 @@
             "Oh, oh, oh, oh, oh (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -206,7 +206,7 @@
             "Oh, oh, Aidê (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""
@@ -238,7 +238,7 @@
             "Angola hey hey, Angola hey, Angola (chorus)"
         ],
         "group": null,
-        "count": "2",
+        "beat": "2",
         "type": 1,
         "links": [],
         "author": ""
@@ -264,7 +264,7 @@
             "Little Angola, Angola (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""
@@ -294,7 +294,7 @@
             "The jaguar is dead, the forest is mine (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -328,7 +328,7 @@
             "The baraúna tree fell, the more I (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -360,7 +360,7 @@
             "Gameleira tree on the ground (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -388,7 +388,7 @@
             "To make a berimbau (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -418,7 +418,7 @@
             "Camungerê (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""
@@ -444,7 +444,7 @@
             "Little canary from Germany, who killed my finch (chorus)"
         ],
         "group": null,
-        "count": "X",
+        "beat": "X",
         "type": 1,
         "links": [],
         "author": ""
@@ -476,7 +476,7 @@
             "Nhem, nhem, nhem (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""
@@ -510,7 +510,7 @@
             "Cry (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""
@@ -536,7 +536,7 @@
             "Slowly, slowly (chorus)"
         ],
         "group": null,
-        "count": "1",
+        "beat": "1",
         "type": 1,
         "links": [],
         "author": ""

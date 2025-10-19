@@ -1,0 +1,41 @@
+<script setup lang="ts">
+import { cn } from "@/lib/utils";
+import { reactiveOmit } from "@vueuse/core";
+import { Check } from "lucide-vue-next";
+import {
+    SelectItem,
+    SelectItemIndicator,
+    SelectItemText,
+    useForwardProps,
+} from "reka-ui";
+
+const props = defineProps();
+
+const delegatedProps = reactiveOmit(props, "class");
+
+const forwardedProps = useForwardProps(delegatedProps);
+</script>
+
+<template>
+    <SelectItem
+        v-bind="forwardedProps"
+        :class="
+            cn(
+                'focus:bg-accent focus:text-accent-foreground relative flex w-full cursor-default items-center rounded-sm py-1.5 pr-8 pl-2 text-sm outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+                props.class,
+            )
+        "
+    >
+        <span
+            class="absolute right-2 flex h-3.5 w-3.5 items-center justify-center"
+        >
+            <SelectItemIndicator>
+                <Check class="h-4 w-4" />
+            </SelectItemIndicator>
+        </span>
+
+        <SelectItemText>
+            <slot />
+        </SelectItemText>
+    </SelectItem>
+</template>

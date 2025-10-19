@@ -26,7 +26,7 @@ class SongsSeeder extends Seeder
                 'translation' => $translationString,
                 'lyrics' => $lyricsString,
                 'group_id' => $songData['group'],
-                'count' => $songData['count'],
+                'beat' => $songData['beat'],
                 'type_id' => $songData['type'],
                 'created_at' => now(),
                 'updated_at' => now(),
