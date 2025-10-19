@@ -25,6 +25,7 @@
             :numberOfColumns="numberOfColumns"
             :showTitlesOnly="showTitlesOnly"
             :songs="songbook.songs"
+            :songbooks="songbooks"
         />
         <div v-else class="px-8 pt-4 pb-4">
             <Card>You don't have any songs in this songbook yet!</Card>
@@ -50,6 +51,7 @@ defineOptions({ layout: Default2Layout });
 
 interface Props {
     songbook: Songbook;
+    songbooks: Songbook[];
 }
 
 defineProps<Props>();

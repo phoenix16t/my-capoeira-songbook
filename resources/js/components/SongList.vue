@@ -25,7 +25,10 @@
                                 @click.stop.prevent="blah"
                                 class="rounded-xl border p-2 transition-all hover:shadow-xl"
                             >
-                                <AddToSongbooksButton />
+                                <AddToSongbooksButton
+                                    :song="song"
+                                    :songbooks="songbooks"
+                                />
                             </span>
                         </Card>
                     </Link>
@@ -44,7 +47,6 @@
 
 <script setup lang="ts">
 import { Link } from "@inertiajs/vue3";
-import { BookPlus } from "lucide-vue-next";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";

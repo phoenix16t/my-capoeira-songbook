@@ -65,6 +65,8 @@ interface Props {
 }
 
 const { songbooks, song } = defineProps<Props>();
+console.log("songbooks", songbooks);
+console.log("song", song);
 
 const addToSongbook = (songbook: Songbook) => {
     router.post(

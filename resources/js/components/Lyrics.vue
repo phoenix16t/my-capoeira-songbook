@@ -43,8 +43,8 @@ interface Props {
     song: Song;
 }
 
-const props = defineProps<Props>();
+const { song } = defineProps<Props>();
 
-const lyrics = computed(() => props.song.lyrics.split("\n"));
-const translation = computed(() => props.song.translation.split("\n"));
+const lyrics = computed(() => song.lyrics.split("\n"));
+const translation = computed(() => song.translation.split("\n"));
 </script>

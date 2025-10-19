@@ -20,10 +20,12 @@ class SongbookController extends Controller
 
     public function show(string $id)
     {
-        $songbook = Songbook::with('songs.titles')->findOrFail($id);
+        $songbook = Songbook::with('songs.titles', 'songs.songbooks')->findOrFail($id);
+        $songbooks = Songbook::all();
 
         return Inertia::render('songbooks/Show', [
             'songbook' => $songbook,
+            'songbooks' => $songbooks,
         ]);
     }
 
