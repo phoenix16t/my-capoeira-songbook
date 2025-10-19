@@ -24,7 +24,7 @@
                     asChild
                 >
                     <Link :href="route('songs.index')">
-                        <Music class="size-5" />
+                        <MusicIcon class="size-5" />
                     </Link>
                 </Button>
 
@@ -35,7 +35,7 @@
                     asChild
                 >
                     <Link :href="route('songbooks.index')">
-                        <BookOpen class="size-5" />
+                        <BookOpenIcon class="size-5" />
                     </Link>
                 </Button>
             </template>
@@ -46,11 +46,11 @@
                 variant="whiteGhost"
                 @click="logout"
             >
-                <DoorOpen class="size-5" />
+                <DoorOpenIcon class="size-5" />
             </Button>
             <Button v-else size="icon" variant="whiteGhost" asChild>
                 <a :href="route('auth.google.redirect')">
-                    <KeyRound class="size-5" />
+                    <KeyRoundIcon class="size-5" />
                 </a>
             </Button>
         </span>
@@ -59,7 +59,12 @@
 
 <script setup lang="ts">
 import { Link, router, usePage } from "@inertiajs/vue3";
-import { BookOpen, DoorOpen, KeyRound, Music } from "lucide-vue-next";
+import {
+    BookOpenIcon,
+    DoorOpenIcon,
+    KeyRoundIcon,
+    MusicIcon,
+} from "lucide-vue-next";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 

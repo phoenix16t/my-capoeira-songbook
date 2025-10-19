@@ -16,8 +16,17 @@
                         class="flex"
                         :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
                     >
-                        <Card class="w-full transition-all hover:shadow-lg">
+                        <Card
+                            class="flex w-full items-center justify-between transition-all hover:shadow-lg"
+                        >
                             {{ song.titles?.[0]?.title }}
+
+                            <span
+                                @click.stop.prevent="blah"
+                                class="rounded-xl border p-2 transition-all hover:shadow-xl"
+                            >
+                                <AddToSongbooksButton />
+                            </span>
                         </Card>
                     </Link>
                 </template>
@@ -35,25 +44,33 @@
 
 <script setup lang="ts">
 import { Link } from "@inertiajs/vue3";
+import { BookPlus } from "lucide-vue-next";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
 import Lyrics from "@/components/Lyrics.vue";
 
-import type { Song } from "@/types";
+import type { Song, Songbook } from "@/types";
+
+import AddToSongbooksButton from "./AddToSongbooksButton.vue";
 
 interface Props {
     numberOfColumns: number;
     showTitlesOnly: boolean;
     songs: Song[];
+    songbooks: Songbook[];
 }
 
-const props = defineProps<Props>();
+const { songs, numberOfColumns } = defineProps<Props>();
+
+const blah = () => {
+    console.log("blah");
+};
 
 const columnSongs = (col: number) => {
     const result = [];
-    for (let i = col - 1; i < props.songs.length; i += props.numberOfColumns) {
-        const song = props.songs[i];
+    for (let i = col - 1; i < songs.length; i += numberOfColumns) {
+        const song = songs[i];
         if (song !== undefined) {
             result.push(song);
         }

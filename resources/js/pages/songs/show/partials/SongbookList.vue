@@ -1,33 +1,45 @@
 <template>
     <Card>
-        <h3 class="mb-4 text-lg font-semibold">My Songbooks</h3>
-
-        <div class="flex items-center gap-2 font-bold">
+        <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold">
             <CheckIcon class="size-5 text-green-500" />
-            Belongs to
-        </div>
-        <ul class="divide-y divide-gray-200">
+            Belongs to Songbooks
+        </h3>
+        <ul>
             <li
                 v-for="songbook in song.songbooks?.sort((a, b) => a.id - b.id)"
-                class="flex cursor-pointer justify-between p-2 hover:shadow-lg"
+                class="m-2 flex cursor-pointer rounded-lg border px-4 py-2 hover:shadow-lg"
                 @click="removeFromSongbook(songbook)"
             >
+                <component
+                    v-if="songbook.icon"
+                    :is="Icons[songbook.icon]"
+                    class="size-5 w-8"
+                    :color="songbook.color"
+                />
                 {{ songbook.title }}
             </li>
         </ul>
+    </Card>
 
-        <div class="mt-4 flex items-center gap-2 font-bold">
+    <Card>
+        <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold">
             <XIcon class="size-5 text-red-500" />
-            Missing from
-        </div>
-        <ul class="divide-y divide-gray-200">
+            Missing from Songbooks
+        </h3>
+        <ul>
             <li
                 v-for="songbook in songbooksWithoutSong.sort(
                     (a, b) => a.id - b.id,
                 )"
-                class="flex cursor-pointer justify-between p-2 hover:shadow-lg"
+                class="m-2 flex cursor-pointer rounded-lg border px-4 py-2 hover:shadow-lg"
                 @click="addToSongbook(songbook)"
             >
+                <component
+                    v-if="songbook.icon"
+                    :is="Icons[songbook.icon]"
+                    class="size-5 w-8"
+                    :color="songbook.color"
+                />
                 {{ songbook.title }}
             </li>
         </ul>
@@ -44,6 +56,8 @@ import { route } from "ziggy-js";
 import Card from "@/components/Card.vue";
 
 import type { Song, Songbook } from "@/types";
+
+import { Icons } from "@/lib/icons";
 
 interface Props {
     song: Song;

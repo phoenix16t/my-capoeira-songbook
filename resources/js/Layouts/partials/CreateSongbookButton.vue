@@ -6,7 +6,7 @@
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle> Create a new songbook? </DialogTitle>
+                <DialogTitle> Create a new songbook </DialogTitle>
             </DialogHeader>
             <div class="grid gap-4 py-4">
                 <div class="grid grid-cols-4 items-center gap-4">

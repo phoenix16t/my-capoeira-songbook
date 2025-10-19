@@ -15,6 +15,7 @@
             :numberOfColumns="numberOfColumns"
             :showTitlesOnly="showTitlesOnly"
             :songs="songs"
+            :songbooks="songbooks"
         />
     </div>
 </template>
@@ -28,16 +29,17 @@ import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
-import type { Song } from "@/types";
+import type { Song, Songbook } from "@/types";
 
 defineOptions({ layout: Default2Layout });
 
 interface Props {
     songs: Song[];
+    songbooks: Songbook[];
 }
 
 defineProps<Props>();
 
 const showTitlesOnly = ref(true);
-const numberOfColumns = ref(1);
+const numberOfColumns = ref(2);
 </script>

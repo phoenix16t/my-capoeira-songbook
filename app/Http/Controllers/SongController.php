@@ -12,9 +12,11 @@ class SongController extends Controller
     public function index()
     {
         $songs = Song::with('titles')->get();
+        $songbooks = Songbook::all();
 
         return Inertia::render('songs/index/Index', [
             'songs' => $songs,
+            'songbooks' => $songbooks,
         ]);
     }
 
