@@ -73,7 +73,7 @@
                         </Select>
                     </div>
                 </div>
-                {{ selectedIcon }}
+
                 <div class="grid grid-cols-4 items-center gap-4">
                     <Label for="name" class="text-right"> Icon color </Label>
                     <Input v-model="color" type="color" />
@@ -93,6 +93,7 @@ import { router } from "@inertiajs/vue3";
 import { PlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
 import { toast } from "vue-sonner";
+import { route } from "ziggy-js";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -124,8 +125,12 @@ const isModalOpen = ref(false);
 
 const createSongbook = () => {
     router.post(
-        "/songbooks",
-        { title: title.value, icon: selectedIcon.value, color: color.value },
+        route("songbooks.store"),
+        {
+            title: title.value,
+            icon: selectedIcon.value,
+            color: color.value,
+        },
         {
             onSuccess: () => {
                 toast(`Songbook ${title.value} created!`);

@@ -2,14 +2,16 @@
     <header
         class="sticky top-0 flex items-center justify-between bg-red-500 px-8 py-2"
     >
-        <span class="flex items-center">
-            <div class="-ml-3 [transform:scaleX(-1)]">
-                <BerimbauIcon
-                    class="h-12 w-12 -rotate-z-15 fill-current text-white"
-                />
-            </div>
-            <span class="text-xl text-white"> My Capoeira Songbook </span>
-        </span>
+        <Link :href="route('songs.index')">
+            <span class="flex items-center">
+                <div class="-ml-3 [transform:scaleX(-1)]">
+                    <BerimbauIcon
+                        class="h-12 w-12 -rotate-z-15 fill-current text-white"
+                    />
+                </div>
+                <span class="text-xl text-white"> My Capoeira Songbook </span>
+            </span>
+        </Link>
 
         <span class="flex items-center gap-4">
             <template v-if="user">

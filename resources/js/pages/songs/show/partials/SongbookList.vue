@@ -39,6 +39,7 @@ import { router } from "@inertiajs/vue3";
 import { CheckIcon, XIcon } from "lucide-vue-next";
 import { computed } from "vue";
 import { toast } from "vue-sonner";
+import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
 
@@ -53,7 +54,7 @@ const { songbooks, song } = defineProps<Props>();
 
 const addToSongbook = (songbook: Songbook) => {
     router.post(
-        `/songbooks_songs`,
+        route("songbooks_songs.store"),
         {
             songbook_id: songbook.id,
             song_id: song.id,
@@ -70,7 +71,7 @@ const addToSongbook = (songbook: Songbook) => {
 };
 
 const removeFromSongbook = (songbook: Songbook) => {
-    router.delete(`/songbooks_songs`, {
+    router.delete(route("songbooks_songs.destroy"), {
         data: {
             songbook_id: songbook.id,
             song_id: song.id,
