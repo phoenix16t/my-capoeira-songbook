@@ -31,13 +31,6 @@
                 {{ songbook.title }}
             </li>
         </ul>
-        <!-- <ul class="divide-y divide-gray-200">
-            <SongbookListItem
-                v-for="songbook in songbooks"
-                :song="song"
-                :songbook="songbook"
-            /> 
-        </ul> -->
     </Card>
 </template>
 
