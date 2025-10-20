@@ -9,7 +9,7 @@
                 :key="col"
                 class="flex flex-col gap-4"
             >
-                <template v-if="showTitlesOnly">
+                <template v-if="!showFullSongs">
                     <Link
                         v-for="song in columnSongs(col)"
                         :href="route('songs.show', song.id)"
@@ -17,13 +17,12 @@
                         :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
                     >
                         <Card
-                            class="flex w-full items-center justify-between transition-all hover:shadow-lg"
+                            class="flex w-full items-center justify-between px-4 py-2 transition-all hover:shadow-lg"
                         >
                             {{ song.titles?.[0]?.title }}
 
                             <span
-                                @click.stop.prevent="blah"
-                                class="rounded-xl border p-2 transition-all hover:shadow-xl"
+                                class="rounded-xl border transition-all hover:shadow-xl"
                             >
                                 <AddToSongbooksButton
                                     :song="song"
@@ -58,16 +57,12 @@ import AddToSongbooksButton from "./AddToSongbooksButton.vue";
 
 interface Props {
     numberOfColumns: number;
-    showTitlesOnly: boolean;
+    showFullSongs: boolean;
     songs: Song[];
     songbooks: Songbook[];
 }
 
 const { songs, numberOfColumns } = defineProps<Props>();
-
-const blah = () => {
-    console.log("blah");
-};
 
 const columnSongs = (col: number) => {
     const result = [];

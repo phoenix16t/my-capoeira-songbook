@@ -13,7 +13,7 @@
 
             <template #menu>
                 <SongMenu
-                    v-model:showTitlesOnly="showTitlesOnly"
+                    v-model:showFullSongs="showFullSongs"
                     v-model:numberOfColumns="numberOfColumns"
                 />
                 <!-- TODO: add ability to change icon and color -->
@@ -23,7 +23,7 @@
         <SongList
             v-if="songbook.songs.length"
             :numberOfColumns="numberOfColumns"
-            :showTitlesOnly="showTitlesOnly"
+            :showFullSongs="showFullSongs"
             :songs="songbook.songs"
             :songbooks="songbooks"
         />
@@ -56,6 +56,6 @@ interface Props {
 
 defineProps<Props>();
 
-const showTitlesOnly = ref(true);
+const showFullSongs = ref(true);
 const numberOfColumns = ref(1);
 </script>

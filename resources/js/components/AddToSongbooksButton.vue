@@ -1,5 +1,9 @@
 <template>
-    <Button size="icon" variant="ghost" @click="isModalOpen = true">
+    <Button
+        size="icon"
+        variant="ghost"
+        @click.stop.prevent="isModalOpen = true"
+    >
         <BookPlusIcon class="size-5" />
     </Button>
 

@@ -5,7 +5,7 @@
 
             <template #menu>
                 <SongMenu
-                    v-model:showTitlesOnly="showTitlesOnly"
+                    v-model:showFullSongs="showFullSongs"
                     v-model:numberOfColumns="numberOfColumns"
                 />
             </template>
@@ -13,7 +13,7 @@
 
         <SongList
             :numberOfColumns="numberOfColumns"
-            :showTitlesOnly="showTitlesOnly"
+            :showFullSongs="showFullSongs"
             :songs="songs"
             :songbooks="songbooks"
         />
@@ -40,6 +40,6 @@ interface Props {
 
 defineProps<Props>();
 
-const showTitlesOnly = ref(true);
+const showFullSongs = ref(true);
 const numberOfColumns = ref(2);
 </script>

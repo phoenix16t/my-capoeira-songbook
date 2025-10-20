@@ -11,7 +11,7 @@
                 class="flex"
             >
                 <Card
-                    class="w-full overflow-hidden transition-all hover:shadow-lg"
+                    class="w-full overflow-hidden px-4 py-2 transition-all hover:shadow-lg"
                 >
                     <div class="flex items-center justify-start gap-2">
                         <component

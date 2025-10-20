@@ -1,8 +1,8 @@
 <template>
     <div className="grid flex-1 auto-rows-min gap-6 mt-4">
         <Label class="flex items-center gap-2">
-            <Switch v-model="showTitlesOnly" />
-            <span v-if="showTitlesOnly">Showing Only Titles</span>
+            <Switch v-model="showFullSongs" />
+            <span v-if="!showFullSongs">Showing Only Titles</span>
             <span v-else>Showing Full Songs</span>
         </Label>
 
@@ -36,6 +36,6 @@ import {
 } from "@/components/ui/number-field";
 import Switch from "@/components/ui/switch/Switch.vue";
 
-const showTitlesOnly = defineModel("showTitlesOnly");
+const showFullSongs = defineModel("showFullSongs");
 const numberOfColumns = defineModel("numberOfColumns");
 </script>
