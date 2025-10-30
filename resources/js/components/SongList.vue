@@ -10,28 +10,30 @@
                 class="flex flex-col gap-4"
             >
                 <template v-if="!showFullSongs">
-                    <Link
+                    <div
                         v-for="song in columnSongs(col)"
-                        :href="route('songs.show', song.id)"
-                        class="flex"
-                        :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
+                        class="flex w-full gap-1"
                     >
-                        <Card
-                            class="flex w-full items-center justify-between px-4 py-2 transition-all hover:shadow-lg"
+                        <Link
+                            :href="route('songs.show', song.id)"
+                            class="w-full"
                         >
-                            {{ song.titles?.[0]?.title }}
-
-                            <span
-                                v-if="page.props.auth.user"
-                                class="rounded-xl border transition-all hover:shadow-xl"
+                            <Card
+                                class="flex items-center px-4 py-2 transition-all hover:shadow-lg"
+                                :class="{
+                                    'rounded-r-none': page.props.auth.user,
+                                }"
                             >
-                                <AddToSongbooksButton
-                                    :song="song"
-                                    :songbooks="songbooks"
-                                />
-                            </span>
-                        </Card>
-                    </Link>
+                                {{ song.titles?.[0]?.title }}
+                            </Card>
+                        </Link>
+
+                        <AddToSongbooksButton
+                            v-if="page.props.auth.user"
+                            :song="song"
+                            :songbooks="songbooks"
+                        />
+                    </div>
                 </template>
                 <template v-else>
                     <Lyrics
@@ -49,12 +51,11 @@
 import { Link, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
+import AddToSongbooksButton from "@/components/AddToSongbooksButton.vue";
 import Card from "@/components/Card.vue";
 import Lyrics from "@/components/Lyrics.vue";
 
 import type { Song, Songbook } from "@/types";
-
-import AddToSongbooksButton from "./AddToSongbooksButton.vue";
 
 interface Props {
     numberOfColumns: number;

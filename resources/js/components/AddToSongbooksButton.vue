@@ -1,10 +1,10 @@
 <template>
-    <Button
-        size="icon"
-        variant="ghost"
-        @click.stop.prevent="isModalOpen = true"
-    >
-        <BookPlusIcon class="size-5" />
+    <Button class="h-full w-10" @click.stop.prevent="isModalOpen = true">
+        <Card
+            class="flex h-full w-full items-center justify-center rounded-l-none p-1 transition-all hover:shadow-lg"
+        >
+            <BookPlusIcon class="size-5" />
+        </Card>
     </Button>
 
     <Dialog v-model:open="isModalOpen">
@@ -22,6 +22,8 @@
 import { BookPlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
+import Card from "@/components/Card.vue";
+import SongbookList from "@/components/SongbookList.vue";
 import {
     Dialog,
     DialogContent,
@@ -30,8 +32,6 @@ import {
 } from "@/components/ui/dialog";
 
 import type { Song, Songbook } from "@/types";
-
-import SongbookList from "./SongbookList.vue";
 
 interface Props {
     song: Song;
