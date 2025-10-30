@@ -11,11 +11,7 @@ class SongType extends Model
         'name',
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at'
-    ];
+    public $timestamps = true;
 
     public function songs()
     {

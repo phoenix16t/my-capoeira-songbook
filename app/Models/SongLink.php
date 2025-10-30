@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class SongLink extends Model
 {
-    protected $guarded = [
-        'id',
+    protected $fillable = [
         'song_id',
         'url',
         'start_time',
         'end_time',
-        'created_at',
-        'updated_at'
     ];
 
     public function song()

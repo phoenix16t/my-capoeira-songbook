@@ -15,12 +15,6 @@ class Songbook extends Model
         'color'
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at'
-    ];
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -28,6 +22,7 @@ class Songbook extends Model
 
     public function songs()
     {
-        return $this->belongsToMany(Song::class, 'songbook_songs');
+        return $this->belongsToMany(Song::class, 'songbook_songs')
+            ->withTimestamps();
     }
 }

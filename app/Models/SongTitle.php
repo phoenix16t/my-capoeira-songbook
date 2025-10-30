@@ -15,12 +15,6 @@ class SongTitle extends Model
         'title',
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at'
-    ];
-
     public function song()
     {
         return $this->belongsTo(Song::class);

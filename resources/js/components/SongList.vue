@@ -1,5 +1,5 @@
 <template>
-    <div class="px-8 pt-4 pb-4">
+    <div class="px-8 py-4">
         <div
             class="grid gap-4"
             :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
@@ -22,6 +22,7 @@
                             {{ song.titles?.[0]?.title }}
 
                             <span
+                                v-if="page.props.auth.user"
                                 class="rounded-xl border transition-all hover:shadow-xl"
                             >
                                 <AddToSongbooksButton
@@ -45,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
@@ -63,6 +64,8 @@ interface Props {
 }
 
 const { songs, numberOfColumns } = defineProps<Props>();
+
+const page = usePage();
 
 const columnSongs = (col: number) => {
     const result = [];

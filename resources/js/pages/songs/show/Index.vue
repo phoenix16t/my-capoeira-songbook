@@ -14,7 +14,7 @@
         </SubHeader>
 
         <div
-            class="grid grid-cols-1 gap-4 px-8 pt-4"
+            class="grid grid-cols-1 gap-4 px-8 py-4"
             :class="shouldShowDataColumn && 'sm:grid-cols-2'"
         >
             <section class="pb-4">

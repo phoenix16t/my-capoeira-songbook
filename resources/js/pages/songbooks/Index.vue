@@ -4,7 +4,7 @@
             <template #title> My Songbooks </template>
         </SubHeader>
 
-        <div class="grid grid-cols-3 gap-4 px-8 pt-4">
+        <div class="grid grid-cols-3 gap-4 px-8 py-4">
             <Link
                 v-for="songbook in songbooks"
                 :href="route('songbooks.show', songbook.id)"

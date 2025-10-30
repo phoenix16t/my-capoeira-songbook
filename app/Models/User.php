@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Songbook;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,24 +19,15 @@ class User extends Authenticatable
         'email_verified_at'
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at'
-    ];
-
     protected $hidden = [
         'password',
         'remember_token'
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 
     public function songbooks()
     {

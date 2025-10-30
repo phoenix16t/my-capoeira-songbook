@@ -23,12 +23,6 @@ class Song extends Model
         'author'
     ];
 
-    protected $guarded = [
-        'id',
-        'created_at',
-        'updated_at'
-    ];
-
     public function titles()
     {
         return $this->hasMany(SongTitle::class, 'song_id');
@@ -36,7 +30,8 @@ class Song extends Model
 
     public function songbooks()
     {
-        return $this->belongsToMany(Songbook::class, 'songbook_songs');
+        return $this->belongsToMany(Songbook::class, 'songbook_songs')
+            ->withTimestamps();
     }
 
     public function group()
