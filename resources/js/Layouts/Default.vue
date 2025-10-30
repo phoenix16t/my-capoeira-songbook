@@ -1,10 +1,10 @@
 <template>
-    <div class="flex h-[100dvh] justify-center bg-gray-300">
-        <div class="flex h-[100dvh] w-full max-w-[1000px] flex-col">
+    <div class="flex h-[100dvh] justify-center bg-gray-100">
+        <div
+            class="flex h-[100dvh] w-full max-w-[1000px] flex-col bg-gray-50 text-gray-900 shadow-2xl"
+        >
             <Header />
-            <div
-                class="flex flex-grow flex-col gap-8 overflow-auto bg-white px-12 py-4"
-            >
+            <div class="flex flex-grow flex-col overflow-hidden bg-gray-50">
                 <slot />
                 <Toaster />
             </div>

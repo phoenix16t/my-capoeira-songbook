@@ -32,16 +32,12 @@
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
-import Default2Layout from "@/layouts/Default2.vue";
-
 import Card from "@/components/Card.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import type { Songbook } from "@/types";
 
 import { Icons } from "@/lib/icons";
-
-defineOptions({ layout: Default2Layout });
 
 interface Props {
     songbooks: Songbook[];

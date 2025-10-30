@@ -36,8 +36,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import Default2Layout from "@/layouts/Default2.vue";
-
 import Card from "@/components/Card.vue";
 import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
@@ -46,8 +44,6 @@ import SubHeader from "@/components/SubHeader.vue";
 import type { Songbook } from "@/types";
 
 import { Icons } from "@/lib/icons";
-
-defineOptions({ layout: Default2Layout });
 
 interface Props {
     songbook: Songbook;

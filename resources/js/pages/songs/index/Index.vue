@@ -23,15 +23,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import Default2Layout from "@/layouts/Default2.vue";
-
 import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import type { Song, Songbook } from "@/types";
-
-defineOptions({ layout: Default2Layout });
 
 interface Props {
     songs: Song[];
