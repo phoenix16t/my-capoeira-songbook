@@ -54,4 +54,5 @@ export interface Permissions {
     song_show_details: boolean;
     song_show_songbooks: boolean;
     song_show_translation: boolean;
+    translation_type: "inline" | "side";
 }

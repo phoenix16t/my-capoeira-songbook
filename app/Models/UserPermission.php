@@ -12,6 +12,7 @@ class UserPermission extends Model
         'song_list_columns_number',
         'song_list_show_full_songs',
         'song_show_translation',
+        'translation_type',
         'song_show_details',
         'song_show_songbooks',
     ];

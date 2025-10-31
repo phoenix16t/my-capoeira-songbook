@@ -17,17 +17,19 @@ class SongController extends Controller
 
         return Inertia::render('songs/index/Index', [
             'permissions' => $permissions,
-            'songbooks' => $songbooks,
             'songs' => $songs,
+            'songbooks' => $songbooks,
         ]);
     }
 
     public function show(string $id)
     {
+        $permissions = auth()->user()?->permission;
         $song = Song::with('titles', 'group', 'type', 'links', 'songbooks')->findOrFail($id);
         $songbooks = Songbook::all();
 
         return Inertia::render('songs/show/Index', [
+            'permissions' => $permissions,
             'song' => $song,
             'songbooks' => $songbooks,
         ]);

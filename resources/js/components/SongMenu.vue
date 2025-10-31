@@ -2,7 +2,7 @@
     <div className="grid flex-1 auto-rows-min gap-6 mt-4">
         <Label class="flex items-center gap-2">
             <Switch v-model="showFullSongs" />
-            <span v-if="!showFullSongs">Showing Only Titles</span>
+            <span v-if="!showFullSongs">Showing Titles Only</span>
             <span v-else>Showing Full Songs</span>
         </Label>
 

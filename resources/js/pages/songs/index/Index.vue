@@ -34,8 +34,8 @@ import type { Permissions, Song, Songbook } from "@/types";
 
 interface Props {
     permissions: Permissions;
-    songbooks: Songbook[];
     songs: Song[];
+    songbooks: Songbook[];
 }
 
 const props = defineProps<Props>();
@@ -54,8 +54,8 @@ watch(showFullSongs, (newVal, oldVal) => {
         {
             onSuccess: () => {
                 const text = newVal
-                    ? "Now Showing Full Songs"
-                    : "Now Showing Only Titles";
+                    ? "Showing Full Songs"
+                    : "Showing Titles Only";
 
                 toast.success(text, {
                     style: {
