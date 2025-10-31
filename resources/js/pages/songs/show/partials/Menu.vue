@@ -9,7 +9,7 @@
         <div v-if="showTranslation" class="mt-2 ml-6 flex flex-col gap-2">
             <Label class="flex items-center gap-2">
                 <input
-                    v-model="translationMode"
+                    v-model="translationType"
                     type="radio"
                     value="inline"
                     class="accent-blue-600"
@@ -18,7 +18,7 @@
             </Label>
             <Label class="flex items-center gap-2">
                 <input
-                    v-model="translationMode"
+                    v-model="translationType"
                     type="radio"
                     value="side"
                     class="accent-blue-600"
@@ -47,6 +47,6 @@ import Switch from "@/components/ui/switch/Switch.vue";
 
 const showDetails = defineModel("showDetails");
 const showTranslation = defineModel("showTranslation");
-const translationMode = defineModel("translationMode");
+const translationType = defineModel("translationType");
 const showSongbooks = defineModel("showSongbooks");
 </script>

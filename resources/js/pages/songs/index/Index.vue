@@ -23,7 +23,6 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
 import { ref, watch } from "vue";
-import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
 import SongList from "@/components/SongList.vue";
@@ -31,6 +30,8 @@ import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import type { Permissions, Song, Songbook } from "@/types";
+
+import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
 
 interface Props {
     permissions: Permissions;
@@ -45,6 +46,7 @@ const numberOfColumns = ref(props.permissions.song_list_columns_number);
 
 watch(showFullSongs, (newVal, oldVal) => {
     const previous = oldVal;
+    const successText = newVal ? "Showing Full Songs" : "Showing Titles Only";
 
     router.post(
         route("permissions.update"),
@@ -52,24 +54,10 @@ watch(showFullSongs, (newVal, oldVal) => {
             song_list_show_full_songs: newVal,
         },
         {
-            onSuccess: () => {
-                const text = newVal
-                    ? "Showing Full Songs"
-                    : "Showing Titles Only";
-
-                toast.success(text, {
-                    style: {
-                        background: "#6ee7b7",
-                    },
-                });
-            },
+            onSuccess: handleSuccessToast(successText),
             onError: () => {
                 showFullSongs.value = previous;
-                toast.error("Error changing permission", {
-                    style: {
-                        background: "#e76e9e",
-                    },
-                });
+                handleErrorToast();
             },
         },
     );
@@ -77,6 +65,7 @@ watch(showFullSongs, (newVal, oldVal) => {
 
 watch(numberOfColumns, (newVal, oldVal) => {
     const previous = oldVal;
+    const successText = `Showing ${newVal} column${newVal === 1 ? "" : "s"}`;
 
     router.post(
         route("permissions.update"),
@@ -84,22 +73,10 @@ watch(numberOfColumns, (newVal, oldVal) => {
             song_list_columns_number: newVal,
         },
         {
-            onSuccess: () => {
-                const text = `Showing ${newVal} column${newVal === 1 ? "" : "s"}`;
-
-                toast.success(text, {
-                    style: {
-                        background: "#6ee7b7",
-                    },
-                });
-            },
+            onSuccess: handleSuccessToast(successText),
             onError: () => {
                 numberOfColumns.value = previous;
-                toast.error("Error changing setting", {
-                    style: {
-                        background: "#e76e9e",
-                    },
-                });
+                handleErrorToast();
             },
         },
     );

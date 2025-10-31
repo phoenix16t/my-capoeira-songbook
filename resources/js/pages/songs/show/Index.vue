@@ -7,7 +7,7 @@
                 <Menu
                     v-model:showDetails="showDetails"
                     v-model:showTranslation="showTranslation"
-                    v-model:translationMode="translationMode"
+                    v-model:translationType="translationType"
                     v-model:showSongbooks="showSongbooks"
                 />
             </template>
@@ -43,7 +43,6 @@
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
 import { computed, ref, watch } from "vue";
-import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
 import Lyrics from "@/components/Lyrics.vue";
@@ -52,6 +51,8 @@ import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
 
 import type { Permissions, Song, Songbook } from "@/types";
+
+import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
 
 import Details from "./partials/Details.vue";
 import Links from "./partials/Links.vue";
@@ -67,21 +68,22 @@ const props = defineProps<Props>();
 
 const showDetails = ref(props.permissions.song_show_details);
 const showTranslation = ref(props.permissions.song_show_translation);
-const translationMode = ref(props.permissions.translation_type);
+const translationType = ref(props.permissions.translation_type);
 const showSongbooks = ref(props.permissions.song_show_songbooks);
 
 const shouldShowDataColumn = computed(
     () => showDetails.value || showSideTranslation.value || showSongbooks.value,
 );
 const showInlineTranslation = computed(
-    () => showTranslation.value && translationMode.value === "inline",
+    () => showTranslation.value && translationType.value === "inline",
 );
 const showSideTranslation = computed(
-    () => showTranslation.value && translationMode.value === "side",
+    () => showTranslation.value && translationType.value === "side",
 );
 
 watch(showDetails, (newVal, oldVal) => {
     const previous = oldVal;
+    const successText = newVal ? "Showing Details" : "Not Showing Details";
 
     router.post(
         route("permissions.update"),
@@ -89,22 +91,10 @@ watch(showDetails, (newVal, oldVal) => {
             song_show_details: newVal,
         },
         {
-            onSuccess: () => {
-                const text = newVal ? "Showing Details" : "Not Showing Details";
-
-                toast.success(text, {
-                    style: {
-                        background: "#6ee7b7",
-                    },
-                });
-            },
+            onSuccess: handleSuccessToast(successText),
             onError: () => {
                 showDetails.value = previous;
-                toast.error("Error changing permission", {
-                    style: {
-                        background: "#e76e9e",
-                    },
-                });
+                handleErrorToast();
             },
         },
     );
@@ -112,6 +102,7 @@ watch(showDetails, (newVal, oldVal) => {
 
 watch(showTranslation, (newVal, oldVal) => {
     const previous = oldVal;
+    const successText = `${newVal ? "" : "Not"} Showing Translations`;
 
     router.post(
         route("permissions.update"),
@@ -119,31 +110,19 @@ watch(showTranslation, (newVal, oldVal) => {
             song_show_translation: newVal,
         },
         {
-            onSuccess: () => {
-                const text = newVal
-                    ? "Showing Translations"
-                    : "Not Showing Translations";
-
-                toast.success(text, {
-                    style: {
-                        background: "#6ee7b7",
-                    },
-                });
-            },
+            onSuccess: handleSuccessToast(successText),
             onError: () => {
                 showTranslation.value = previous;
-                toast.error("Error changing permission", {
-                    style: {
-                        background: "#e76e9e",
-                    },
-                });
+                handleErrorToast();
             },
         },
     );
 });
 
-watch(translationMode, (newVal, oldVal) => {
+watch(translationType, (newVal, oldVal) => {
     const previous = oldVal;
+    const type = newVal === "inline" ? "Inline" : "Side-By-Side";
+    const successText = `Showing ${type} Translations`;
 
     router.post(
         route("permissions.update"),
@@ -151,24 +130,10 @@ watch(translationMode, (newVal, oldVal) => {
             translation_type: newVal,
         },
         {
-            onSuccess: () => {
-                const text = newVal
-                    ? "Showing Translations Inline"
-                    : "Showing Translations Side-By-Side";
-
-                toast.success(text, {
-                    style: {
-                        background: "#6ee7b7",
-                    },
-                });
-            },
+            onSuccess: handleSuccessToast(successText),
             onError: () => {
-                translationMode.value = previous;
-                toast.error("Error changing permission", {
-                    style: {
-                        background: "#e76e9e",
-                    },
-                });
+                translationType.value = previous;
+                handleErrorToast();
             },
         },
     );
@@ -176,6 +141,7 @@ watch(translationMode, (newVal, oldVal) => {
 
 watch(showSongbooks, (newVal, oldVal) => {
     const previous = oldVal;
+    const successText = newVal ? "Showing Songbooks" : "Not Showing Songbooks";
 
     router.post(
         route("permissions.update"),
@@ -183,24 +149,10 @@ watch(showSongbooks, (newVal, oldVal) => {
             song_show_songbooks: newVal,
         },
         {
-            onSuccess: () => {
-                const text = newVal
-                    ? "Showing Songbooks"
-                    : "Not Showing Songbooks";
-
-                toast.success(text, {
-                    style: {
-                        background: "#6ee7b7",
-                    },
-                });
-            },
+            onSuccess: handleSuccessToast(successText),
             onError: () => {
                 showSongbooks.value = previous;
-                toast.error("Error changing permission", {
-                    style: {
-                        background: "#e76e9e",
-                    },
-                });
+                handleErrorToast();
             },
         },
     );
