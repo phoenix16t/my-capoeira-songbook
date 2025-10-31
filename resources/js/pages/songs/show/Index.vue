@@ -66,10 +66,10 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const showDetails = ref(props.permissions.song_show_details);
-const showTranslation = ref(props.permissions.song_show_translation);
-const translationType = ref(props.permissions.translation_type);
-const showSongbooks = ref(props.permissions.song_show_songbooks);
+const showDetails = ref(props.permissions?.song_show_details);
+const showTranslation = ref(props.permissions?.song_show_translation);
+const translationType = ref(props.permissions?.translation_type);
+const showSongbooks = ref(props.permissions?.song_show_songbooks);
 
 const shouldShowDataColumn = computed(
     () => showDetails.value || showSideTranslation.value || showSongbooks.value,

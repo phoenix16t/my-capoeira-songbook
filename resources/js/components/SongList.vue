@@ -18,12 +18,7 @@
                             :href="route('songs.show', song.id)"
                             class="w-full"
                         >
-                            <Card
-                                class="flex items-center px-4 py-2 transition-all hover:shadow-lg"
-                                :class="{
-                                    'rounded-r-none': page.props.auth.user,
-                                }"
-                            >
+                            <Card :class="computedClass">
                                 {{ song.titles?.[0]?.title }}
                             </Card>
                         </Link>
@@ -49,6 +44,7 @@
 
 <script setup lang="ts">
 import { Link, usePage } from "@inertiajs/vue3";
+import { computed } from "vue";
 import { route } from "ziggy-js";
 
 import AddToSongbooksButton from "@/components/AddToSongbooksButton.vue";
@@ -64,7 +60,12 @@ interface Props {
     songbooks: Songbook[];
 }
 
-const { songs, numberOfColumns } = defineProps<Props>();
+const { songs, numberOfColumns, showFullSongs, songbooks } =
+    defineProps<Props>();
+console.log("songs", songs);
+console.log("numberOfColumns", numberOfColumns);
+console.log("showFullSongs", showFullSongs);
+console.log("songbooks", songbooks);
 
 const page = usePage();
 
@@ -78,4 +79,11 @@ const columnSongs = (col: number) => {
     }
     return result;
 };
+
+const computedClass = computed(() =>
+    [
+        "flex items-center px-4 py-2 transition-all hover:shadow-lg",
+        !!page.props.auth.user ? "rounded-r-none" : "",
+    ].join(" "),
+);
 </script>

@@ -41,8 +41,8 @@ interface Props {
 
 const props = defineProps<Props>();
 
-const showFullSongs = ref(props.permissions.song_list_show_full_songs);
-const numberOfColumns = ref(props.permissions.song_list_columns_number);
+const showFullSongs = ref(props.permissions?.song_list_show_full_songs);
+const numberOfColumns = ref(props.permissions?.song_list_columns_number || 2);
 
 watch(showFullSongs, (newVal, oldVal) => {
     const previous = oldVal;
