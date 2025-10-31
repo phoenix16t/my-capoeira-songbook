@@ -11,12 +11,14 @@ class SongController extends Controller
 {
     public function index()
     {
+        $permissions = auth()->user()?->permission;
         $songs = Song::with('titles', 'songbooks')->get();
         $songbooks = Songbook::all();
 
         return Inertia::render('songs/index/Index', [
-            'songs' => $songs,
+            'permissions' => $permissions,
             'songbooks' => $songbooks,
+            'songs' => $songs,
         ]);
     }
 

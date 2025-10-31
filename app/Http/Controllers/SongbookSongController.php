@@ -6,8 +6,6 @@ use App\Models\Song;
 use App\Models\Songbook;
 use Illuminate\Http\Request;
 
-use Inertia\Inertia;
-
 class SongbookSongController extends Controller
 {
     public function store(Request $request)

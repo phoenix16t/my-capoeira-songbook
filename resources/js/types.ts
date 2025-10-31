@@ -28,10 +28,10 @@ export interface Song {
     lyrics: string;
     links: Link[];
     translation: string;
-    groupId: number;
+    group_id: number;
     group?: Group;
     beat: string;
-    typeId: number;
+    type_id: number;
     type?: Type;
     author: string;
     songbooks?: Songbook[];
@@ -45,4 +45,13 @@ export interface Songbook {
     songs: Song[];
     icon?: IconKeys;
     color?: string;
+}
+
+export interface Permissions {
+    id: number;
+    song_list_columns_number: number;
+    song_list_show_full_songs: boolean;
+    song_show_details: boolean;
+    song_show_songbooks: boolean;
+    song_show_translation: boolean;
 }
