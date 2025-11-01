@@ -41,18 +41,16 @@
 </template>
 
 <script setup lang="ts">
-import { router } from "@inertiajs/vue3";
-import { computed, ref, watch } from "vue";
-import { route } from "ziggy-js";
+import { computed, ref } from "vue";
 
 import Lyrics from "@/components/Lyrics.vue";
 import SongbookList from "@/components/SongbookList.vue";
 import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
 
-import type { Permissions, Song, Songbook } from "@/types";
+import { usePermissionWatcher } from "@/hooks/usePermissionWatcher";
 
-import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
+import type { Permissions, Song, Songbook } from "@/types";
 
 import Details from "./partials/Details.vue";
 import Links from "./partials/Links.vue";
@@ -64,12 +62,12 @@ interface Props {
     songbooks: Songbook[];
 }
 
-const props = defineProps<Props>();
+const { permissions } = defineProps<Props>();
 
-const showDetails = ref(props.permissions?.song_show_details);
-const showTranslation = ref(props.permissions?.song_show_translation);
-const translationType = ref(props.permissions?.translation_type);
-const showSongbooks = ref(props.permissions?.song_show_songbooks);
+const showDetails = ref(permissions?.song_show_details);
+const showTranslation = ref(permissions?.song_show_translation);
+const translationType = ref(permissions?.translation_type);
+const showSongbooks = ref(permissions?.song_show_songbooks);
 
 const shouldShowDataColumn = computed(
     () => showDetails.value || showSideTranslation.value || showSongbooks.value,
@@ -81,80 +79,22 @@ const showSideTranslation = computed(
     () => showTranslation.value && translationType.value === "side",
 );
 
-watch(showDetails, (newVal, oldVal) => {
-    const previous = oldVal;
-    const successText = newVal ? "Showing Details" : "Not Showing Details";
+usePermissionWatcher(showDetails, "song_show_details", (val) =>
+    val ? "Showing Details" : "Not Showing Details",
+);
 
-    router.post(
-        route("permissions.update"),
-        {
-            song_show_details: newVal,
-        },
-        {
-            onSuccess: handleSuccessToast(successText),
-            onError: () => {
-                showDetails.value = previous;
-                handleErrorToast();
-            },
-        },
-    );
+usePermissionWatcher(
+    showTranslation,
+    "song_show_translation",
+    (val) => `${val ? "" : "Not"} Showing Translations`,
+);
+
+usePermissionWatcher(translationType, "translation_type", (val) => {
+    const type = val === "inline" ? "Inline" : "Side-By-Side";
+    return `Showing ${type} Translations`;
 });
 
-watch(showTranslation, (newVal, oldVal) => {
-    const previous = oldVal;
-    const successText = `${newVal ? "" : "Not"} Showing Translations`;
-
-    router.post(
-        route("permissions.update"),
-        {
-            song_show_translation: newVal,
-        },
-        {
-            onSuccess: handleSuccessToast(successText),
-            onError: () => {
-                showTranslation.value = previous;
-                handleErrorToast();
-            },
-        },
-    );
-});
-
-watch(translationType, (newVal, oldVal) => {
-    const previous = oldVal;
-    const type = newVal === "inline" ? "Inline" : "Side-By-Side";
-    const successText = `Showing ${type} Translations`;
-
-    router.post(
-        route("permissions.update"),
-        {
-            translation_type: newVal,
-        },
-        {
-            onSuccess: handleSuccessToast(successText),
-            onError: () => {
-                translationType.value = previous;
-                handleErrorToast();
-            },
-        },
-    );
-});
-
-watch(showSongbooks, (newVal, oldVal) => {
-    const previous = oldVal;
-    const successText = newVal ? "Showing Songbooks" : "Not Showing Songbooks";
-
-    router.post(
-        route("permissions.update"),
-        {
-            song_show_songbooks: newVal,
-        },
-        {
-            onSuccess: handleSuccessToast(successText),
-            onError: () => {
-                showSongbooks.value = previous;
-                handleErrorToast();
-            },
-        },
-    );
-});
+usePermissionWatcher(showSongbooks, "song_show_songbooks", (val) =>
+    val ? "Showing Songbooks" : "Not Showing Songbooks",
+);
 </script>

@@ -62,10 +62,6 @@ interface Props {
 
 const { songs, numberOfColumns, showFullSongs, songbooks } =
     defineProps<Props>();
-console.log("songs", songs);
-console.log("numberOfColumns", numberOfColumns);
-console.log("showFullSongs", showFullSongs);
-console.log("songbooks", songbooks);
 
 const page = usePage();
 
