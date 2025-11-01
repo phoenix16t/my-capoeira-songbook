@@ -14,24 +14,32 @@
         </Link>
 
         <span class="flex items-center gap-4">
+            <CreateSongbookButton v-if="user" />
+
+            <Button
+                size="icon"
+                :variant="
+                    currentRouteName === 'songs.index' ||
+                    currentRouteName === 'songs.show'
+                        ? 'whiteGhostCurrent'
+                        : 'whiteGhost'
+                "
+                asChild
+            >
+                <Link :href="route('songs.index')">
+                    <MusicIcon class="size-5" />
+                </Link>
+            </Button>
+
             <template v-if="user">
-                <CreateSongbookButton />
-
                 <Button
-                    v-if="currentRouteName !== 'songs.index'"
                     size="icon"
-                    variant="whiteGhost"
-                    asChild
-                >
-                    <Link :href="route('songs.index')">
-                        <MusicIcon class="size-5" />
-                    </Link>
-                </Button>
-
-                <Button
-                    v-if="currentRouteName !== 'songbooks.index'"
-                    size="icon"
-                    variant="whiteGhost"
+                    :variant="
+                        currentRouteName === 'songbooks.index' ||
+                        currentRouteName === 'songbooks.show'
+                            ? 'whiteGhostCurrent'
+                            : 'whiteGhost'
+                    "
                     asChild
                 >
                     <Link :href="route('songbooks.index')">
