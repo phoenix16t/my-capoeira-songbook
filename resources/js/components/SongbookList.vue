@@ -4,7 +4,7 @@
             <CheckIcon class="size-5 text-green-500" />
             Belongs to Songbooks
         </h3>
-        <ul>
+        <ul v-if="song.songbooks?.length">
             <li
                 v-for="songbook in song.songbooks?.sort((a, b) => a.id - b.id)"
                 class="m-2 flex cursor-pointer rounded-lg border px-4 py-2 hover:shadow-lg"
@@ -19,6 +19,7 @@
                 {{ songbook.title }}
             </li>
         </ul>
+        <div v-else>No songbooks</div>
     </Card>
 
     <Card>
@@ -26,7 +27,7 @@
             <XIcon class="size-5 text-red-500" />
             Missing from Songbooks
         </h3>
-        <ul>
+        <ul v-if="songbooksWithoutSong.length">
             <li
                 v-for="songbook in songbooksWithoutSong.sort(
                     (a, b) => a.id - b.id,
@@ -43,6 +44,7 @@
                 {{ songbook.title }}
             </li>
         </ul>
+        <div v-else>No songbooks</div>
     </Card>
 </template>
 

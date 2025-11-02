@@ -1,11 +1,22 @@
 <template>
-    <Button class="h-full w-10" @click.stop.prevent="isModalOpen = true">
+    <button
+        v-if="showBorder"
+        class="h-full w-10 cursor-pointer"
+        @click.stop.prevent="isModalOpen = true"
+    >
         <Card
             class="flex h-full w-full items-center justify-center rounded-l-none p-1 transition-all hover:shadow-lg"
         >
-            <BookPlusIcon class="size-5" />
+            <PlusIcon class="size-5" />
         </Card>
-    </Button>
+    </button>
+    <button
+        v-else
+        class="h-full cursor-pointer"
+        @click.stop.prevent="isModalOpen = true"
+    >
+        <PlusIcon class="size-5" />
+    </button>
 
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
@@ -19,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { BookPlusIcon } from "lucide-vue-next";
+import { PlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
 import Card from "@/components/Card.vue";
@@ -34,6 +45,7 @@ import {
 import type { Song, Songbook } from "@/types";
 
 interface Props {
+    showBorder?: boolean;
     song: Song;
     songbooks: Songbook[];
 }

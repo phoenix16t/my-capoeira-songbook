@@ -1,15 +1,23 @@
 <template>
     <Card>
-        <h3 class="mb-4 text-lg font-semibold">
-            <Link
-                v-if="route().current() !== 'songs.show'"
-                :href="route('songs.show', song.id)"
-                class="hover:underline"
-            >
-                {{ song.titles[0]?.title }}
-            </Link>
-            <template v-else> {{ song.titles[0]?.title }}</template>
-        </h3>
+        <div class="mb-4 flex items-center justify-between">
+            <h3 class="text-lg font-semibold">
+                <Link
+                    v-if="route().current() !== 'songs.show'"
+                    :href="route('songs.show', song.id)"
+                    class="hover:underline"
+                >
+                    {{ song.titles[0]?.title }}
+                </Link>
+                <template v-else> {{ song.titles[0]?.title }}</template>
+            </h3>
+
+            <AddToSongbooksButton
+                v-if="page.props.auth.user && songbooks"
+                :song="song"
+                :songbooks="songbooks"
+            />
+        </div>
 
         <div
             v-for="(line, i) in lyrics"
@@ -30,20 +38,24 @@
 </template>
 
 <script setup lang="ts">
-import { Link } from "@inertiajs/vue3";
+import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
+import AddToSongbooksButton from "@/components/AddToSongbooksButton.vue";
 import Card from "@/components/Card.vue";
 
-import type { Song } from "@/types";
+import type { Song, Songbook } from "@/types";
 
 interface Props {
     showInlineTranslation?: boolean;
     song: Song;
+    songbooks?: Songbook[];
 }
 
 const { song } = defineProps<Props>();
+
+const page = usePage();
 
 const lyrics = computed(() => song.lyrics.split("\n"));
 const translation = computed(() => song.translation.split("\n"));

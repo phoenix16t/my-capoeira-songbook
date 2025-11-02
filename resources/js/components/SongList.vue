@@ -25,6 +25,7 @@
 
                         <AddToSongbooksButton
                             v-if="page.props.auth.user"
+                            show-border
                             :song="song"
                             :songbooks="songbooks"
                         />
@@ -35,6 +36,7 @@
                         v-for="(song, index) in columnSongs(col)"
                         :key="index"
                         :song="song"
+                        :songbooks="songbooks"
                     />
                 </template>
             </div>
