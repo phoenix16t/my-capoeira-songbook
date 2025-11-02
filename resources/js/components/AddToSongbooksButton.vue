@@ -1,18 +1,6 @@
 <template>
     <button
-        v-if="showBorder"
-        class="h-full w-10 cursor-pointer"
-        @click.stop.prevent="isModalOpen = true"
-    >
-        <Card
-            class="flex h-full w-full items-center justify-center rounded-l-none p-1 transition-all hover:shadow-lg"
-        >
-            <PlusIcon class="size-5" />
-        </Card>
-    </button>
-    <button
-        v-else
-        class="h-full cursor-pointer"
+        :class="cn('flex cursor-pointer items-center justify-center', cls)"
         @click.stop.prevent="isModalOpen = true"
     >
         <PlusIcon class="size-5" />
@@ -33,7 +21,6 @@
 import { PlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
-import Card from "@/components/Card.vue";
 import SongbookList from "@/components/SongbookList.vue";
 import {
     Dialog,
@@ -44,8 +31,10 @@ import {
 
 import type { Song, Songbook } from "@/types";
 
+import { cn } from "@/lib/utils";
+
 interface Props {
-    showBorder?: boolean;
+    cls?: string;
     song: Song;
     songbooks: Songbook[];
 }

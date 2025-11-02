@@ -11,12 +11,14 @@
             </template>
         </SubHeader>
 
-        <SongList
-            :numberOfColumns="numberOfColumns"
-            :showFullSongs="showFullSongs"
-            :songs="songs"
-            :songbooks="songbooks"
-        />
+        <div class="px-8 py-4">
+            <SongList
+                :numberOfColumns="numberOfColumns"
+                :showFullSongs="showFullSongs"
+                :songs="songs"
+                :songbooks="songbooks"
+            />
+        </div>
     </div>
 </template>
 

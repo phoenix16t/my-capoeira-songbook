@@ -1,6 +1,6 @@
 <template>
-    <Button size="icon" variant="whiteGhost" @click="isModalOpen = true">
-        <PlusIcon class="size-5" />
+    <Button :size="size" :variant="variant" @click="isModalOpen = true">
+        <slot />
     </Button>
 
     <Dialog v-model:open="isModalOpen">
@@ -90,11 +90,10 @@
 
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
-import { PlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
 import { route } from "ziggy-js";
 
-import { Button } from "@/components/ui/button";
+import { Button, type ButtonVariants } from "@/components/ui/button";
 import {
     Dialog,
     DialogContent,
@@ -117,6 +116,13 @@ import type { IconKeys } from "@/types";
 
 import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
 import { Icons } from "@/lib/icons";
+
+interface Props {
+    size?: ButtonVariants["size"];
+    variant?: ButtonVariants["variant"];
+}
+
+defineProps<Props>();
 
 const title = ref("");
 const selectedIcon = ref<IconKeys | undefined>(undefined);

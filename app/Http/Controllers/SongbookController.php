@@ -11,7 +11,7 @@ class SongbookController extends Controller
 {
     public function index()
     {
-        $songbooks = Songbook::all();
+        $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songbooks/Index', [
             'songbooks' => $songbooks,
@@ -21,7 +21,7 @@ class SongbookController extends Controller
     public function show(string $id)
     {
         $songbook = Songbook::with('songs.titles', 'songs.songbooks')->findOrFail($id);
-        $songbooks = Songbook::all();
+        $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songbooks/Show', [
             'songbook' => $songbook,

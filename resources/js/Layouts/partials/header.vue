@@ -14,13 +14,18 @@
         </Link>
 
         <span class="flex items-center gap-4">
-            <CreateSongbookButton v-if="isAuthenticated" />
+            <CreateSongbookButton
+                v-if="isAuthenticated"
+                size="icon"
+                variant="whiteGhost"
+            >
+                <PlusIcon class="size-5" />
+            </CreateSongbookButton>
 
             <Button
                 size="icon"
                 :variant="
-                    currentRouteName === 'songs.index' ||
-                    currentRouteName === 'songs.show'
+                    currentRouteName === 'songs.index'
                         ? 'whiteGhostCurrent'
                         : 'whiteGhost'
                 "
@@ -35,8 +40,7 @@
                 v-if="isAuthenticated"
                 size="icon"
                 :variant="
-                    currentRouteName === 'songbooks.index' ||
-                    currentRouteName === 'songbooks.show'
+                    currentRouteName === 'songbooks.index'
                         ? 'whiteGhostCurrent'
                         : 'whiteGhost'
                 "
@@ -72,6 +76,7 @@ import {
     KeyRoundIcon,
     MusicIcon,
 } from "lucide-vue-next";
+import { PlusIcon } from "lucide-vue-next";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 

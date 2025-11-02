@@ -20,15 +20,16 @@
             </template>
         </SubHeader>
 
-        <SongList
-            v-if="songbook.songs.length"
-            :numberOfColumns="numberOfColumns"
-            :showFullSongs="showFullSongs"
-            :songs="songbook.songs"
-            :songbooks="songbooks"
-        />
-        <div v-else class="px-8 py-4">
-            <Card>You don't have any songs in this songbook yet!</Card>
+        <div class="px-8 py-4">
+            <SongList
+                v-if="songbook.songs.length"
+                :numberOfColumns="numberOfColumns"
+                :showFullSongs="showFullSongs"
+                :songs="songbook.songs"
+                :songbooks="songbooks"
+            />
+
+            <Card v-else>You don't have any songs in this songbook yet!</Card>
         </div>
     </div>
 </template>
