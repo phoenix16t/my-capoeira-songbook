@@ -12,7 +12,7 @@
                 id="columns"
                 :default-value="1"
                 :min="1"
-                :max="10"
+                :max="4"
             >
                 <NumberFieldContent class="w-20">
                     <NumberFieldDecrement />

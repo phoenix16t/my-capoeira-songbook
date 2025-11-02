@@ -41,14 +41,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed } from "vue";
 
 import Lyrics from "@/components/Lyrics.vue";
 import SongbookList from "@/components/SongbookList.vue";
 import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
 
-import { usePermissionWatcher } from "@/hooks/usePermissionWatcher";
+import { usePermissions } from "@/hooks/usePermissions";
 
 import type { Permissions, Song, Songbook } from "@/types";
 
@@ -62,12 +62,15 @@ interface Props {
     songbooks: Songbook[];
 }
 
-const { permissions } = defineProps<Props>();
+defineProps<Props>();
 
-const showDetails = ref(permissions?.song_show_details);
-const showTranslation = ref(permissions?.song_show_translation);
-const translationType = ref(permissions?.translation_type);
-const showSongbooks = ref(permissions?.song_show_songbooks);
+const {
+    showDetails,
+    showSongbooks,
+    showTranslation,
+    translationType,
+    updatePermissions,
+} = usePermissions();
 
 const shouldShowDataColumn = computed(
     () => showDetails.value || showSideTranslation.value || showSongbooks.value,
@@ -79,22 +82,21 @@ const showSideTranslation = computed(
     () => showTranslation.value && translationType.value === "side",
 );
 
-usePermissionWatcher(showDetails, "song_show_details", (val) =>
+updatePermissions(showDetails, (val) =>
     val ? "Showing Details" : "Not Showing Details",
 );
 
-usePermissionWatcher(
+updatePermissions(
     showTranslation,
-    "song_show_translation",
     (val) => `${val ? "" : "Not"} Showing Translations`,
 );
 
-usePermissionWatcher(translationType, "translation_type", (val) => {
+updatePermissions(translationType, (val) => {
     const type = val === "inline" ? "Inline" : "Side-By-Side";
     return `Showing ${type} Translations`;
 });
 
-usePermissionWatcher(showSongbooks, "song_show_songbooks", (val) =>
+updatePermissions(showSongbooks, (val) =>
     val ? "Showing Songbooks" : "Not Showing Songbooks",
 );
 </script>

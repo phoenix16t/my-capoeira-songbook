@@ -34,7 +34,7 @@
         <span v-else>Not Showing Details</span>
     </Label>
 
-    <Label class="flex items-center gap-2">
+    <Label v-if="!!page.props.auth.user" class="flex items-center gap-2">
         <Switch v-model="showSongbooks" />
         <span v-if="showSongbooks">Showing Songbooks</span>
         <span v-else>Not Showing Songbooks</span>
@@ -42,8 +42,12 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from "@inertiajs/vue3";
+
 import { Label } from "@/components/ui/label";
 import Switch from "@/components/ui/switch/Switch.vue";
+
+const page = usePage();
 
 const showDetails = defineModel("showDetails");
 const showTranslation = defineModel("showTranslation");

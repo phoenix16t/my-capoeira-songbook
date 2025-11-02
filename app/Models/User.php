@@ -34,7 +34,7 @@ class User extends Authenticatable
         return $this->hasMany(Songbook::class);
     }
 
-    public function permission()
+    public function permissions()
     {
         return $this->hasOne(UserPermission::class);
     }

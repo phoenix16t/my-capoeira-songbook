@@ -21,34 +21,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-
 import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
-import { usePermissionWatcher } from "@/hooks/usePermissionWatcher";
+import { usePermissions } from "@/hooks/usePermissions";
 
-import type { Permissions, Song, Songbook } from "@/types";
+import type { Song, Songbook } from "@/types";
 
 interface Props {
-    permissions: Permissions;
     songs: Song[];
     songbooks: Songbook[];
 }
 
-const { permissions } = defineProps<Props>();
+defineProps<Props>();
 
-const showFullSongs = ref(permissions?.song_list_show_full_songs);
-const numberOfColumns = ref(permissions?.song_list_columns_number || 2);
+const { showFullSongs, numberOfColumns, updatePermissions } = usePermissions();
 
-usePermissionWatcher(showFullSongs, "song_list_show_full_songs", (val) =>
+updatePermissions(showFullSongs, (val) =>
     val ? "Showing Full Songs" : "Showing Titles Only",
 );
 
-usePermissionWatcher(
+updatePermissions(
     numberOfColumns,
-    "song_list_columns_number",
     (val) => `Showing ${val} column${val === 1 ? "" : "s"}`,
 );
 </script>

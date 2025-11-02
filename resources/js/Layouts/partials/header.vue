@@ -14,7 +14,7 @@
         </Link>
 
         <span class="flex items-center gap-4">
-            <CreateSongbookButton v-if="user" />
+            <CreateSongbookButton v-if="isAuthenticated" />
 
             <Button
                 size="icon"
@@ -31,25 +31,24 @@
                 </Link>
             </Button>
 
-            <template v-if="user">
-                <Button
-                    size="icon"
-                    :variant="
-                        currentRouteName === 'songbooks.index' ||
-                        currentRouteName === 'songbooks.show'
-                            ? 'whiteGhostCurrent'
-                            : 'whiteGhost'
-                    "
-                    asChild
-                >
-                    <Link :href="route('songbooks.index')">
-                        <BookOpenIcon class="size-5" />
-                    </Link>
-                </Button>
-            </template>
+            <Button
+                v-if="isAuthenticated"
+                size="icon"
+                :variant="
+                    currentRouteName === 'songbooks.index' ||
+                    currentRouteName === 'songbooks.show'
+                        ? 'whiteGhostCurrent'
+                        : 'whiteGhost'
+                "
+                asChild
+            >
+                <Link :href="route('songbooks.index')">
+                    <BookOpenIcon class="size-5" />
+                </Link>
+            </Button>
 
             <Button
-                v-if="user"
+                v-if="isAuthenticated"
                 size="icon"
                 variant="whiteGhost"
                 @click="logout"
@@ -84,8 +83,15 @@ import CreateSongbookButton from "./CreateSongbookButton.vue";
 
 const page = usePage();
 
-const user = computed(() => page.props.auth.user);
+const isAuthenticated = computed(() => !!page.props.auth.user);
 const currentRouteName = computed(() => page.props.currentRouteName);
 
-const logout = () => router.post(route("logout"));
+const logout = () => {
+    router.visit(route("logout"), {
+        method: "post",
+        onSuccess: () => {
+            window.location.reload();
+        },
+    });
+};
 </script>

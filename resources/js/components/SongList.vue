@@ -60,7 +60,7 @@ interface Props {
     songbooks: Songbook[];
 }
 
-const { songs, numberOfColumns, showFullSongs, songbooks } =
+const { numberOfColumns, showFullSongs, songs, songbooks } =
     defineProps<Props>();
 
 const page = usePage();
