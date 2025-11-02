@@ -92,7 +92,6 @@
 import { router } from "@inertiajs/vue3";
 import { PlusIcon } from "lucide-vue-next";
 import { ref } from "vue";
-import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
 import { Button } from "@/components/ui/button";
@@ -116,6 +115,7 @@ import {
 
 import type { IconKeys } from "@/types";
 
+import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
 import { Icons } from "@/lib/icons";
 
 const title = ref("");
@@ -133,10 +133,10 @@ const createSongbook = () => {
         },
         {
             onSuccess: () => {
-                toast(`Songbook ${title.value} created!`);
+                handleSuccessToast(`Songbook ${title.value} created!`);
             },
             onError: () => {
-                toast(`Error creating songbook`);
+                handleErrorToast(`Error creating songbook`);
             },
             onFinish: () => {
                 isModalOpen.value = false;

@@ -52,13 +52,13 @@
 import { router } from "@inertiajs/vue3";
 import { CheckIcon, XIcon } from "lucide-vue-next";
 import { computed } from "vue";
-import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
 
 import type { Song, Songbook } from "@/types";
 
+import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
 import { Icons } from "@/lib/icons";
 
 interface Props {
@@ -77,10 +77,12 @@ const addToSongbook = (songbook: Songbook) => {
         },
         {
             onSuccess: () => {
-                toast(`${song.titles[0]!.title} added to ${songbook.title}`);
+                handleSuccessToast(
+                    `${song.titles[0]!.title} added to ${songbook.title}`,
+                );
             },
             onError: () => {
-                toast(`Error adding song`);
+                handleErrorToast(`Error adding song`);
             },
         },
     );
@@ -93,10 +95,12 @@ const removeFromSongbook = (songbook: Songbook) => {
             song_id: song.id,
         },
         onSuccess: () => {
-            toast(`${song.titles[0]!.title} removed from ${songbook.title}`);
+            handleSuccessToast(
+                `${song.titles[0]!.title} removed from ${songbook.title}`,
+            );
         },
         onError: () => {
-            toast(`Error removing song`);
+            handleErrorToast(`Error removing song`);
         },
     });
 };

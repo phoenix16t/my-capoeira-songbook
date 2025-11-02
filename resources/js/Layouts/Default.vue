@@ -15,11 +15,12 @@
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
 import { onMounted, watch } from "vue";
-import { toast } from "vue-sonner";
 
 import Header from "@/layouts/partials/Header.vue";
 
 import { Toaster } from "@/components/ui/sonner";
+
+import { handleSuccessToast } from "@/lib/helpers";
 
 import "vue-sonner/style.css";
 
@@ -28,7 +29,7 @@ const page = usePage();
 onMounted(() => {
     const params = new URLSearchParams(window.location.search);
     if (params.has("welcome")) {
-        toast(`Welcome ${page.props.auth.user.name}!`);
+        handleSuccessToast(`Welcome ${page.props.auth.user.name}!`);
         params.delete("welcome");
         const url =
             window.location.pathname +
@@ -41,7 +42,7 @@ watch(
     () => page.props.flash.message,
     (message) => {
         if (message === "logout") {
-            toast("Goodbye!");
+            handleSuccessToast("Goodbye!");
         }
     },
 );

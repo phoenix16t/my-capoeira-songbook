@@ -1,23 +1,8 @@
 import { router, usePage } from "@inertiajs/vue3";
 import { type Ref, computed, ref, watch } from "vue";
-import { toast } from "vue-sonner";
 import { route } from "ziggy-js";
 
-const handleSuccessToast = (text: string) => {
-    toast.success(text, {
-        style: {
-            background: "#6ee7b7",
-        },
-    });
-};
-
-const handleErrorToast = () => {
-    toast.error("Error changing permission", {
-        style: {
-            background: "#e76e9e",
-        },
-    });
-};
+import { handleErrorToast, handleSuccessToast } from "@/lib/helpers.js";
 
 export function usePermissions() {
     const page = usePage();
@@ -89,7 +74,7 @@ export function usePermissions() {
                         onSuccess: () => handleSuccessToast(successText),
                         onError: () => {
                             refField.value = oldVal;
-                            handleErrorToast();
+                            handleErrorToast("Error changing permission");
                         },
                     },
                 );
