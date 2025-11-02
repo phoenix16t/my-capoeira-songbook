@@ -12,7 +12,7 @@ class SongController extends Controller
     public function index()
     {
         $songs = Song::with('titles', 'songbooks')->get();
-        $songbooks = Songbook::all();
+        $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songs/index/Index', [
             'songs' => $songs,
@@ -23,7 +23,7 @@ class SongController extends Controller
     public function show(string $id)
     {
         $song = Song::with('titles', 'group', 'type', 'links', 'songbooks')->findOrFail($id);
-        $songbooks = Songbook::all();
+        $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songs/show/Index', [
             'song' => $song,
