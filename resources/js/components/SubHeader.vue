@@ -2,7 +2,7 @@
     <header
         class="flex h-15 items-center justify-between border-b bg-white px-8 py-4 shadow-sm"
     >
-        <h2 class="flex items-center text-xl font-semibold">
+        <h2 class="flex items-center gap-2 text-xl font-semibold">
             <slot name="title" />
         </h2>
 
