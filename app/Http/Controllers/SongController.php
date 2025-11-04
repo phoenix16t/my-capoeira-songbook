@@ -11,7 +11,7 @@ class SongController extends Controller
 {
     public function index()
     {
-        $songs = Song::with('titles', 'songbooks')->get();
+        $songs = Song::with('titles', 'group', 'type', 'songbooks')->get();
         $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songs/index/Index', [

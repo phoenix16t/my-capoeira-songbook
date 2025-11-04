@@ -32,7 +32,7 @@ export interface Song {
     group?: Group;
     beat: string;
     type_id: number;
-    type?: Type;
+    type: Type;
     author: string;
     songbooks?: Songbook[];
 }

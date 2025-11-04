@@ -40,7 +40,7 @@
                     class="leading-none"
                     :class="!song.group?.name && 'italic'"
                 >
-                    {{ song.group?.name || "Unknown" }}
+                    {{ song.group?.name || "None" }}
                 </div>
             </li>
         </ul>
