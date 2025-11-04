@@ -6,6 +6,10 @@
             <slot name="title" />
         </h2>
 
+        <!-- <div class="flex items-center justify-center gap-2">
+            <slot name="search" />
+        </div> -->
+
         <Sheet v-if="slots.menu">
             <SheetTrigger asChild>
                 <Button size="icon" variant="ghost">

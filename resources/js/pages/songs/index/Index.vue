@@ -3,19 +3,30 @@
         <SubHeader>
             <template #title> Song list </template>
 
+            <!-- <template #search>
+                <SearchSongs :songs="songs" v-model:filtered="filteredSongs" />
+            </template> -->
+
             <template #menu>
                 <SongMenu
                     v-model:showFullSongs="showFullSongs"
                     v-model:numberOfColumns="numberOfColumns"
-                />
+                >
+                    <!-- v-model:searchQuery="searchQuery" -->
+                    <SearchSongs
+                        v-model:filtered="filteredSongs"
+                        :songs="songs"
+                    />
+                </SongMenu>
             </template>
         </SubHeader>
 
         <div class="px-8 py-4">
+            <!-- {{ searchQuery }} -->
             <SongList
                 :numberOfColumns="numberOfColumns"
                 :showFullSongs="showFullSongs"
-                :songs="songs"
+                :songs="filteredSongs"
                 :songbooks="songbooks"
             />
         </div>
@@ -23,6 +34,9 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
+
+import SearchSongs from "@/components/SearchSongs.vue";
 import SongList from "@/components/SongList.vue";
 import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
@@ -36,7 +50,10 @@ interface Props {
     songbooks: Songbook[];
 }
 
-defineProps<Props>();
+const { songs } = defineProps<Props>();
+
+const filteredSongs = ref<Song[]>(songs);
+const searchQuery = ref<string>("");
 
 const { showFullSongs, numberOfColumns, updatePermissions } = usePermissions();
 
