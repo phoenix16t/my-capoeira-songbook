@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { cn } from "@/lib/utils";
 import { reactiveOmit } from "@vueuse/core";
 import { Plus } from "lucide-vue-next";
 import { NumberFieldIncrement, useForwardProps } from "reka-ui";
+
+import { cn } from "@/lib/utils";
 
 const props = defineProps();
 
@@ -17,7 +18,7 @@ const forwarded = useForwardProps(delegatedProps);
         v-bind="forwarded"
         :class="
             cn(
-                'absolute top-1/2 right-0 -translate-y-1/2 p-3 disabled:cursor-not-allowed disabled:opacity-20',
+                'absolute top-1/2 right-0 -translate-y-1/2 cursor-pointer p-3 disabled:cursor-not-allowed disabled:opacity-20',
                 props.class,
             )
         "

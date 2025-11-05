@@ -28,7 +28,7 @@ const page = usePage();
 
 onMounted(() => {
     const params = new URLSearchParams(window.location.search);
-    if (params.has("welcome")) {
+    if (page.props.auth.user?.name && params.has("welcome")) {
         handleSuccessToast(`Welcome ${page.props.auth.user.name}!`);
         params.delete("welcome");
         const url =

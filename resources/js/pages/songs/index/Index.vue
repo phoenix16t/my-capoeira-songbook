@@ -4,43 +4,33 @@
             <template #title> Song list </template>
 
             <template #menu>
-                <div class="flex flex-col">
-                    <h3 class="flex items-center text-lg font-semibold">
-                        Settings
-                    </h3>
+                <Label>
+                    <Switch v-model="showFullSongs" />
+                    <span v-if="!showFullSongs"> Showing Titles Only </span>
+                    <span v-else>Showing Full Songs</span>
+                </Label>
 
-                    <div class="flex flex-col gap-4 rounded border p-3">
-                        <Label>
-                            <Switch v-model="showFullSongs" />
-                            <span v-if="!showFullSongs">
-                                Showing Titles Only
-                            </span>
-                            <span v-else>Showing Full Songs</span>
-                        </Label>
-
-                        <Label for="columns">
-                            <NumberField
-                                v-model="numberOfColumns"
-                                id="columns"
-                                :default-value="1"
-                                :min="1"
-                                :max="4"
-                            >
-                                <NumberFieldContent class="w-20">
-                                    <NumberFieldDecrement />
-                                    <NumberFieldInput class="shadow-none" />
-                                    <NumberFieldIncrement />
-                                </NumberFieldContent>
-                            </NumberField>
-                            <span>{{
-                                numberOfColumns === 1 ? "Column" : "Columns"
-                            }}</span>
-                        </Label>
-                    </div>
-                </div>
+                <Label for="columns">
+                    <NumberField
+                        v-model="numberOfColumns"
+                        id="columns"
+                        :default-value="1"
+                        :min="1"
+                        :max="4"
+                    >
+                        <NumberFieldContent class="w-20">
+                            <NumberFieldDecrement />
+                            <NumberFieldInput class="shadow-none" />
+                            <NumberFieldIncrement />
+                        </NumberFieldContent>
+                    </NumberField>
+                    <span>
+                        {{ numberOfColumns === 1 ? "Column" : "Columns" }}
+                    </span>
+                </Label>
 
                 <div class="flex flex-col">
-                    <h3 class="flex items-center text-lg font-semibold">
+                    <h3 class="flex items-center text-base font-semibold">
                         Universal Search
                     </h3>
 
@@ -94,14 +84,5 @@ const { songs } = defineProps<Props>();
 const filteredSongs = ref<Song[]>(songs);
 const searchQuery = ref<string>("");
 
-const { showFullSongs, numberOfColumns, updatePermissions } = usePermissions();
-
-updatePermissions(showFullSongs, (val) =>
-    val ? "Showing Full Songs" : "Showing Titles Only",
-);
-
-updatePermissions(
-    numberOfColumns,
-    (val) => `Showing ${val} column${val === 1 ? "" : "s"}`,
-);
+const { showFullSongs, numberOfColumns } = usePermissions();
 </script>

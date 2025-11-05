@@ -1,9 +1,5 @@
 import type { Icons } from "@/lib/icons.js";
 
-interface SongTitle {
-    title: string;
-}
-
 interface Group {
     id: number;
     name: string;
@@ -20,6 +16,10 @@ interface Link {
     url: string;
     start_time: string;
     end_time: string;
+}
+
+export interface SongTitle {
+    title: string;
 }
 
 export interface Song {

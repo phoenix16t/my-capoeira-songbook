@@ -80,9 +80,37 @@ export function usePermissions() {
                 );
             } else {
                 localStorage.setItem(fieldName, newVal);
+                handleSuccessToast(successText);
             }
         });
     };
+
+    updatePermissions(showFullSongs, (val) =>
+        val ? "Showing Full Songs" : "Showing Titles Only",
+    );
+
+    updatePermissions(
+        numberOfColumns,
+        (val) => `Showing ${val} column${val === 1 ? "" : "s"}`,
+    );
+
+    updatePermissions(showDetails, (val) =>
+        val ? "Showing Details" : "Not Showing Details",
+    );
+
+    updatePermissions(
+        showTranslation,
+        (val) => `${val ? "" : "Not"} Showing Translations`,
+    );
+
+    updatePermissions(translationType, (val) => {
+        const type = val === "inline" ? "Inline" : "Side-By-Side";
+        return `Showing ${type} Translations`;
+    });
+
+    updatePermissions(showSongbooks, (val) =>
+        val ? "Showing Songbooks" : "Not Showing Songbooks",
+    );
 
     return {
         numberOfColumns,
@@ -91,6 +119,5 @@ export function usePermissions() {
         showSongbooks,
         showTranslation,
         translationType,
-        updatePermissions,
     };
 }

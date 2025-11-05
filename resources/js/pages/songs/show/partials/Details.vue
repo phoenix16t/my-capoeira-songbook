@@ -13,7 +13,7 @@
                     {{
                         song.titles
                             .slice(1)
-                            .map((t) => t.title)
+                            .map((t: SongTitle) => t.title)
                             .join(", ")
                     }}
                 </div>
@@ -51,7 +51,7 @@
 import Card from "@/components/Card.vue";
 import { Label } from "@/components/ui/label";
 
-import type { Song } from "@/types";
+import type { Song, SongTitle } from "@/types";
 
 interface Props {
     song: Song;

@@ -14,9 +14,9 @@
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>
-                    <SheetTitle class="text-xl underline"> Actions </SheetTitle>
+                    <SheetTitle class="text-lg"> Control Panel </SheetTitle>
                 </SheetHeader>
-                <div className="grid flex-1 auto-rows-min gap-8 mt-4">
+                <div className="mt-4 flex flex-col gap-4">
                     <slot name="menu" />
                 </div>
             </SheetContent>

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { cn } from "@/lib/utils";
 import { reactiveOmit } from "@vueuse/core";
 import { X } from "lucide-vue-next";
 import {
@@ -10,6 +9,8 @@ import {
     useForwardPropsEmits,
 } from "reka-ui";
 import type { HTMLAttributes } from "vue";
+
+import { cn } from "@/lib/utils";
 
 import type { SheetVariants } from ".";
 import { sheetVariants } from ".";
@@ -44,7 +45,7 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits);
             <slot />
 
             <DialogClose
-                class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none"
+                class="ring-offset-background focus:ring-ring data-[state=open]:bg-secondary absolute top-4 right-4 cursor-pointer rounded-sm opacity-70 transition-opacity hover:opacity-100 focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:pointer-events-none"
             >
                 <X class="h-4 w-4" />
             </DialogClose>

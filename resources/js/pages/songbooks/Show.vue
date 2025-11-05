@@ -12,10 +12,43 @@
             </template>
 
             <template #menu>
-                <SongMenu
-                    v-model:showFullSongs="showFullSongs"
-                    v-model:numberOfColumns="numberOfColumns"
-                />
+                <Label class="flex items-center gap-2">
+                    <Switch v-model="showFullSongs" />
+                    <span v-if="!showFullSongs">Showing Titles Only</span>
+                    <span v-else>Showing Full Songs</span>
+                </Label>
+
+                <Label for="columns" class="flex">
+                    <NumberField
+                        v-model="numberOfColumns"
+                        id="columns"
+                        :default-value="1"
+                        :min="1"
+                        :max="4"
+                    >
+                        <NumberFieldContent class="w-20">
+                            <NumberFieldDecrement />
+                            <NumberFieldInput class="border-none shadow-none" />
+                            <NumberFieldIncrement />
+                        </NumberFieldContent>
+                    </NumberField>
+                    <span>{{
+                        numberOfColumns === 1 ? "Column" : "Columns"
+                    }}</span>
+                </Label>
+
+                <div class="flex flex-col">
+                    <h3 class="flex items-center text-base font-semibold">
+                        Universal Search
+                    </h3>
+
+                    <SearchSongs
+                        v-model:searchQuery="searchQuery"
+                        v-model:filteredSongs="filteredSongs"
+                        :songs="songs"
+                    />
+                </div>
+
                 <!-- TODO: add ability to change icon and color -->
             </template>
         </SubHeader>
@@ -38,11 +71,22 @@
 import { ref } from "vue";
 
 import Card from "@/components/Card.vue";
+import SearchSongs from "@/components/SearchSongs.vue";
 import SongList from "@/components/SongList.vue";
-import SongMenu from "@/components/SongMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
+import { Label } from "@/components/ui/label";
+import {
+    NumberField,
+    NumberFieldContent,
+    NumberFieldDecrement,
+    NumberFieldIncrement,
+    NumberFieldInput,
+} from "@/components/ui/number-field";
+import Switch from "@/components/ui/switch/Switch.vue";
 
-import type { Songbook } from "@/types";
+import { usePermissions } from "@/hooks/usePermissions";
+
+import type { Song, Songbook } from "@/types";
 
 import { Icons } from "@/lib/icons";
 
@@ -51,8 +95,10 @@ interface Props {
     songbooks: Songbook[];
 }
 
-defineProps<Props>();
+const { songbook } = defineProps<Props>();
 
-const showFullSongs = ref(true);
-const numberOfColumns = ref(1);
+const filteredSongs = ref<Song[]>(songbook.songs);
+const searchQuery = ref<string>("");
+
+const { showFullSongs, numberOfColumns } = usePermissions();
 </script>
