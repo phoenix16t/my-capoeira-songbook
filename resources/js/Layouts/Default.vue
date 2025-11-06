@@ -14,7 +14,7 @@
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
-import { onMounted, watch } from "vue";
+import { onMounted, watchEffect } from "vue";
 
 import Header from "@/layouts/partials/Header.vue";
 
@@ -38,12 +38,9 @@ onMounted(() => {
     }
 });
 
-watch(
-    () => page.props.flash.message,
-    (message) => {
-        if (message === "logout") {
-            handleSuccessToast("Goodbye!");
-        }
-    },
-);
+watchEffect(() => {
+    if (page.props.flash.message === "logout") {
+        handleSuccessToast("Goodbye!");
+    }
+});
 </script>
