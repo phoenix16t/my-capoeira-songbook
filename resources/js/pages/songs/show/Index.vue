@@ -5,7 +5,7 @@
 
             <template #menu>
                 <div>
-                    <Label class="flex items-center gap-2">
+                    <Label>
                         <Switch v-model="showTranslation" />
                         <span v-if="showTranslation">Showing Translation</span>
                         <span v-else>Not Showing Translation</span>
@@ -15,7 +15,7 @@
                         v-if="showTranslation"
                         class="mt-2 ml-6 flex flex-col gap-2"
                     >
-                        <Label class="flex items-center gap-2">
+                        <Label>
                             <input
                                 v-model="translationType"
                                 type="radio"
@@ -24,7 +24,7 @@
                             />
                             <span>Inline</span>
                         </Label>
-                        <Label class="flex items-center gap-2">
+                        <Label>
                             <input
                                 v-model="translationType"
                                 type="radio"
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <Label class="flex items-center gap-2">
+                <Label>
                     <Switch v-model="showDetails" />
                     <span v-if="showDetails">Showing Details</span>
                     <span v-else>Not Showing Details</span>

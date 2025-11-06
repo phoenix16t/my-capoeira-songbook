@@ -5,7 +5,7 @@
         <span v-else>Showing Full Songs</span>
     </Label>
 
-    <Label>
+    <Label v-if="!!page.props.auth.user">
         <Switch v-model="songlistShowSongbooks" />
         <span v-if="!songlistShowSongbooks">Not Showing Songbook Icons</span>
         <span v-else>Showing Songbook Icons</span>
@@ -43,6 +43,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePage } from "@inertiajs/vue3";
 import { ref, watch } from "vue";
 
 import Input from "@/components/ui/input/Input.vue";
@@ -68,6 +69,8 @@ const emit = defineEmits([
     "update:songlistShowSongbooks",
     "update:numberOfColumns",
 ]);
+
+const page = usePage();
 
 const showFullSongs = ref(props.showFullSongs);
 const songlistShowSongbooks = ref(props.songlistShowSongbooks);
