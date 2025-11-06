@@ -9,7 +9,9 @@
                         class="h-12 w-12 -rotate-z-15 fill-current text-white"
                     />
                 </div>
-                <span class="text-xl text-white"> My Capoeira Songbook </span>
+                <span class="xs:block hidden text-xl text-white">
+                    My Capoeira Songbook
+                </span>
             </span>
         </Link>
 

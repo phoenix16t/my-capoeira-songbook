@@ -4,9 +4,10 @@
             <template #title> Song list </template>
 
             <template #menu>
-                <SongMenu
-                    v-model:showFullSongs="showFullSongs"
+                <SongsMenu
                     v-model:numberOfColumns="numberOfColumns"
+                    v-model:showFullSongs="showFullSongs"
+                    v-model:searchQuery="searchQuery"
                 />
             </template>
         </SubHeader>
@@ -15,7 +16,7 @@
             <SongList
                 :numberOfColumns="numberOfColumns"
                 :showFullSongs="showFullSongs"
-                :songs="songs"
+                :songs="filteredSongs"
                 :songbooks="songbooks"
             />
         </div>
@@ -23,11 +24,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref, watchEffect } from "vue";
+
 import SongList from "@/components/SongList.vue";
-import SongMenu from "@/components/SongMenu.vue";
+import SongsMenu from "@/components/SongsMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import { usePermissions } from "@/hooks/usePermissions";
+import { useSongFilter } from "@/hooks/useSongFilter";
 
 import type { Song, Songbook } from "@/types";
 
@@ -36,16 +40,15 @@ interface Props {
     songbooks: Songbook[];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const { showFullSongs, numberOfColumns, updatePermissions } = usePermissions();
+const searchQuery = ref<string>("");
+const songsRef = ref<Song[]>(props.songs);
 
-updatePermissions(showFullSongs, (val) =>
-    val ? "Showing Full Songs" : "Showing Titles Only",
-);
+const { showFullSongs, numberOfColumns } = usePermissions();
+const { filteredSongs } = useSongFilter(songsRef, searchQuery);
 
-updatePermissions(
-    numberOfColumns,
-    (val) => `Showing ${val} column${val === 1 ? "" : "s"}`,
-);
+watchEffect(() => {
+    songsRef.value = props.songs;
+});
 </script>

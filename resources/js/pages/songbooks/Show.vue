@@ -12,10 +12,12 @@
             </template>
 
             <template #menu>
-                <SongMenu
-                    v-model:showFullSongs="showFullSongs"
+                <SongsMenu
                     v-model:numberOfColumns="numberOfColumns"
+                    v-model:showFullSongs="showFullSongs"
+                    v-model:searchQuery="searchQuery"
                 />
+
                 <!-- TODO: add ability to change icon and color -->
             </template>
         </SubHeader>
@@ -25,7 +27,7 @@
                 v-if="songbook.songs.length"
                 :numberOfColumns="numberOfColumns"
                 :showFullSongs="showFullSongs"
-                :songs="songbook.songs"
+                :songs="filteredSongs"
                 :songbooks="songbooks"
             />
 
@@ -35,14 +37,17 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 import Card from "@/components/Card.vue";
 import SongList from "@/components/SongList.vue";
-import SongMenu from "@/components/SongMenu.vue";
+import SongsMenu from "@/components/SongsMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
-import type { Songbook } from "@/types";
+import { usePermissions } from "@/hooks/usePermissions";
+import { useSongFilter } from "@/hooks/useSongFilter";
+
+import type { Song, Songbook } from "@/types";
 
 import { Icons } from "@/lib/icons";
 
@@ -51,8 +56,15 @@ interface Props {
     songbooks: Songbook[];
 }
 
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const showFullSongs = ref(true);
-const numberOfColumns = ref(1);
+const searchQuery = ref<string>("");
+const songsRef = ref<Song[]>(props.songbook.songs);
+
+const { showFullSongs, numberOfColumns } = usePermissions();
+const { filteredSongs } = useSongFilter(songsRef, searchQuery);
+
+watchEffect(() => {
+    songsRef.value = props.songbook.songs;
+});
 </script>

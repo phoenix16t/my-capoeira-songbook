@@ -84,7 +84,7 @@
             "The gate slammed shut, it's time (chorus)"
         ],
         "group": null,
-        "beat": null,
+        "beat": 1,
         "type": 1,
         "links": [],
         "author": ""
