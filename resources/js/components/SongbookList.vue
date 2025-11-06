@@ -30,7 +30,7 @@
         <ul v-if="songbooksWithoutSong.length">
             <li
                 v-for="songbook in songbooksWithoutSong.sort(
-                    (a, b) => a.id - b.id,
+                    (a: Songbook, b: Songbook) => a.id - b.id,
                 )"
                 class="m-2 flex cursor-pointer rounded-lg border px-4 py-2 hover:shadow-lg"
                 @click="addToSongbook(songbook)"
@@ -67,6 +67,7 @@ interface Props {
 }
 
 const { songbooks, song } = defineProps<Props>();
+const emit = defineEmits<{ (e: "close"): void }>();
 
 const addToSongbook = (songbook: Songbook) => {
     router.post(
@@ -89,15 +90,18 @@ const addToSongbook = (songbook: Songbook) => {
 };
 
 const removeFromSongbook = (songbook: Songbook) => {
+    const songName = song.titles[0]?.title;
+
     router.delete(route("songbooks_songs.destroy"), {
         data: {
             songbook_id: songbook.id,
             song_id: song.id,
         },
         onSuccess: () => {
-            handleSuccessToast(
-                `${song.titles[0]!.title} removed from ${songbook.title}`,
-            );
+            handleSuccessToast(`${songName} removed from ${songbook.title}`);
+            if (songbook.id === Number(route().params.id)) {
+                emit("close");
+            }
         },
         onError: () => {
             handleErrorToast(`Error removing song`);

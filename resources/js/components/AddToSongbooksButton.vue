@@ -9,10 +9,16 @@
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle> Add to songbook </DialogTitle>
+                <DialogTitle>
+                    {{ song.titles[0]?.title }}
+                </DialogTitle>
             </DialogHeader>
 
-            <SongbookList :song="song" :songbooks="songbooks" />
+            <SongbookList
+                :song="song"
+                :songbooks="songbooks"
+                @close="isModalOpen = false"
+            />
         </DialogContent>
     </Dialog>
 </template>
@@ -38,8 +44,7 @@ interface Props {
     song: Song;
     songbooks: Songbook[];
 }
-
-defineProps<Props>();
+const { song } = defineProps<Props>();
 
 const isModalOpen = ref(false);
 </script>

@@ -39,13 +39,14 @@
 
                 <div class="flex flex-col">
                     <h3 class="flex items-center text-base font-semibold">
-                        Universal Search
+                        Search
                     </h3>
 
-                    <SearchSongs
-                        v-model:searchQuery="searchQuery"
-                        v-model:filteredSongs="filteredSongs"
-                        :songs="songs"
+                    <Input
+                        v-model="searchQuery"
+                        id="search"
+                        class="rounded border"
+                        type="text"
                     />
                 </div>
 
@@ -58,7 +59,7 @@
                 v-if="songbook.songs.length"
                 :numberOfColumns="numberOfColumns"
                 :showFullSongs="showFullSongs"
-                :songs="songbook.songs"
+                :songs="filteredSongs"
                 :songbooks="songbooks"
             />
 
@@ -68,12 +69,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, watchEffect } from "vue";
 
 import Card from "@/components/Card.vue";
-import SearchSongs from "@/components/SearchSongs.vue";
 import SongList from "@/components/SongList.vue";
 import SubHeader from "@/components/SubHeader.vue";
+import Input from "@/components/ui/input/Input.vue";
 import { Label } from "@/components/ui/label";
 import {
     NumberField,
@@ -85,6 +86,7 @@ import {
 import Switch from "@/components/ui/switch/Switch.vue";
 
 import { usePermissions } from "@/hooks/usePermissions";
+import { useSongFilter } from "@/hooks/useSongFilter";
 
 import type { Song, Songbook } from "@/types";
 
@@ -97,8 +99,13 @@ interface Props {
 
 const { songbook } = defineProps<Props>();
 
-const filteredSongs = ref<Song[]>(songbook.songs);
 const searchQuery = ref<string>("");
+const songsRef = ref<Song[]>(songbook.songs);
 
 const { showFullSongs, numberOfColumns } = usePermissions();
+const { filteredSongs } = useSongFilter(songsRef, searchQuery);
+
+watchEffect(() => {
+    songsRef.value = songbook.songs;
+});
 </script>

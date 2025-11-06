@@ -9,6 +9,37 @@ export function usePermissions() {
 
     const isAuthenticated = computed(() => !!page.props.auth.user);
 
+    const watchPermissionsChanges = (
+        refField: Ref<any>,
+        fieldName: string,
+        successMessageFn: (newVal: any) => string,
+    ) => {
+        watch(refField, (newVal, oldVal) => {
+            if (!fieldName) {
+                return;
+            }
+
+            const successText = successMessageFn(newVal);
+
+            if (isAuthenticated.value) {
+                router.post(
+                    route("permissions.update"),
+                    { [fieldName]: newVal },
+                    {
+                        onSuccess: () => handleSuccessToast(successText),
+                        onError: () => {
+                            refField.value = oldVal;
+                            handleErrorToast("Error changing permission");
+                        },
+                    },
+                );
+            } else {
+                localStorage.setItem(fieldName, newVal);
+                handleSuccessToast(successText);
+            }
+        });
+    };
+
     const numberOfColumns = ref(
         isAuthenticated.value
             ? (page.props.auth.user.permissions?.song_list_columns_number ?? 2)
@@ -45,72 +76,36 @@ export function usePermissions() {
             : (localStorage.getItem("translation_type") ?? "inline"),
     );
 
-    const refToFieldName = new Map([
-        [numberOfColumns, "song_list_columns_number"],
-        [showDetails, "song_show_details"],
-        [showFullSongs, "song_list_show_full_songs"],
-        [showSongbooks, "song_show_songbooks"],
-        [showTranslation, "song_show_translation"],
-        [translationType, "translation_type"],
-    ]);
-
-    const updatePermissions = (
-        refField: Ref<any>,
-        successMessageFn: (newVal: any) => string,
-    ) => {
-        watch(refField, (newVal, oldVal) => {
-            const fieldName = refToFieldName.get(refField);
-            if (!fieldName) {
-                return;
-            }
-
-            const successText = successMessageFn(newVal);
-
-            if (isAuthenticated.value) {
-                router.post(
-                    route("permissions.update"),
-                    { [fieldName]: newVal },
-                    {
-                        onSuccess: () => handleSuccessToast(successText),
-                        onError: () => {
-                            refField.value = oldVal;
-                            handleErrorToast("Error changing permission");
-                        },
-                    },
-                );
-            } else {
-                localStorage.setItem(fieldName, newVal);
-                handleSuccessToast(successText);
-            }
-        });
-    };
-
-    updatePermissions(showFullSongs, (val) =>
-        val ? "Showing Full Songs" : "Showing Titles Only",
-    );
-
-    updatePermissions(
-        numberOfColumns,
-        (val) => `Showing ${val} column${val === 1 ? "" : "s"}`,
-    );
-
-    updatePermissions(showDetails, (val) =>
+    watchPermissionsChanges(showDetails, "song_show_details", (val) =>
         val ? "Showing Details" : "Not Showing Details",
     );
 
-    updatePermissions(
+    watchPermissionsChanges(
+        showFullSongs,
+        "song_list_show_full_songs",
+        (val) => (val ? "Showing Full Songs" : "Showing Titles Only"),
+    );
+
+    watchPermissionsChanges(showSongbooks, "song_show_songbooks", (val) =>
+        val ? "Showing Songbooks" : "Not Showing Songbooks",
+    );
+
+    watchPermissionsChanges(
         showTranslation,
+        "song_show_translation",
         (val) => `${val ? "" : "Not"} Showing Translations`,
     );
 
-    updatePermissions(translationType, (val) => {
+    watchPermissionsChanges(
+        numberOfColumns,
+        "song_list_columns_number",
+        (val) => `Showing ${val} column${val === 1 ? "" : "s"}`,
+    );
+
+    watchPermissionsChanges(translationType, "translation_type", (val) => {
         const type = val === "inline" ? "Inline" : "Side-By-Side";
         return `Showing ${type} Translations`;
     });
-
-    updatePermissions(showSongbooks, (val) =>
-        val ? "Showing Songbooks" : "Not Showing Songbooks",
-    );
 
     return {
         numberOfColumns,
