@@ -20,6 +20,7 @@ class UpdateUserPermissionRequest extends FormRequest
             'translation_type' => 'string|in:inline,side',
             'song_show_details' => 'boolean',
             'song_show_songbooks' => 'boolean',
+            'songlist_show_songbooks' => 'boolean',
         ];
     }
 }

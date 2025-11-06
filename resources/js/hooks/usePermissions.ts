@@ -58,10 +58,16 @@ export function usePermissions() {
             : localStorage.getItem("song_list_show_full_songs") === "true",
     );
 
-    const showSongbooks = ref(
+    const songsShowSongbooks = ref(
         isAuthenticated.value
             ? page.props.auth.user.permissions?.song_show_songbooks
             : localStorage.getItem("song_show_songbooks") === "true",
+    );
+
+    const songlistShowSongbooks = ref(
+        isAuthenticated.value
+            ? page.props.auth.user.permissions?.songlist_show_songbooks
+            : localStorage.getItem("songlist_show_songbooks") === "true",
     );
 
     const showTranslation = ref(
@@ -86,8 +92,15 @@ export function usePermissions() {
         (val) => (val ? "Showing Full Songs" : "Showing Titles Only"),
     );
 
-    watchPermissionsChanges(showSongbooks, "song_show_songbooks", (val) =>
+    watchPermissionsChanges(songsShowSongbooks, "song_show_songbooks", (val) =>
         val ? "Showing Songbooks" : "Not Showing Songbooks",
+    );
+
+    watchPermissionsChanges(
+        songlistShowSongbooks,
+        "songlist_show_songbooks",
+        (val) =>
+            val ? "Showing Songbook Icons" : "Not Showing Songbook Icons",
     );
 
     watchPermissionsChanges(
@@ -111,7 +124,8 @@ export function usePermissions() {
         numberOfColumns,
         showDetails,
         showFullSongs,
-        showSongbooks,
+        songlistShowSongbooks,
+        songsShowSongbooks,
         showTranslation,
         translationType,
     };

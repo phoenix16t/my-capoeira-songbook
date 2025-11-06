@@ -34,6 +34,8 @@
                 {{ translation[i]?.replaceAll("(chorus)", "") }}
             </p>
         </div>
+
+        <IconChain v-if="songlistShowSongbooks" :songbooks="song.songbooks" />
     </Card>
 </template>
 
@@ -47,8 +49,11 @@ import Card from "@/components/Card.vue";
 
 import type { Song, Songbook } from "@/types";
 
+import IconChain from "./IconChain.vue";
+
 interface Props {
     showInlineTranslation?: boolean;
+    songlistShowSongbooks?: boolean;
     song: Song;
     songbooks?: Songbook[];
 }

@@ -15,6 +15,7 @@
                 <SongsMenu
                     v-model:numberOfColumns="numberOfColumns"
                     v-model:showFullSongs="showFullSongs"
+                    v-model:songlistShowSongbooks="songlistShowSongbooks"
                     v-model:searchQuery="searchQuery"
                 />
 
@@ -26,7 +27,8 @@
             <SongList
                 v-if="songbook.songs.length"
                 :numberOfColumns="numberOfColumns"
-                :showFullSongs="showFullSongs"
+                :showFullSongs
+                :songlistShowSongbooks
                 :songs="filteredSongs"
                 :songbooks="songbooks"
             />
@@ -61,7 +63,8 @@ const props = defineProps<Props>();
 const searchQuery = ref<string>("");
 const songsRef = ref<Song[]>(props.songbook.songs);
 
-const { showFullSongs, numberOfColumns } = usePermissions();
+const { showFullSongs, songlistShowSongbooks, numberOfColumns } =
+    usePermissions();
 const { filteredSongs } = useSongFilter(songsRef, searchQuery);
 
 watchEffect(() => {

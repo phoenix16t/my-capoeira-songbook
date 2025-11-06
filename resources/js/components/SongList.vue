@@ -12,7 +12,11 @@
                 <div v-for="song in columnSongs(col)" class="flex w-full gap-1">
                     <Link :href="route('songs.show', song.id)" class="w-full">
                         <Card :class="computedClass">
-                            {{ song.titles?.[0]?.title }}
+                            <div>{{ song.titles?.[0]?.title }}</div>
+                            <IconChain
+                                v-if="songlistShowSongbooks"
+                                :songbooks="song.songbooks"
+                            />
                         </Card>
                     </Link>
 
@@ -31,6 +35,7 @@
                 <Lyrics
                     v-for="(song, index) in columnSongs(col)"
                     :key="index"
+                    :songlistShowSongbooks="songlistShowSongbooks"
                     :song="song"
                     :songbooks="songbooks"
                 />
@@ -50,22 +55,24 @@ import Lyrics from "@/components/Lyrics.vue";
 
 import type { Song, Songbook } from "@/types";
 
+import IconChain from "./IconChain.vue";
+
 interface Props {
     numberOfColumns: number;
     showFullSongs: boolean;
+    songlistShowSongbooks: boolean;
     songs: Song[];
     songbooks: Songbook[];
 }
 
-const { numberOfColumns, showFullSongs, songs, songbooks } =
-    defineProps<Props>();
+const props = defineProps<Props>();
 
 const page = usePage();
 
 const columnSongs = (col: number) => {
     const result = [];
-    for (let i = col - 1; i < songs.length; i += numberOfColumns) {
-        const song = songs[i];
+    for (let i = col - 1; i < props.songs.length; i += props.numberOfColumns) {
+        const song = props.songs[i];
         if (song !== undefined) {
             result.push(song);
         }
@@ -75,7 +82,7 @@ const columnSongs = (col: number) => {
 
 const computedClass = computed(() =>
     [
-        "flex items-center px-4 py-2 transition-all hover:shadow-lg",
+        "flex flex-col justify-center px-4 py-2 transition-all hover:shadow-lg",
         !!page.props.auth.user ? "rounded-r-none" : "",
     ].join(" "),
 );

@@ -5,6 +5,12 @@
         <span v-else>Showing Full Songs</span>
     </Label>
 
+    <Label>
+        <Switch v-model="songlistShowSongbooks" />
+        <span v-if="!songlistShowSongbooks">Not Showing Songbook Icons</span>
+        <span v-else>Showing Songbook Icons</span>
+    </Label>
+
     <Label for="columns">
         <NumberField
             v-model="numberOfColumns"
@@ -52,15 +58,24 @@ import Switch from "@/components/ui/switch/Switch.vue";
 
 const props = defineProps<{
     showFullSongs: boolean;
+    songlistShowSongbooks: boolean;
     numberOfColumns: number;
 }>();
 
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
-const emit = defineEmits(["update:showFullSongs", "update:numberOfColumns"]);
+const emit = defineEmits([
+    "update:showFullSongs",
+    "update:songlistShowSongbooks",
+    "update:numberOfColumns",
+]);
 
 const showFullSongs = ref(props.showFullSongs);
+const songlistShowSongbooks = ref(props.songlistShowSongbooks);
 const numberOfColumns = ref(props.numberOfColumns);
 
 watch(showFullSongs, (val) => emit("update:showFullSongs", val));
+watch(songlistShowSongbooks, (val) =>
+    emit("update:songlistShowSongbooks", val),
+);
 watch(numberOfColumns, (val) => emit("update:numberOfColumns", val));
 </script>

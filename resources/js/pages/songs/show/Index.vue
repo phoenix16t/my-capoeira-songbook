@@ -46,8 +46,8 @@
                     v-if="!!page.props.auth.user"
                     class="flex items-center gap-2"
                 >
-                    <Switch v-model="showSongbooks" />
-                    <span v-if="showSongbooks">Showing Songbooks</span>
+                    <Switch v-model="songsShowSongbooks" />
+                    <span v-if="songsShowSongbooks">Showing Songbooks</span>
                     <span v-else>Not Showing Songbooks</span>
                 </Label>
             </template>
@@ -70,7 +70,7 @@
                         :song="song"
                     />
                     <SongbookList
-                        v-if="showSongbooks"
+                        v-if="songsShowSongbooks"
                         :song="song"
                         :songbooks="songbooks"
                     />
@@ -107,11 +107,14 @@ interface Props {
 defineProps<Props>();
 
 const page = usePage();
-const { showDetails, showSongbooks, showTranslation, translationType } =
+const { showDetails, songsShowSongbooks, showTranslation, translationType } =
     usePermissions();
 
 const shouldShowDataColumn = computed(
-    () => showDetails.value || showSideTranslation.value || showSongbooks.value,
+    () =>
+        showDetails.value ||
+        showSideTranslation.value ||
+        songsShowSongbooks.value,
 );
 const showInlineTranslation = computed(
     () => showTranslation.value && translationType.value === "inline",

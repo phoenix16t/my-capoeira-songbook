@@ -15,6 +15,7 @@ class UserPermission extends Model
         'translation_type',
         'song_show_details',
         'song_show_songbooks',
+        'songlist_show_songbooks'
     ];
 
     public function user()

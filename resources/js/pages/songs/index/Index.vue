@@ -7,6 +7,7 @@
                 <SongsMenu
                     v-model:numberOfColumns="numberOfColumns"
                     v-model:showFullSongs="showFullSongs"
+                    v-model:songlistShowSongbooks="songlistShowSongbooks"
                     v-model:searchQuery="searchQuery"
                 />
             </template>
@@ -15,7 +16,8 @@
         <div class="px-8 py-4">
             <SongList
                 :numberOfColumns="numberOfColumns"
-                :showFullSongs="showFullSongs"
+                :showFullSongs
+                :songlistShowSongbooks
                 :songs="filteredSongs"
                 :songbooks="songbooks"
             />
@@ -45,7 +47,8 @@ const props = defineProps<Props>();
 const searchQuery = ref<string>("");
 const songsRef = ref<Song[]>(props.songs);
 
-const { showFullSongs, numberOfColumns } = usePermissions();
+const { showFullSongs, songlistShowSongbooks, numberOfColumns } =
+    usePermissions();
 const { filteredSongs } = useSongFilter(songsRef, searchQuery);
 
 watchEffect(() => {
