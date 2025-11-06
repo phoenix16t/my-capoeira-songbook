@@ -97,15 +97,15 @@ interface Props {
     songbooks: Songbook[];
 }
 
-const { songbook } = defineProps<Props>();
+const props = defineProps<Props>();
 
 const searchQuery = ref<string>("");
-const songsRef = ref<Song[]>(songbook.songs);
+const songsRef = ref<Song[]>(props.songbook.songs);
 
 const { showFullSongs, numberOfColumns } = usePermissions();
 const { filteredSongs } = useSongFilter(songsRef, searchQuery);
 
 watchEffect(() => {
-    songsRef.value = songbook.songs;
+    songsRef.value = props.songbook.songs;
 });
 </script>

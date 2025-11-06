@@ -24,7 +24,7 @@ interface Props {
     song: Song;
 }
 
-const { song } = defineProps<Props>();
+const props = defineProps<Props>();
 
-const translation = computed(() => song.translation.split("\n"));
+const translation = computed(() => props.song.translation.split("\n"));
 </script>

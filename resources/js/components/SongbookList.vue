@@ -66,7 +66,7 @@ interface Props {
     songbooks: Songbook[];
 }
 
-const { songbooks, song } = defineProps<Props>();
+const props = defineProps<Props>();
 const emit = defineEmits<{ (e: "close"): void }>();
 
 const addToSongbook = (songbook: Songbook) => {
@@ -74,12 +74,12 @@ const addToSongbook = (songbook: Songbook) => {
         route("songbooks_songs.store"),
         {
             songbook_id: songbook.id,
-            song_id: song.id,
+            song_id: props.song.id,
         },
         {
             onSuccess: () => {
                 handleSuccessToast(
-                    `${song.titles[0]!.title} added to ${songbook.title}`,
+                    `${props.song.titles[0]!.title} added to ${songbook.title}`,
                 );
             },
             onError: () => {
@@ -90,12 +90,12 @@ const addToSongbook = (songbook: Songbook) => {
 };
 
 const removeFromSongbook = (songbook: Songbook) => {
-    const songName = song.titles[0]?.title;
+    const songName = props.song.titles[0]?.title;
 
     router.delete(route("songbooks_songs.destroy"), {
         data: {
             songbook_id: songbook.id,
-            song_id: song.id,
+            song_id: props.song.id,
         },
         onSuccess: () => {
             handleSuccessToast(`${songName} removed from ${songbook.title}`);
@@ -110,10 +110,10 @@ const removeFromSongbook = (songbook: Songbook) => {
 };
 
 const songbookIdsWithSong = computed(
-    () => new Set(song.songbooks?.map((s) => s.id)),
+    () => new Set(props.song.songbooks?.map((s) => s.id)),
 );
 
 const songbooksWithoutSong = computed(() =>
-    songbooks.filter((s) => !songbookIdsWithSong.value.has(s.id)),
+    props.songbooks.filter((s) => !songbookIdsWithSong.value.has(s.id)),
 );
 </script>

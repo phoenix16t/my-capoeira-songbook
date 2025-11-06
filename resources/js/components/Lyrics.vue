@@ -53,10 +53,10 @@ interface Props {
     songbooks?: Songbook[];
 }
 
-const { song } = defineProps<Props>();
+const props = defineProps<Props>();
 
 const page = usePage();
 
-const lyrics = computed(() => song.lyrics.split("\n"));
-const translation = computed(() => song.translation.split("\n"));
+const lyrics = computed(() => props.song.lyrics.split("\n"));
+const translation = computed(() => props.song.translation.split("\n"));
 </script>

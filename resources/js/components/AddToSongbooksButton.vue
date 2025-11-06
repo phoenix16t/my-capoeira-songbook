@@ -44,7 +44,7 @@ interface Props {
     song: Song;
     songbooks: Songbook[];
 }
-const { song } = defineProps<Props>();
+defineProps<Props>();
 
 const isModalOpen = ref(false);
 </script>
