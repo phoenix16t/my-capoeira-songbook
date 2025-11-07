@@ -32,6 +32,7 @@
                         : 'whiteGhost'
                 "
                 asChild
+                data-testid="songs-page-button"
             >
                 <Link :href="route('songs.index')">
                     <MusicIcon class="size-5" />

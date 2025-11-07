@@ -11,7 +11,11 @@
         >
             <template v-if="!showFullSongs">
                 <div v-for="song in columnSongs(col)" class="flex w-full gap-1">
-                    <Link :href="route('songs.show', song.id)" class="w-full">
+                    <Link
+                        :href="route('songs.show', song.id)"
+                        class="w-full"
+                        data-testid="song-title-link"
+                    >
                         <Card :class="computedClass">
                             <div>{{ song.titles?.[0]?.title }}</div>
                             <IconChain

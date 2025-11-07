@@ -1,11 +1,12 @@
 <template>
-    <Card>
+    <Card data-testid="lyrics-container">
         <div class="mb-4 flex items-center justify-between">
             <h3 class="text-lg font-semibold">
                 <Link
                     v-if="route().current() !== 'songs.show'"
                     :href="route('songs.show', song.id)"
                     class="hover:underline"
+                    data-testid="song-full-link"
                 >
                     {{ song.titles[0]?.title }}
                 </Link>

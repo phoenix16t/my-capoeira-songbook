@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card data-testid="translation-container">
         <h3 class="mb-4 text-lg font-semibold">Translation</h3>
         <p
             v-for="line in translation"
