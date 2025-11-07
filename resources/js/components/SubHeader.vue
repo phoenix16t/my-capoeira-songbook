@@ -8,7 +8,7 @@
 
         <Sheet v-if="slots.menu">
             <SheetTrigger asChild>
-                <Button size="icon" variant="ghost">
+                <Button size="icon" variant="ghost" data-testid="toggle-menu">
                     <SettingsIcon class="inline size-5" />
                 </Button>
             </SheetTrigger>

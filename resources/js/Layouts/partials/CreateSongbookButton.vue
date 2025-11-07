@@ -1,5 +1,10 @@
 <template>
-    <Button :size="size" :variant="variant" @click="isModalOpen = true">
+    <Button
+        :size="size"
+        :variant="variant"
+        data-testid="create-songbook-button"
+        @click="isModalOpen = true"
+    >
         <slot />
     </Button>
 

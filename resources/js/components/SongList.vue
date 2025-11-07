@@ -2,6 +2,7 @@
     <div
         class="grid gap-4"
         :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
+        data-testid="column-count"
     >
         <div
             v-for="col in numberOfColumns"
@@ -21,6 +22,7 @@
                     </Link>
 
                     <Card
+                        v-if="page.props.auth.user"
                         cls="flex h-full w-10 items-center justify-center rounded-l-none p-0 transition-all hover:shadow-lg"
                     >
                         <AddToSongbooksButton
