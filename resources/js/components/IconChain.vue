@@ -19,6 +19,5 @@ import { Icons } from "@/lib/icons";
 interface Props {
     songbooks: Songbook[] | undefined;
 }
-
 defineProps<Props>();
 </script>

@@ -77,7 +77,6 @@ interface Props {
     song: Song;
     songbooks: Songbook[];
 }
-
 const props = defineProps<Props>();
 const emit = defineEmits<{ (e: "close"): void }>();
 
@@ -103,22 +102,22 @@ const addToSongbook = (songbook: Songbook) => {
 
 const removeFromSongbook = (songbook: Songbook) => {
     const songName = props.song.titles[0]?.title;
-
-    router.delete(route("songbooks_songs.destroy"), {
-        data: {
-            songbook_id: songbook.id,
-            song_id: props.song.id,
+    router.delete(
+        route("songbooks_songs.destroy", [songbook.id, props.song.id]),
+        {
+            onSuccess: () => {
+                handleSuccessToast(
+                    `${songName} removed from ${songbook.title}`,
+                );
+                if (songbook.id === Number(route().params.id)) {
+                    emit("close");
+                }
+            },
+            onError: () => {
+                handleErrorToast("Error removing song");
+            },
         },
-        onSuccess: () => {
-            handleSuccessToast(`${songName} removed from ${songbook.title}`);
-            if (songbook.id === Number(route().params.id)) {
-                emit("close");
-            }
-        },
-        onError: () => {
-            handleErrorToast(`Error removing song`);
-        },
-    });
+    );
 };
 
 const songbookIdsWithSong = computed(

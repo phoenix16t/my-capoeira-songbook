@@ -56,6 +56,5 @@ import type { Song, SongTitle } from "@/types";
 interface Props {
     song: Song;
 }
-
 defineProps<Props>();
 </script>

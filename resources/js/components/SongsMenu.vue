@@ -74,7 +74,6 @@ const props = defineProps<{
     songlistShowSongbooks: boolean;
     numberOfColumns: number;
 }>();
-
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
 const emit = defineEmits([
     "update:showFullSongs",

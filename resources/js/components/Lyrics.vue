@@ -58,7 +58,6 @@ interface Props {
     song: Song;
     songbooks?: Songbook[];
 }
-
 const props = defineProps<Props>();
 
 const page = usePage();

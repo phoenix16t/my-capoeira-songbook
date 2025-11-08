@@ -23,7 +23,6 @@ import type { Song } from "@/types";
 interface Props {
     song: Song;
 }
-
 const props = defineProps<Props>();
 
 const translation = computed(() => props.song.translation.split("\n"));

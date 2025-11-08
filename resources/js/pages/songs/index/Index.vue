@@ -41,7 +41,6 @@ interface Props {
     songs: Song[];
     songbooks: Songbook[];
 }
-
 const props = defineProps<Props>();
 
 const searchQuery = ref<string>("");

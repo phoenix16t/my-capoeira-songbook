@@ -85,7 +85,10 @@
                 </div>
             </div>
             <DialogFooter>
-                <Button as="button" @click="createSongbook" :disabled="!title">
+                <Button variant="secondary" @click="isModalOpen = false">
+                    Cancel
+                </Button>
+                <Button @click="createSongbook" :disabled="!title">
                     Save changes
                 </Button>
             </DialogFooter>
@@ -126,7 +129,6 @@ interface Props {
     size?: ButtonVariants["size"];
     variant?: ButtonVariants["variant"];
 }
-
 defineProps<Props>();
 
 const title = ref("");
