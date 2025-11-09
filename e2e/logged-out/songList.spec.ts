@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
 
-import { resetSettings, withMenuOpen } from "../helpers";
+import { goHome, resetSettings, withMenuOpen } from "../helpers";
 
 test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:8000/");
+    await goHome(page);
 
     await withMenuOpen(page, async () => {
         await resetSettings(page);
@@ -14,6 +14,16 @@ test("should redirect from /songs to /", async ({ page }) => {
     await page.goto("http://localhost:8000/songs");
     await page.waitForURL("http://localhost:8000/");
     expect(page.url()).toBe("http://localhost:8000/");
+
+    await expect(
+        page.getByTestId("song-title-open-dialog-link"),
+    ).not.toBeVisible();
+});
+
+test("add to songbooks links should not be visible", async ({ page }) => {
+    await expect(
+        page.getByTestId("song-title-open-dialog-link"),
+    ).not.toBeVisible();
 });
 
 test("songs button should be highlighted", async ({ page }) => {

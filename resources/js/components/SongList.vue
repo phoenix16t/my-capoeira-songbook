@@ -10,7 +10,11 @@
             class="flex flex-col gap-4"
         >
             <template v-if="!showFullSongs">
-                <div v-for="song in columnSongs(col)" class="flex w-full gap-1">
+                <div
+                    v-for="song in columnSongs(col)"
+                    class="flex w-full gap-1"
+                    data-testid="song-title-wrapper"
+                >
                     <Link
                         :href="route('songs.show', song.id)"
                         class="w-full"

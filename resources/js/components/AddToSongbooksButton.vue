@@ -1,6 +1,7 @@
 <template>
     <button
         :class="cn('flex cursor-pointer items-center justify-center', cls)"
+        data-testid="song-title-open-dialog-link"
         @click.stop.prevent="isModalOpen = true"
     >
         <PlusIcon class="size-5" />
@@ -9,7 +10,7 @@
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle>
+                <DialogTitle data-testid="song-title-add-header">
                     {{ song.titles[0]?.title }}
                 </DialogTitle>
             </DialogHeader>

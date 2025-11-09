@@ -8,6 +8,7 @@
             <li
                 v-for="songbook in song.songbooks?.sort((a, b) => a.id - b.id)"
                 class="flex cursor-pointer rounded-lg border px-4 py-2 transition-all hover:shadow-lg"
+                data-testid="remove-song-from-songbook-link"
                 @click="removeFromSongbook(songbook)"
             >
                 <div class="flex items-center">
@@ -45,6 +46,7 @@
                     (a: Songbook, b: Songbook) => a.id - b.id,
                 )"
                 class="flex cursor-pointer rounded-lg border px-4 py-2 transition-all hover:shadow-lg"
+                data-testid="add-song-to-songbook-link"
                 @click="addToSongbook(songbook)"
             >
                 <component

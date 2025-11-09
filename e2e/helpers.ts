@@ -55,17 +55,36 @@ export async function createTestSongbook(page) {
 }
 
 export async function deleteTestSongbook(page) {
-    await page.goto("http://localhost:8000/songbooks");
-    const testSongbook = page.getByTestId("songbook-link").filter({
-        has: page.locator("text=E2E Test Songbook"),
-    });
-
-    await Promise.all([
-        page.waitForURL(/\/songbooks\/\d+/),
-        testSongbook.first().click(),
-    ]);
+    const testSongbook = await goToTestSongbook(page);
+    clickSongbooksSongLink(page, testSongbook);
 
     await page.getByTestId("toggle-menu").click();
     await page.getByTestId("delete-songbook-button").click();
     await page.getByTestId("delete-songbook-confirm").click();
+}
+
+export async function goToTestSongbook(page) {
+    await page.goto("http://localhost:8000/songbooks");
+    return page.getByTestId("songbook-link").filter({
+        has: page.locator("text=E2E Test Songbook"),
+    });
+}
+
+export async function clickSongbooksSongLink(page, testSongbook) {
+    await Promise.all([
+        page.waitForURL(/\/songbooks\/\d+/),
+        testSongbook.first().click(),
+    ]);
+}
+
+export async function goHome(page) {
+    await page.goto("http://localhost:8000/");
+}
+
+export function findBoaViagemWrapper(page) {
+    return page.getByTestId("song-title-wrapper").filter({
+        has: page.getByTestId("song-title-link").filter({
+            hasText: "Boa viagem",
+        }),
+    });
 }
