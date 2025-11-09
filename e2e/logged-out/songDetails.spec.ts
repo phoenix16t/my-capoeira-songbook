@@ -11,8 +11,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("songs button should not be highlighted", async ({ page }) => {
-    await expect(page.getByTestId("songs-page-button")).toContainClass(
-        "hover:bg-accent dark:hover:bg-accent/50",
+    await expect(page.getByTestId("songs-page-button")).not.toContainClass(
+        "bg-accent",
     );
 });
 

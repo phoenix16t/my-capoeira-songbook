@@ -39,3 +39,33 @@ export async function resetSettings(page) {
         await searchInput.fill("");
     }
 }
+
+export async function createTestSongbook(page) {
+    await page.getByTestId("create-songbook-button").click();
+
+    await page.getByTestId("create-songbook-name").fill("E2E Test Songbook");
+    await page.getByTestId("create-songbook-select").click();
+    const carrotIcon = page.locator('[data-testid="create-songbook-icon"]', {
+        hasText: "Carrot",
+    });
+    await carrotIcon.click();
+    await page.getByTestId("create-songbook-color").fill("#ff6600");
+
+    await page.getByTestId("create-songbook-save").click();
+}
+
+export async function deleteTestSongbook(page) {
+    await page.goto("http://localhost:8000/songbooks");
+    const testSongbook = page.getByTestId("songbook-link").filter({
+        has: page.locator("text=E2E Test Songbook"),
+    });
+
+    await Promise.all([
+        page.waitForURL(/\/songbooks\/\d+/),
+        testSongbook.first().click(),
+    ]);
+
+    await page.getByTestId("toggle-menu").click();
+    await page.getByTestId("delete-songbook-button").click();
+    await page.getByTestId("delete-songbook-confirm").click();
+}

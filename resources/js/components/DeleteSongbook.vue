@@ -17,7 +17,12 @@
                 <Button variant="secondary" @click="isModalOpen = false">
                     Cancel
                 </Button>
-                <Button @click="deleteSongbook()"> Delete </Button>
+                <Button
+                    @click="deleteSongbook()"
+                    data-testid="delete-songbook-confirm"
+                >
+                    Delete
+                </Button>
             </DialogFooter>
         </DialogContent>
     </Dialog>

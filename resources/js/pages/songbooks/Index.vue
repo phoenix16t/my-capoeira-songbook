@@ -10,6 +10,7 @@
                     v-for="songbook in songbooks"
                     :href="route('songbooks.show', songbook.id)"
                     class="flex"
+                    data-testid="songbook-link"
                 >
                     <Card
                         class="w-full overflow-hidden px-4 py-2 transition-all hover:shadow-lg"
