@@ -21,6 +21,7 @@
                                 :is="Icons[songbook.icon]"
                                 class="size-5 w-8"
                                 :color="songbook.color"
+                                data-testid="songbook-icon"
                             />
                             {{ songbook.title }}
                         </div>

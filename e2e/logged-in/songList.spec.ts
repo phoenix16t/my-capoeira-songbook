@@ -27,11 +27,19 @@ test("should be able to create and delete a songbook", async ({ page }) => {
     const songbookLink = page.getByTestId("songbook-link").filter({
         has: page.locator("text=E2E Test Songbook"),
     });
+
     await expect(songbookLink).toBeVisible();
+    const icon = songbookLink.locator('[data-testid="songbook-icon"]');
+    await expect(icon).toHaveClass(/lucide-carrot/i);
+    await expect(icon).toHaveCSS("stroke", "rgb(255, 102, 0)");
 
     await deleteTestSongbook(page);
     const deletedSongbook = page.getByTestId("songbook-link").filter({
         has: page.locator("text=E2E Test Songbook"),
     });
     await expect(deletedSongbook).toHaveCount(0);
+});
+
+test("should be able to add songs to songbook", async ({ page }) => {
+    await createTestSongbook(page);
 });
