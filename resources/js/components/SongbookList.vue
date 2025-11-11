@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card data-testid="songbook-links">
         <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold">
             <CheckIcon class="size-5 text-green-500" />
             Belongs to Songbooks
@@ -8,6 +8,7 @@
             <li
                 v-for="songbook in song.songbooks?.sort((a, b) => a.id - b.id)"
                 class="flex cursor-pointer rounded-lg border px-4 py-2 transition-all hover:shadow-lg"
+                data-testid="remove-song-from-songbook-link"
                 @click="removeFromSongbook(songbook)"
             >
                 <div class="flex items-center">
@@ -22,7 +23,10 @@
                         {{ songbook.title }}
 
                         <div
-                            v-if="songbook.id === Number(route().params.id)"
+                            v-if="
+                                route().current() === 'songbooks.show' &&
+                                songbook.id === Number(route().params.id)
+                            "
                             class="text-xs"
                         >
                             Current songbook
@@ -45,6 +49,7 @@
                     (a: Songbook, b: Songbook) => a.id - b.id,
                 )"
                 class="flex cursor-pointer rounded-lg border px-4 py-2 transition-all hover:shadow-lg"
+                data-testid="add-song-to-songbook-link"
                 @click="addToSongbook(songbook)"
             >
                 <component
@@ -77,7 +82,6 @@ interface Props {
     song: Song;
     songbooks: Songbook[];
 }
-
 const props = defineProps<Props>();
 const emit = defineEmits<{ (e: "close"): void }>();
 
@@ -103,22 +107,22 @@ const addToSongbook = (songbook: Songbook) => {
 
 const removeFromSongbook = (songbook: Songbook) => {
     const songName = props.song.titles[0]?.title;
-
-    router.delete(route("songbooks_songs.destroy"), {
-        data: {
-            songbook_id: songbook.id,
-            song_id: props.song.id,
+    router.delete(
+        route("songbooks_songs.destroy", [songbook.id, props.song.id]),
+        {
+            onSuccess: () => {
+                handleSuccessToast(
+                    `${songName} removed from ${songbook.title}`,
+                );
+                if (songbook.id === Number(route().params.id)) {
+                    emit("close");
+                }
+            },
+            onError: () => {
+                handleErrorToast("Error removing song");
+            },
         },
-        onSuccess: () => {
-            handleSuccessToast(`${songName} removed from ${songbook.title}`);
-            if (songbook.id === Number(route().params.id)) {
-                emit("close");
-            }
-        },
-        onError: () => {
-            handleErrorToast(`Error removing song`);
-        },
-    });
+    );
 };
 
 const songbookIdsWithSong = computed(

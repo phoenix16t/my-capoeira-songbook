@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card data-testid="translation-container">
         <h3 class="mb-4 text-lg font-semibold">Translation</h3>
         <p
             v-for="line in translation"
@@ -23,7 +23,6 @@ import type { Song } from "@/types";
 interface Props {
     song: Song;
 }
-
 const props = defineProps<Props>();
 
 const translation = computed(() => props.song.translation.split("\n"));

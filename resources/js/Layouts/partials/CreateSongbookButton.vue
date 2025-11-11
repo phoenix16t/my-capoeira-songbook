@@ -1,5 +1,10 @@
 <template>
-    <Button :size="size" :variant="variant" @click="isModalOpen = true">
+    <Button
+        :size="size"
+        :variant="variant"
+        data-testid="create-songbook-button"
+        @click="isModalOpen = true"
+    >
         <slot />
     </Button>
 
@@ -8,17 +13,22 @@
             <DialogHeader>
                 <DialogTitle> Create a new songbook </DialogTitle>
             </DialogHeader>
-            <div class="grid gap-4 py-4">
+            <div class="grid gap-4 py-4" data-testid="create-songbook-dialog">
                 <div class="grid grid-cols-4 items-center gap-4">
                     <Label for="name" class="text-right"> Name </Label>
-                    <Input v-model="title" id="name" class="col-span-3" />
+                    <Input
+                        v-model="title"
+                        id="name"
+                        class="col-span-3"
+                        data-testid="create-songbook-name"
+                    />
                 </div>
 
                 <div class="grid grid-cols-4 items-center gap-4">
                     <Label for="icon" class="text-right"> Icon </Label>
                     <div class="col-span-3">
                         <Select v-model="selectedIcon" id="icon">
-                            <SelectTrigger>
+                            <SelectTrigger data-testid="create-songbook-select">
                                 <SelectValue placeholder="Select an icon">
                                     <template #default>
                                         <div
@@ -56,6 +66,7 @@
                                     <SelectItem
                                         v-for="(icon, name) in Icons"
                                         :value="name"
+                                        data-testid="create-songbook-icon"
                                     >
                                         <div
                                             class="flex items-center justify-start gap-2"
@@ -76,11 +87,22 @@
 
                 <div class="grid grid-cols-4 items-center gap-4">
                     <Label for="name" class="text-right"> Icon color </Label>
-                    <Input v-model="color" type="color" />
+                    <Input
+                        v-model="color"
+                        type="color"
+                        data-testid="create-songbook-color"
+                    />
                 </div>
             </div>
             <DialogFooter>
-                <Button as="button" @click="createSongbook" :disabled="!title">
+                <Button variant="secondary" @click="isModalOpen = false">
+                    Cancel
+                </Button>
+                <Button
+                    @click="createSongbook"
+                    :disabled="!title"
+                    data-testid="create-songbook-save"
+                >
                     Save changes
                 </Button>
             </DialogFooter>
@@ -121,7 +143,6 @@ interface Props {
     size?: ButtonVariants["size"];
     variant?: ButtonVariants["variant"];
 }
-
 defineProps<Props>();
 
 const title = ref("");

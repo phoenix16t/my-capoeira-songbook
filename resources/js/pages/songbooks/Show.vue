@@ -19,6 +19,7 @@
                     v-model:searchQuery="searchQuery"
                 />
 
+                <DeleteSongbook :songbook="songbook" />
                 <!-- TODO: add ability to change icon and color -->
             </template>
         </SubHeader>
@@ -42,6 +43,7 @@
 import { ref, watchEffect } from "vue";
 
 import Card from "@/components/Card.vue";
+import DeleteSongbook from "@/components/DeleteSongbook.vue";
 import SongList from "@/components/SongList.vue";
 import SongsMenu from "@/components/SongsMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
@@ -57,7 +59,6 @@ interface Props {
     songbook: Songbook;
     songbooks: Songbook[];
 }
-
 const props = defineProps<Props>();
 
 const searchQuery = ref<string>("");

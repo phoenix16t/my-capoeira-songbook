@@ -46,4 +46,14 @@ class SongbookController extends Controller
 
         return redirect()->back()->with('success');
     }
+
+    public function destroy($id)
+    {
+        $songbook = Songbook::findOrFail($id);
+        $songbook->delete();
+
+        return redirect()
+            ->route('songbooks.index')
+            ->with('success');
+    }
 }

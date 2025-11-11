@@ -21,16 +21,9 @@ class SongbookSongController extends Controller
         return redirect()->back()->with('success');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Songbook $songbook, Song $song)
     {
-        $request->validate([
-            'songbook_id' => ['required', 'exists:songbooks,id'],
-            'song_id' => ['required', 'exists:songs,id'],
-        ]);
-
-        $songbook = Songbook::findOrFail($request->songbook_id);
-        $songbook->songs()->detach($request->song_id);
-
-        return redirect()->back()->with('success');
-    }    
+        $songbook->songs()->detach($song->id);
+        return redirect()->back()->with('success', 'Song removed from songbook.');
+    }
 }

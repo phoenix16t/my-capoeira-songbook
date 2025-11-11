@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card data-testid="details-container">
         <h3 class="mb-4 text-lg font-semibold">Song Info</h3>
         <ul class="flex flex-col gap-3 text-gray-700">
             <li
@@ -56,6 +56,5 @@ import type { Song, SongTitle } from "@/types";
 interface Props {
     song: Song;
 }
-
 defineProps<Props>();
 </script>

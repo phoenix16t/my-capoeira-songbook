@@ -23,9 +23,10 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/songbooks', [SongbookController::class, 'index'])->name('songbooks.index');
     Route::post('/songbooks', [SongbookController::class, 'store'])->name('songbooks.store');
     Route::get('/songbooks/{id}', [SongbookController::class, 'show'])->name('songbooks.show');
+    Route::delete('/songbooks/{id}', [SongbookController::class, 'destroy'])->name('songbooks.destroy');
 
     Route::post('/songbooks_songs', [SongbookSongController::class, 'store'])->name('songbooks_songs.store');
-    Route::delete('/songbooks_songs', [SongbookSongController::class, 'destroy'])->name('songbooks_songs.destroy');
+    Route::delete('/songbooks/{songbook}/songs/{song}', [SongbookSongController::class, 'destroy'])->name('songbooks_songs.destroy');
 
     Route::post('/user-permissions', [UserPermissionController::class, 'update'])->name('permissions.update');
 });

@@ -6,7 +6,11 @@
             <template #menu>
                 <div>
                     <Label>
-                        <Switch v-model="showTranslation" />
+                        <Switch
+                            v-model="showTranslation"
+                            data-testid="show-translation-toggle"
+                            class="setting-toggle"
+                        />
                         <span v-if="showTranslation">Showing Translation</span>
                         <span v-else>Not Showing Translation</span>
                     </Label>
@@ -20,6 +24,7 @@
                                 v-model="translationType"
                                 type="radio"
                                 value="inline"
+                                data-testid="show-inline-translation"
                                 class="cursor-pointer accent-blue-600"
                             />
                             <span>Inline</span>
@@ -29,6 +34,7 @@
                                 v-model="translationType"
                                 type="radio"
                                 value="side"
+                                data-testid="show-side-by-side-translation"
                                 class="cursor-pointer accent-blue-600"
                             />
                             <span>Side-by-side</span>
@@ -37,7 +43,11 @@
                 </div>
 
                 <Label>
-                    <Switch v-model="showDetails" />
+                    <Switch
+                        v-model="showDetails"
+                        data-testid="show-details-toggle"
+                        class="setting-toggle"
+                    />
                     <span v-if="showDetails">Showing Details</span>
                     <span v-else>Not Showing Details</span>
                 </Label>
@@ -46,7 +56,11 @@
                     v-if="!!page.props.auth.user"
                     class="flex items-center gap-2"
                 >
-                    <Switch v-model="songsShowSongbooks" />
+                    <Switch
+                        v-model="songsShowSongbooks"
+                        data-testid="show-songbooks-toggle"
+                        class="setting-toggle"
+                    />
                     <span v-if="songsShowSongbooks">Showing Songbooks</span>
                     <span v-else>Not Showing Songbooks</span>
                 </Label>
@@ -103,7 +117,6 @@ interface Props {
     song: Song;
     songbooks: Songbook[];
 }
-
 defineProps<Props>();
 
 const page = usePage();

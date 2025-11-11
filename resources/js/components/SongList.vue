@@ -2,6 +2,7 @@
     <div
         class="grid gap-4"
         :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
+        data-testid="column-count"
     >
         <div
             v-for="col in numberOfColumns"
@@ -9,8 +10,16 @@
             class="flex flex-col gap-4"
         >
             <template v-if="!showFullSongs">
-                <div v-for="song in columnSongs(col)" class="flex w-full gap-1">
-                    <Link :href="route('songs.show', song.id)" class="w-full">
+                <div
+                    v-for="song in columnSongs(col)"
+                    class="flex w-full gap-1"
+                    data-testid="song-title-wrapper"
+                >
+                    <Link
+                        :href="route('songs.show', song.id)"
+                        class="w-full"
+                        data-testid="song-title-link"
+                    >
                         <Card :class="computedClass">
                             <div>{{ song.titles?.[0]?.title }}</div>
                             <IconChain
@@ -21,6 +30,7 @@
                     </Link>
 
                     <Card
+                        v-if="page.props.auth.user"
                         cls="flex h-full w-10 items-center justify-center rounded-l-none p-0 transition-all hover:shadow-lg"
                     >
                         <AddToSongbooksButton
@@ -64,7 +74,6 @@ interface Props {
     songs: Song[];
     songbooks: Songbook[];
 }
-
 const props = defineProps<Props>();
 
 const page = usePage();

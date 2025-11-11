@@ -31,6 +31,7 @@
                         ? 'whiteGhostCurrent'
                         : 'whiteGhost'
                 "
+                data-testid="songs-page-button"
                 asChild
             >
                 <Link :href="route('songs.index')">
@@ -46,6 +47,7 @@
                         ? 'whiteGhostCurrent'
                         : 'whiteGhost'
                 "
+                data-testid="songbooks-page-button"
                 asChild
             >
                 <Link :href="route('songbooks.index')">

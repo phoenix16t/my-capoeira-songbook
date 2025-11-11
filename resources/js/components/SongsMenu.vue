@@ -1,12 +1,20 @@
 <template>
     <Label>
-        <Switch v-model="showFullSongs" />
+        <Switch
+            v-model="showFullSongs"
+            data-testid="show-full-song-toggle"
+            class="setting-toggle"
+        />
         <span v-if="!showFullSongs">Showing Titles Only</span>
         <span v-else>Showing Full Songs</span>
     </Label>
 
     <Label v-if="!!page.props.auth.user">
-        <Switch v-model="songlistShowSongbooks" />
+        <Switch
+            v-model="songlistShowSongbooks"
+            data-testid="show-songbook-icons-toggle"
+            class="setting-toggle"
+        />
         <span v-if="!songlistShowSongbooks">Not Showing Songbook Icons</span>
         <span v-else>Showing Songbook Icons</span>
     </Label>
@@ -20,9 +28,12 @@
             :max="4"
         >
             <NumberFieldContent class="w-20">
-                <NumberFieldDecrement />
-                <NumberFieldInput class="shadow-none" />
-                <NumberFieldIncrement />
+                <NumberFieldDecrement data-testid="column-counter-down" />
+                <NumberFieldInput
+                    class="shadow-none"
+                    data-testid="column-counter-value"
+                />
+                <NumberFieldIncrement data-testid="column-counter-up" />
             </NumberFieldContent>
         </NumberField>
         <span>
@@ -38,6 +49,7 @@
             id="search"
             class="rounded border"
             type="text"
+            data-testid="search"
         />
     </div>
 </template>
@@ -62,7 +74,6 @@ const props = defineProps<{
     songlistShowSongbooks: boolean;
     numberOfColumns: number;
 }>();
-
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
 const emit = defineEmits([
     "update:showFullSongs",
