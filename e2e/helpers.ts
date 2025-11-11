@@ -97,3 +97,30 @@ export function findBoaViagemWrapper(page) {
         }),
     });
 }
+
+export async function openAddToSongbookDialog(page) {
+    const wrapper = findBoaViagemWrapper(page);
+    const openDialogButton = wrapper.getByTestId("song-title-open-dialog-link");
+    await openDialogButton.click();
+
+    return page.getByTestId("add-song-to-songbook-link").filter({
+        has: page.locator("text=E2E Test Songbook - permanent"),
+    });
+}
+
+export async function openRemoveFromSongbookDialog(page) {
+    const wrapper = findBoaViagemWrapper(page);
+    const openDialogButton = wrapper.getByTestId("song-title-open-dialog-link");
+    await openDialogButton.click();
+
+    return page.getByTestId("remove-song-from-songbook-link").filter({
+        has: page.locator("text=E2E Test Songbook - permanent"),
+    });
+}
+
+export async function addSongToSongbook(page) {
+    const addToSongbookLink = await openAddToSongbookDialog(page);
+    await addToSongbookLink.click();
+    const testSongbook = await goToPermanentSongbook(page);
+    await clickSongbooksSongLink(page, testSongbook);
+}

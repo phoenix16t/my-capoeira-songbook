@@ -1,6 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 import {
+    addSongToSongbook,
     clickSongbooksSongLink,
     findBoaViagemWrapper,
     goToPermanentSongbook,
@@ -28,21 +29,8 @@ test("songbook button should not be highlighted", async ({ page }) => {
 });
 
 test("should be able to add songs to songbook", async ({ page }) => {
+    await addSongToSongbook(page);
     const wrapper = findBoaViagemWrapper(page);
-    const openDialogButton = wrapper.getByTestId("song-title-open-dialog-link");
-    await openDialogButton.click();
-    await expect(page.getByTestId("song-title-add-header")).toBeVisible();
-
-    const addToSongbookLink = page
-        .getByTestId("add-song-to-songbook-link")
-        .filter({
-            has: page.locator("text=E2E Test Songbook - permanent"),
-        });
-    await expect(addToSongbookLink).toBeVisible();
-    await addToSongbookLink.click();
-
-    const testSongbook = await goToPermanentSongbook(page);
-    await clickSongbooksSongLink(page, testSongbook);
     await expect(wrapper).toBeVisible();
 });
 

@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:8000/songs/5");
 });
 
-test("should show songbooks", async ({ page }) => {
+test("should show songbook links", async ({ page }) => {
     await withMenuOpen(page, async () => {
         await resetSettings(page);
         await page.getByTestId("show-songbooks-toggle").click();
