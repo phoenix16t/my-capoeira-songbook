@@ -1,5 +1,5 @@
 <template>
-    <Card>
+    <Card data-testid="songbook-links">
         <h3 class="mb-4 flex items-center gap-2 text-lg font-semibold">
             <CheckIcon class="size-5 text-green-500" />
             Belongs to Songbooks
@@ -23,7 +23,10 @@
                         {{ songbook.title }}
 
                         <div
-                            v-if="songbook.id === Number(route().params.id)"
+                            v-if="
+                                route().current() === 'songbooks.show' &&
+                                songbook.id === Number(route().params.id)
+                            "
                             class="text-xs"
                         >
                             Current songbook

@@ -20,6 +20,14 @@ test("should redirect from /songs to /", async ({ page }) => {
     ).not.toBeVisible();
 });
 
+test("icons setting should not be visible", async ({ page }) => {
+    await withMenuOpen(page, async () => {
+        await expect(
+            page.getByTestId("show-songbook-icons-toggle"),
+        ).not.toBeVisible();
+    });
+});
+
 test("add to songbooks links should not be visible", async ({ page }) => {
     await expect(
         page.getByTestId("song-title-open-dialog-link"),

@@ -54,3 +54,11 @@ test("should show details", async ({ page }) => {
     await expect(page.getByTestId("details-container")).toBeVisible();
     await expect(page.getByTestId("links-container")).toBeVisible();
 });
+
+test("should not show songbooks", async ({ page }) => {
+    await withMenuOpen(page, async () => {
+        await expect(
+            page.getByTestId("show-songbooks-toggle"),
+        ).not.toBeVisible();
+    });
+});

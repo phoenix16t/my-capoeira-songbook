@@ -10,29 +10,20 @@ import {
 
 test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:8000/fake-login");
+    await page.goto("http://localhost:8000/songs/5");
+});
 
+test("should show songbooks", async ({ page }) => {
     await withMenuOpen(page, async () => {
         await resetSettings(page);
+        await page.getByTestId("show-songbooks-toggle").click();
     });
-});
 
-test("add to songbooks links should be visible", async ({ page }) => {
-    const count = await page.getByTestId("song-title-open-dialog-link").count();
-    expect(count).toBeGreaterThan(0);
-});
-
-test("songbook button should not be highlighted", async ({ page }) => {
-    await expect(page.getByTestId("songbooks-page-button")).not.toContainClass(
-        "bg-accent",
-    );
+    await expect(page.getByTestId("songbook-links")).toBeVisible();
 });
 
 test("should be able to add songs to songbook", async ({ page }) => {
     const wrapper = findBoaViagemWrapper(page);
-    const openDialogButton = wrapper.getByTestId("song-title-open-dialog-link");
-    await openDialogButton.click();
-    await expect(page.getByTestId("song-title-add-header")).toBeVisible();
-
     const addToSongbookLink = page
         .getByTestId("add-song-to-songbook-link")
         .filter({
@@ -46,25 +37,8 @@ test("should be able to add songs to songbook", async ({ page }) => {
     await expect(wrapper).toBeVisible();
 });
 
-test("should show a songbook icon", async ({ page }) => {
-    await withMenuOpen(page, async () => {
-        await page.getByTestId("show-songbook-icons-toggle").click();
-    });
-
-    const wrapper = findBoaViagemWrapper(page);
-    const icon = wrapper.getByTestId("E2E Test Songbook - permanent");
-
-    await expect(icon).toHaveCount(1);
-    await expect(icon).toContainClass("lucide-gem");
-    await expect(icon).toHaveCSS("stroke", "rgb(255, 0, 0)");
-});
-
 test("should be able to remove songs from songbook", async ({ page }) => {
     const wrapper = findBoaViagemWrapper(page);
-    const openDialogButton = wrapper.getByTestId("song-title-open-dialog-link");
-    await openDialogButton.click();
-    await expect(page.getByTestId("song-title-add-header")).toBeVisible();
-
     const removeFromSongbookLink = page
         .getByTestId("remove-song-from-songbook-link")
         .filter({

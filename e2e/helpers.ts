@@ -43,7 +43,9 @@ export async function resetSettings(page) {
 export async function createTestSongbook(page) {
     await page.getByTestId("create-songbook-button").click();
 
-    await page.getByTestId("create-songbook-name").fill("E2E Test Songbook");
+    await page
+        .getByTestId("create-songbook-name")
+        .fill("E2E Test Songbook - temp");
     await page.getByTestId("create-songbook-select").click();
     const carrotIcon = page.locator('[data-testid="create-songbook-icon"]', {
         hasText: "Carrot",
@@ -55,7 +57,7 @@ export async function createTestSongbook(page) {
 }
 
 export async function deleteTestSongbook(page) {
-    const testSongbook = await goToTestSongbook(page);
+    const testSongbook = await goToTempSongbook(page);
     clickSongbooksSongLink(page, testSongbook);
 
     await page.getByTestId("toggle-menu").click();
@@ -63,10 +65,17 @@ export async function deleteTestSongbook(page) {
     await page.getByTestId("delete-songbook-confirm").click();
 }
 
-export async function goToTestSongbook(page) {
+export async function goToTempSongbook(page) {
     await page.goto("http://localhost:8000/songbooks");
     return page.getByTestId("songbook-link").filter({
-        has: page.locator("text=E2E Test Songbook"),
+        has: page.locator("text=E2E Test Songbook - temp"),
+    });
+}
+
+export async function goToPermanentSongbook(page) {
+    await page.goto("http://localhost:8000/songbooks");
+    return page.getByTestId("songbook-link").filter({
+        has: page.locator("text=E2E Test Songbook - permanent"),
     });
 }
 
