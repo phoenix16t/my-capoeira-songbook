@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateUserPermissionRequest;
-use App\Models\UserPermission;
+use App\Http\Requests\UpdateUserSettingRequest;
+use App\Models\UserSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserPermissionController extends Controller
+class UserSettingController extends Controller
 {
-    public function update(UpdateUserPermissionRequest $request)
+    public function update(UpdateUserSettingRequest $request)
     {
         $fields = $request->validated();
 
-        UserPermission::updateOrCreate(
+        UserSetting::updateOrCreate(
             ['user_id' => Auth::id()],
             $fields
         );

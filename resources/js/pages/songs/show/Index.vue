@@ -105,15 +105,15 @@ import Translation from "@/components/Translation.vue";
 import { Label } from "@/components/ui/label";
 import Switch from "@/components/ui/switch/Switch.vue";
 
-import { usePermissions } from "@/hooks/usePermissions";
+import { useSettings } from "@/hooks/useSettings";
 
-import type { Permissions, Song, Songbook } from "@/types";
+import type { Settings, Song, Songbook } from "@/types";
 
 import Details from "./partials/Details.vue";
 import Links from "./partials/Links.vue";
 
 interface Props {
-    permissions: Permissions;
+    settings: Settings;
     song: Song;
     songbooks: Songbook[];
 }
@@ -121,7 +121,7 @@ defineProps<Props>();
 
 const page = usePage();
 const { showDetails, songsShowSongbooks, showTranslation, translationType } =
-    usePermissions();
+    useSettings();
 
 const shouldShowDataColumn = computed(
     () =>

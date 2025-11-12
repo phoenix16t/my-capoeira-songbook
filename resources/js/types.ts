@@ -47,7 +47,7 @@ export interface Songbook {
     color?: string;
 }
 
-export interface Permissions {
+export interface Settings {
     id: number;
     song_list_columns_number: number;
     song_list_show_full_songs: boolean;

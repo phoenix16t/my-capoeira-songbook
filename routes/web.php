@@ -5,7 +5,7 @@ use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\SongController;
 use App\Http\Controllers\SongbookController;
 use App\Http\Controllers\SongbookSongController;
-use App\Http\Controllers\UserPermissionController;
+use App\Http\Controllers\UserSettingController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -28,5 +28,5 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::post('/songbooks_songs', [SongbookSongController::class, 'store'])->name('songbooks_songs.store');
     Route::delete('/songbooks/{songbook}/songs/{song}', [SongbookSongController::class, 'destroy'])->name('songbooks_songs.destroy');
 
-    Route::post('/user-permissions', [UserPermissionController::class, 'update'])->name('permissions.update');
+    Route::post('/user-settings', [UserSettingController::class, 'update'])->name('settings.update');
 });

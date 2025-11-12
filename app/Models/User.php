@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Models\Songbook;
-use App\Models\UserPermission;
+use App\Models\UserSetting;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -34,8 +34,8 @@ class User extends Authenticatable
         return $this->hasMany(Songbook::class);
     }
 
-    public function permissions()
+    public function settings()
     {
-        return $this->hasOne(UserPermission::class);
+        return $this->hasOne(UserSetting::class);
     }
 }

@@ -14,7 +14,7 @@
             </SheetTrigger>
             <SheetContent>
                 <SheetHeader>
-                    <SheetTitle class="text-lg"> Control Panel </SheetTitle>
+                    <SheetTitle class="text-lg"> Settings </SheetTitle>
                 </SheetHeader>
                 <div className="mt-4 flex flex-col gap-4">
                     <slot name="menu" />
