@@ -1,44 +1,14 @@
-import { router, usePage } from "@inertiajs/vue3";
+import { router } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/vue3";
+import { defineStore } from "pinia";
 import { type Ref, computed, ref, watch } from "vue";
 import { route } from "ziggy-js";
 
 import { handleErrorToast, handleSuccessToast } from "@/lib/helpers.js";
 
-export function useSettings() {
+export const useSettingsStore = defineStore("settings", () => {
     const page = usePage();
-
     const isAuthenticated = computed(() => !!page.props.auth.user);
-
-    const watchSettingsChanges = (
-        refField: Ref<any>,
-        fieldName: string,
-        successMessageFn: (newVal: any) => string,
-    ) => {
-        watch(refField, (newVal, oldVal) => {
-            if (!fieldName) {
-                return;
-            }
-
-            const successText = successMessageFn(newVal);
-
-            if (isAuthenticated.value) {
-                router.post(
-                    route("settings.update"),
-                    { [fieldName]: newVal },
-                    {
-                        onSuccess: () => handleSuccessToast(successText),
-                        onError: () => {
-                            refField.value = oldVal;
-                            handleErrorToast("Error changing setting");
-                        },
-                    },
-                );
-            } else {
-                localStorage.setItem(fieldName, newVal);
-                handleSuccessToast(successText);
-            }
-        });
-    };
 
     const numberOfColumns = ref(
         isAuthenticated.value
@@ -82,6 +52,37 @@ export function useSettings() {
             : (localStorage.getItem("translation_type") ?? "inline"),
     );
 
+    const watchSettingsChanges = (
+        refField: Ref<any>,
+        fieldName: string,
+        successMessageFn: (newVal: any) => string,
+    ) => {
+        watch(refField, (newVal, oldVal) => {
+            if (!fieldName) {
+                return;
+            }
+
+            const successText = successMessageFn(newVal);
+
+            if (isAuthenticated.value) {
+                router.post(
+                    route("settings.update"),
+                    { [fieldName]: newVal },
+                    {
+                        onSuccess: () => handleSuccessToast(successText),
+                        onError: () => {
+                            refField.value = oldVal;
+                            handleErrorToast("Error changing setting");
+                        },
+                    },
+                );
+            } else {
+                localStorage.setItem(fieldName, newVal);
+                handleSuccessToast(successText);
+            }
+        });
+    };
+
     watchSettingsChanges(showDetails, "song_show_details", (val) =>
         val ? "Showing Details" : "Not Showing Details",
     );
@@ -122,9 +123,9 @@ export function useSettings() {
         numberOfColumns,
         showDetails,
         showFullSongs,
-        songlistShowSongbooks,
         songsShowSongbooks,
+        songlistShowSongbooks,
         showTranslation,
         translationType,
     };
-}
+});

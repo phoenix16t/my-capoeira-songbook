@@ -15,8 +15,8 @@
             data-testid="show-songbook-icons-toggle"
             class="setting-toggle"
         />
-        <span v-if="!songlistShowSongbooks">Not Showing Songbook Icons</span>
-        <span v-else>Showing Songbook Icons</span>
+        <span v-if="songlistShowSongbooks">Showing Songbook Icons</span>
+        <span v-else>Not Showing Songbook Icons</span>
     </Label>
 
     <Label for="columns">
@@ -56,7 +56,7 @@
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
-import { ref, watch } from "vue";
+import { storeToRefs } from "pinia";
 
 import Input from "@/components/ui/input/Input.vue";
 import { Label } from "@/components/ui/label";
@@ -69,27 +69,13 @@ import {
 } from "@/components/ui/number-field";
 import Switch from "@/components/ui/switch/Switch.vue";
 
-const props = defineProps<{
-    showFullSongs: boolean;
-    songlistShowSongbooks: boolean;
-    numberOfColumns: number;
-}>();
+import { useSettingsStore } from "@/stores/useSettingsStore";
+
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
-const emit = defineEmits([
-    "update:showFullSongs",
-    "update:songlistShowSongbooks",
-    "update:numberOfColumns",
-]);
 
 const page = usePage();
+const store = useSettingsStore();
 
-const showFullSongs = ref(props.showFullSongs);
-const songlistShowSongbooks = ref(props.songlistShowSongbooks);
-const numberOfColumns = ref(props.numberOfColumns);
-
-watch(showFullSongs, (val) => emit("update:showFullSongs", val));
-watch(songlistShowSongbooks, (val) =>
-    emit("update:songlistShowSongbooks", val),
-);
-watch(numberOfColumns, (val) => emit("update:numberOfColumns", val));
+const { numberOfColumns, showFullSongs, songlistShowSongbooks } =
+    storeToRefs(store);
 </script>

@@ -96,6 +96,7 @@
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
+import { storeToRefs } from "pinia";
 import { computed } from "vue";
 
 import Lyrics from "@/components/Lyrics.vue";
@@ -105,7 +106,7 @@ import Translation from "@/components/Translation.vue";
 import { Label } from "@/components/ui/label";
 import Switch from "@/components/ui/switch/Switch.vue";
 
-import { useSettings } from "@/hooks/useSettings";
+import { useSettingsStore } from "@/stores/useSettingsStore";
 
 import type { Settings, Song, Songbook } from "@/types";
 
@@ -120,8 +121,10 @@ interface Props {
 defineProps<Props>();
 
 const page = usePage();
-const { showDetails, songsShowSongbooks, showTranslation, translationType } =
-    useSettings();
+const store = useSettingsStore();
+
+const { showDetails, showTranslation, songsShowSongbooks, translationType } =
+    storeToRefs(store);
 
 const shouldShowDataColumn = computed(
     () =>

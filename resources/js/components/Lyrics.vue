@@ -36,7 +36,7 @@
             </p>
         </div>
 
-        <IconChain v-if="songlistShowSongbooks" :songbooks="song.songbooks" />
+        <IconChain :songbooks="song.songbooks" />
     </Card>
 </template>
 
@@ -54,7 +54,6 @@ import IconChain from "./IconChain.vue";
 
 interface Props {
     showInlineTranslation?: boolean;
-    songlistShowSongbooks?: boolean;
     song: Song;
     songbooks?: Songbook[];
 }

@@ -22,10 +22,7 @@
                     >
                         <Card :class="computedClass">
                             <div>{{ song.titles?.[0]?.title }}</div>
-                            <IconChain
-                                v-if="songlistShowSongbooks"
-                                :songbooks="song.songbooks"
-                            />
+                            <IconChain :songbooks="song.songbooks" />
                         </Card>
                     </Link>
 
@@ -45,7 +42,6 @@
                 <Lyrics
                     v-for="(song, index) in columnSongs(col)"
                     :key="index"
-                    :songlistShowSongbooks="songlistShowSongbooks"
                     :song="song"
                     :songbooks="songbooks"
                 />
@@ -56,6 +52,7 @@
 
 <script setup lang="ts">
 import { Link, usePage } from "@inertiajs/vue3";
+import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
@@ -63,24 +60,26 @@ import AddToSongbooksButton from "@/components/AddToSongbooksButton.vue";
 import Card from "@/components/Card.vue";
 import Lyrics from "@/components/Lyrics.vue";
 
+import { useSettingsStore } from "@/stores/useSettingsStore";
+
 import type { Song, Songbook } from "@/types";
 
 import IconChain from "./IconChain.vue";
 
 interface Props {
-    numberOfColumns: number;
-    showFullSongs: boolean;
-    songlistShowSongbooks: boolean;
     songs: Song[];
     songbooks: Songbook[];
 }
 const props = defineProps<Props>();
 
 const page = usePage();
+const store = useSettingsStore();
+
+const { numberOfColumns, showFullSongs } = storeToRefs(store);
 
 const columnSongs = (col: number) => {
     const result = [];
-    for (let i = col - 1; i < props.songs.length; i += props.numberOfColumns) {
+    for (let i = col - 1; i < props.songs.length; i += numberOfColumns.value) {
         const song = props.songs[i];
         if (song !== undefined) {
             result.push(song);
