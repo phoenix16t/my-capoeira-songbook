@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="songlistShowSongbooks && songbooks?.length"
+        v-if="songlistShowSongbookIcons && songbooks?.length"
         class="flex flex-wrap border-t pt-2"
     >
         <template v-for="songbook in songbooks?.sort((a, b) => a.id - b.id)">
@@ -30,5 +30,5 @@ interface Props {
 defineProps<Props>();
 
 const store = useSettingsStore();
-const { songlistShowSongbooks } = storeToRefs(store);
+const { songlistShowSongbookIcons } = storeToRefs(store);
 </script>

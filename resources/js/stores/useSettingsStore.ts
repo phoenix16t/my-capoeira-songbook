@@ -34,7 +34,7 @@ export const useSettingsStore = defineStore("settings", () => {
             : localStorage.getItem("song_show_songbooks") === "true",
     );
 
-    const songlistShowSongbooks = ref(
+    const songlistShowSongbookIcons = ref(
         isAuthenticated.value
             ? page.props.auth.user.settings?.songlist_show_songbooks
             : localStorage.getItem("songlist_show_songbooks") === "true",
@@ -96,7 +96,7 @@ export const useSettingsStore = defineStore("settings", () => {
     );
 
     watchSettingsChanges(
-        songlistShowSongbooks,
+        songlistShowSongbookIcons,
         "songlist_show_songbooks",
         (val) =>
             val ? "Showing Songbook Icons" : "Not Showing Songbook Icons",
@@ -124,7 +124,7 @@ export const useSettingsStore = defineStore("settings", () => {
         showDetails,
         showFullSongs,
         songsShowSongbooks,
-        songlistShowSongbooks,
+        songlistShowSongbookIcons,
         showTranslation,
         translationType,
     };

@@ -13,7 +13,7 @@
                     data-testid="songbook-link"
                 >
                     <Card
-                        class="w-full overflow-hidden px-4 py-2 transition-all hover:shadow-lg"
+                        class="flex w-full overflow-hidden px-4 py-2 transition-all hover:shadow-lg"
                     >
                         <div class="flex items-center justify-start gap-2">
                             <component

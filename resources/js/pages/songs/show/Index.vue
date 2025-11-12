@@ -5,65 +5,11 @@
 
             <template #menu>
                 <div>
-                    <Label>
-                        <Switch
-                            v-model="showTranslation"
-                            data-testid="show-translation-toggle"
-                            class="setting-toggle"
-                        />
-                        <span v-if="showTranslation">Showing Translation</span>
-                        <span v-else>Not Showing Translation</span>
-                    </Label>
-
-                    <div
-                        v-if="showTranslation"
-                        class="mt-2 ml-6 flex flex-col gap-2"
-                    >
-                        <Label>
-                            <input
-                                v-model="translationType"
-                                type="radio"
-                                value="inline"
-                                data-testid="show-inline-translation"
-                                class="cursor-pointer accent-blue-600"
-                            />
-                            <span>Inline</span>
-                        </Label>
-                        <Label>
-                            <input
-                                v-model="translationType"
-                                type="radio"
-                                value="side"
-                                data-testid="show-side-by-side-translation"
-                                class="cursor-pointer accent-blue-600"
-                            />
-                            <span>Side-by-side</span>
-                        </Label>
-                    </div>
+                    <SongToggleTranslation />
+                    <SongSwitchTranslationType />
                 </div>
-
-                <Label>
-                    <Switch
-                        v-model="showDetails"
-                        data-testid="show-details-toggle"
-                        class="setting-toggle"
-                    />
-                    <span v-if="showDetails">Showing Details</span>
-                    <span v-else>Not Showing Details</span>
-                </Label>
-
-                <Label
-                    v-if="!!page.props.auth.user"
-                    class="flex items-center gap-2"
-                >
-                    <Switch
-                        v-model="songsShowSongbooks"
-                        data-testid="show-songbooks-toggle"
-                        class="setting-toggle"
-                    />
-                    <span v-if="songsShowSongbooks">Showing Songbooks</span>
-                    <span v-else>Not Showing Songbooks</span>
-                </Label>
+                <SongToggleDetails />
+                <SongToggleSongbooks />
             </template>
         </SubHeader>
 
@@ -95,7 +41,6 @@
 </template>
 
 <script setup lang="ts">
-import { usePage } from "@inertiajs/vue3";
 import { storeToRefs } from "pinia";
 import { computed } from "vue";
 
@@ -103,8 +48,10 @@ import Lyrics from "@/components/Lyrics.vue";
 import SongbookList from "@/components/SongbookList.vue";
 import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
-import { Label } from "@/components/ui/label";
-import Switch from "@/components/ui/switch/Switch.vue";
+import SongSwitchTranslationType from "@/components/inputs/SongSwitchTranslationType.vue";
+import SongToggleDetails from "@/components/inputs/SongToggleDetails.vue";
+import SongToggleSongbooks from "@/components/inputs/SongToggleSongbooks.vue";
+import SongToggleTranslation from "@/components/inputs/SongToggleTranslation.vue";
 
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
@@ -120,7 +67,6 @@ interface Props {
 }
 defineProps<Props>();
 
-const page = usePage();
 const store = useSettingsStore();
 
 const { showDetails, showTranslation, songsShowSongbooks, translationType } =
