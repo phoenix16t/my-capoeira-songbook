@@ -1,5 +1,5 @@
 <template>
-    <Label for="columns">
+    <Label for="columns" class="hidden sm:flex">
         <NumberField
             v-model="numberOfColumns"
             id="columns"

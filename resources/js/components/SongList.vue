@@ -1,7 +1,12 @@
 <template>
     <div
         class="grid gap-4"
-        :style="`grid-template-columns: repeat(${numberOfColumns}, minmax(0, 1fr))`"
+        :class="{
+            'sm:grid-cols-1': numberOfColumns === 1,
+            'sm:grid-cols-2': numberOfColumns === 2,
+            'sm:grid-cols-3': numberOfColumns === 3,
+            'sm:grid-cols-4': numberOfColumns === 4,
+        }"
         data-testid="column-count"
     >
         <div
@@ -17,18 +22,22 @@
                 >
                     <Link
                         :href="route('songs.show', song.id)"
-                        class="w-full"
+                        class="flex-grow overflow-hidden"
                         data-testid="song-title-link"
                     >
                         <Card :class="computedClass">
-                            <div>{{ song.titles?.[0]?.title }}</div>
+                            <div
+                                class="line-clamp-3 w-full overflow-hidden text-ellipsis"
+                            >
+                                {{ song.titles?.[0]?.title }}
+                            </div>
                             <IconChain :songbooks="song.songbooks" />
                         </Card>
                     </Link>
 
                     <Card
                         v-if="page.props.auth.user"
-                        cls="flex h-full w-10 items-center justify-center rounded-l-none p-0 transition-all hover:shadow-lg"
+                        cls="flex h-full min-w-10 max-w-10 items-center justify-center rounded-l-none p-0 transition-all hover:shadow-lg"
                     >
                         <AddToSongbooksButton
                             cls="w-full h-full"

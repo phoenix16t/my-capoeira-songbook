@@ -1,7 +1,9 @@
 <template>
     <Card data-testid="lyrics-container">
-        <div class="mb-4 flex items-center justify-between">
-            <h3 class="text-lg font-semibold">
+        <div class="mb-4 flex items-start justify-between">
+            <h3
+                class="line-clamp-3 w-full overflow-hidden text-lg font-semibold text-ellipsis"
+            >
                 <Link
                     v-if="route().current() !== 'songs.show'"
                     :href="route('songs.show', song.id)"
