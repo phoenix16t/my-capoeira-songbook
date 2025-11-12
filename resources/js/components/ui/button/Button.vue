@@ -27,12 +27,11 @@ const props = withDefaults(defineProps<Props>(), {
         :as="as"
         :as-child="asChild"
         :disabled="disabled"
-        class="cursor-pointer"
         :class="
             cn(
                 buttonVariants({ variant, size }),
                 props.class,
-                disabled ? 'cursor-not-allowed opacity-50' : '',
+                disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer',
             )
         "
     >

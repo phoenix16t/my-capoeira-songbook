@@ -100,7 +100,7 @@
                 </Button>
                 <Button
                     @click="createSongbook"
-                    :disabled="!title"
+                    :disabled="!isSaveEnabled"
                     data-testid="create-songbook-save"
                 >
                     Save changes
@@ -112,7 +112,7 @@
 
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { route } from "ziggy-js";
 
 import { Button, type ButtonVariants } from "@/components/ui/button";
@@ -150,7 +150,13 @@ const selectedIcon = ref<IconKeys | undefined>(undefined);
 const color = ref("#000000");
 const isModalOpen = ref(false);
 
+const isSaveEnabled = computed(() => !!title.value && !!selectedIcon.value);
+
 const createSongbook = () => {
+    if (!isSaveEnabled.value) {
+        return;
+    }
+
     router.post(
         route("songbooks.store"),
         {
