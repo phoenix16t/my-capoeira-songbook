@@ -3,6 +3,7 @@
         class="flex h-15 items-center justify-between border-b bg-white px-8 py-4 shadow-sm"
     >
         <h2 class="flex min-w-0 items-center text-xl font-semibold">
+            <slot name="icon" />
             <span class="line-clamp-2 overflow-hidden text-ellipsis">
                 <slot name="title" />
             </span>
