@@ -4,7 +4,7 @@
         data-testid="song-title-open-dialog-link"
         @click.stop.prevent="isModalOpen = true"
     >
-        <PlusIcon class="size-5" />
+        <FileMusicIcon class="size-5" />
     </button>
 
     <Dialog v-model:open="isModalOpen">
@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { PlusIcon } from "lucide-vue-next";
+import { FileMusicIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
 import SongbookList from "@/components/SongbookList.vue";

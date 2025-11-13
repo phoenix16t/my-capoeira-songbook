@@ -2,13 +2,17 @@
     <div class="overflow-auto">
         <SubHeader>
             <template #title>
-                <component
-                    v-if="songbook.icon"
-                    :is="Icons[songbook.icon]"
-                    class="size-5 w-8"
-                    :color="songbook.color"
-                />
-                {{ songbook.title }}
+                <div class="flex items-center">
+                    <component
+                        v-if="songbook.icon"
+                        :is="Icons[songbook.icon]"
+                        class="size-5 min-w-8"
+                        :color="songbook.color"
+                    />
+                    <span class="line-clamp-2 overflow-hidden text-ellipsis">
+                        {{ songbook.title }}
+                    </span>
+                </div>
             </template>
 
             <template #menu>

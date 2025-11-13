@@ -12,7 +12,7 @@
         <div
             v-for="col in numberOfColumns"
             :key="col"
-            class="flex flex-col gap-4"
+            class="flex min-w-0 flex-col gap-4"
         >
             <template v-if="!showFullSongs">
                 <div

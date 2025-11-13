@@ -2,7 +2,7 @@
     <Card data-testid="lyrics-container">
         <div class="mb-4 flex items-start justify-between">
             <h3
-                class="line-clamp-3 w-full overflow-hidden text-lg font-semibold text-ellipsis"
+                class="line-clamp-3 w-full min-w-0 overflow-hidden text-lg font-semibold text-ellipsis"
             >
                 <Link
                     v-if="route().current() !== 'songs.show'"

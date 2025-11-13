@@ -1,13 +1,17 @@
 import { router } from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
 import { defineStore } from "pinia";
-import { type Ref, computed, ref, watch } from "vue";
+import { type Ref, computed, ref, watch, watchEffect } from "vue";
 import { route } from "ziggy-js";
+
+import { useBreakpoint } from "@/hooks/useBreakpoint.js";
 
 import { handleErrorToast, handleSuccessToast } from "@/lib/helpers.js";
 
 export const useSettingsStore = defineStore("settings", () => {
     const page = usePage();
+    const { breakpoint, isSmallerThan } = useBreakpoint();
+
     const isAuthenticated = computed(() => !!page.props.auth.user);
 
     const numberOfColumns = ref(
@@ -117,6 +121,12 @@ export const useSettingsStore = defineStore("settings", () => {
     watchSettingsChanges(translationType, "translation_type", (val) => {
         const type = val === "inline" ? "Inline" : "Side-By-Side";
         return `Showing ${type} Translations`;
+    });
+
+    watchEffect(() => {
+        if (isSmallerThan("sm")) {
+            numberOfColumns.value = 1;
+        }
     });
 
     return {

@@ -16,14 +16,6 @@
         </Link>
 
         <span class="flex items-center gap-4">
-            <CreateSongbookDialog
-                v-if="isAuthenticated"
-                size="icon"
-                variant="whiteGhost"
-            >
-                <PlusIcon class="size-5" />
-            </CreateSongbookDialog>
-
             <Button
                 size="icon"
                 :variant="
@@ -80,11 +72,9 @@ import {
     KeyRoundIcon,
     MusicIcon,
 } from "lucide-vue-next";
-import { PlusIcon } from "lucide-vue-next";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
-import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
 import { Button } from "@/components/ui/button";
 
 import BerimbauIcon from "@/icons/berimbau.svg";
