@@ -39,7 +39,7 @@
                         v-if="page.props.auth.user"
                         cls="flex h-full min-w-10 max-w-10 items-center justify-center rounded-l-none p-0 transition-all hover:shadow-lg"
                     >
-                        <AddToSongbooksButton
+                        <AddToSongbooksDialog
                             cls="w-full h-full"
                             :song="song"
                             :songbooks="songbooks"
@@ -65,7 +65,7 @@ import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
-import AddToSongbooksButton from "@/components/AddToSongbooksButton.vue";
+import AddToSongbooksDialog from "@/components/AddToSongbooksDialog.vue";
 import Card from "@/components/Card.vue";
 import Lyrics from "@/components/Lyrics.vue";
 

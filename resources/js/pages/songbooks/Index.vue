@@ -4,7 +4,9 @@
             <template #title> My Songbooks </template>
         </SubHeader>
 
-        <div class="grid grid-cols-3 gap-4 px-8 py-4">
+        <div
+            class="grid grid-cols-1 gap-4 px-8 py-4 sm:grid-cols-2 md:grid-cols-3"
+        >
             <template v-if="songbooks.length">
                 <Link
                     v-for="songbook in songbooks"
@@ -30,9 +32,9 @@
             </template>
             <div v-else>
                 You have no songbooks.
-                <CreateSongbookButton variant="outline">
+                <CreateSongbookDialog variant="outline">
                     Create one!
-                </CreateSongbookButton>
+                </CreateSongbookDialog>
             </div>
         </div>
     </div>
@@ -42,9 +44,8 @@
 import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
-import CreateSongbookButton from "@/layouts/partials/CreateSongbookButton.vue";
-
 import Card from "@/components/Card.vue";
+import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import type { Songbook } from "@/types";

@@ -16,13 +16,13 @@
         </Link>
 
         <span class="flex items-center gap-4">
-            <CreateSongbookButton
+            <CreateSongbookDialog
                 v-if="isAuthenticated"
                 size="icon"
                 variant="whiteGhost"
             >
                 <PlusIcon class="size-5" />
-            </CreateSongbookButton>
+            </CreateSongbookDialog>
 
             <Button
                 size="icon"
@@ -84,11 +84,10 @@ import { PlusIcon } from "lucide-vue-next";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
+import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
 import { Button } from "@/components/ui/button";
 
 import BerimbauIcon from "@/icons/berimbau.svg";
-
-import CreateSongbookButton from "./CreateSongbookButton.vue";
 
 const page = usePage();
 

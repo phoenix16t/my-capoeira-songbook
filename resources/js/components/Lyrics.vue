@@ -15,7 +15,7 @@
                 <template v-else> {{ song.titles[0]?.title }}</template>
             </h3>
 
-            <AddToSongbooksButton
+            <AddToSongbooksDialog
                 v-if="page.props.auth.user && songbooks"
                 :song="song"
                 :songbooks="songbooks"
@@ -47,7 +47,7 @@ import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
-import AddToSongbooksButton from "@/components/AddToSongbooksButton.vue";
+import AddToSongbooksDialog from "@/components/AddToSongbooksDialog.vue";
 import Card from "@/components/Card.vue";
 
 import type { Song, Songbook } from "@/types";

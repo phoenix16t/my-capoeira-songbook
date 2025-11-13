@@ -23,6 +23,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/songbooks', [SongbookController::class, 'index'])->name('songbooks.index');
     Route::post('/songbooks', [SongbookController::class, 'store'])->name('songbooks.store');
     Route::get('/songbooks/{id}', [SongbookController::class, 'show'])->name('songbooks.show');
+    Route::post('/songbooks/{id}', [SongbookController::class, 'update'])->name('songbooks.update');
     Route::delete('/songbooks/{id}', [SongbookController::class, 'destroy'])->name('songbooks.destroy');
 
     Route::post('/songbooks_songs', [SongbookSongController::class, 'store'])->name('songbooks_songs.store');

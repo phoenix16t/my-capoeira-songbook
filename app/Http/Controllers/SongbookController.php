@@ -47,6 +47,23 @@ class SongbookController extends Controller
         return redirect()->back()->with('success');
     }
 
+    public function update(Request $request, Songbook $songbook)
+    {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'icon' => ['nullable', 'string', 'max:255'],
+            'color' => ['nullable', 'string', 'max:255'],
+        ]);
+
+        $songbook->update([
+            'title' => $request->input('title'),
+            'icon' => $request->input('icon'),
+            'color' => $request->input('color'),
+        ]);
+
+        return redirect()->back()->with('success');
+    }
+
     public function destroy($id)
     {
         $songbook = Songbook::findOrFail($id);
