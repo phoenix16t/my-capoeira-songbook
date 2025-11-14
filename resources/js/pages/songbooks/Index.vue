@@ -20,13 +20,7 @@
                         <div
                             class="flex min-w-0 items-center justify-start gap-2"
                         >
-                            <component
-                                v-if="songbook.icon"
-                                :is="Icons[songbook.icon]"
-                                class="size-5 min-w-8"
-                                :color="songbook.color"
-                                data-testid="songbook-icon"
-                            />
+                            <SongbookIcon :songbook="songbook" />
                             <EllipsisText>
                                 {{ songbook.title }}
                             </EllipsisText>
@@ -51,11 +45,10 @@ import { route } from "ziggy-js";
 import Card from "@/components/Card.vue";
 import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
 import EllipsisText from "@/components/EllipsisText.vue";
+import SongbookIcon from "@/components/SongbookIcon.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import type { Songbook } from "@/types";
-
-import { Icons } from "@/lib/icons";
 
 interface Props {
     songbooks: Songbook[];

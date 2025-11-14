@@ -2,12 +2,7 @@
     <div class="overflow-auto">
         <SubHeader>
             <template #icon>
-                <component
-                    v-if="songbook.icon"
-                    :is="Icons[songbook.icon]"
-                    class="size-5 min-w-8"
-                    :color="songbook.color"
-                />
+                <SongbookIcon :songbook="songbook" />
             </template>
 
             <template #title>
@@ -40,14 +35,13 @@ import { ref, watchEffect } from "vue";
 import Card from "@/components/Card.vue";
 import DeleteSongbook from "@/components/DeleteSongbook.vue";
 import SongList from "@/components/SongList.vue";
+import SongbookIcon from "@/components/SongbookIcon.vue";
 import SongsMenu from "@/components/SongsMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import { useSongFilter } from "@/hooks/useSongFilter";
 
 import type { Song, Songbook } from "@/types";
-
-import { Icons } from "@/lib/icons";
 
 interface Props {
     songbook: Songbook;

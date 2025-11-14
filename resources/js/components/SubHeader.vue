@@ -10,13 +10,13 @@
         </h2>
 
         <div class="flex gap-1">
-            <CreateSongbookDialog
+            <!-- <CreateSongbookDialog
                 v-if="isAuthenticated"
                 size="icon"
                 variant="ghost"
             >
                 <SearchIcon class="size-5" />
-            </CreateSongbookDialog>
+            </CreateSongbookDialog> -->
 
             <CreateSongbookDialog
                 v-if="isAuthenticated"
@@ -26,13 +26,13 @@
                 <PlusIcon class="size-5" />
             </CreateSongbookDialog>
 
-            <CreateSongbookDialog
+            <!-- <CreateSongbookDialog
                 v-if="isAuthenticated && route().current() === 'songbooks.show'"
                 size="icon"
                 variant="ghost"
             >
                 <PencilIcon class="size-5" />
-            </CreateSongbookDialog>
+            </CreateSongbookDialog> -->
 
             <Sheet v-if="slots.menu">
                 <SheetTrigger asChild>

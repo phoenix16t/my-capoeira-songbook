@@ -11,16 +11,12 @@
                 data-testid="remove-song-from-songbook-link"
                 @click="removeFromSongbook(songbook)"
             >
-                <div class="flex items-center">
-                    <component
-                        v-if="songbook.icon"
-                        :is="Icons[songbook.icon]"
-                        class="size-5 w-8"
-                        :color="songbook.color"
-                    />
-
-                    <div class="flex flex-col">
-                        {{ songbook.title }}
+                <div class="flex w-full items-center">
+                    <SongbookIcon :songbook="songbook" />
+                    <div class="flex min-w-0 flex-col">
+                        <EllipsisText>
+                            {{ songbook.title }}
+                        </EllipsisText>
 
                         <div
                             v-if="
@@ -48,17 +44,14 @@
                 v-for="songbook in songbooksWithoutSong.sort(
                     (a: Songbook, b: Songbook) => a.id - b.id,
                 )"
-                class="flex cursor-pointer rounded-lg border px-4 py-2 transition-all hover:shadow-lg"
+                class="flex cursor-pointer items-center rounded-lg border px-4 py-2 transition-all hover:shadow-lg"
                 data-testid="add-song-to-songbook-link"
                 @click="addToSongbook(songbook)"
             >
-                <component
-                    v-if="songbook.icon"
-                    :is="Icons[songbook.icon]"
-                    class="size-5 w-8"
-                    :color="songbook.color"
-                />
-                {{ songbook.title }}
+                <SongbookIcon :songbook="songbook" />
+                <EllipsisText>
+                    {{ songbook.title }}
+                </EllipsisText>
             </li>
         </ul>
         <div v-else>No songbooks</div>
@@ -72,11 +65,12 @@ import { computed } from "vue";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
+import EllipsisText from "@/components/EllipsisText.vue";
+import SongbookIcon from "@/components/SongbookIcon.vue";
 
 import type { Song, Songbook } from "@/types";
 
 import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
-import { Icons } from "@/lib/icons";
 
 interface Props {
     song: Song;

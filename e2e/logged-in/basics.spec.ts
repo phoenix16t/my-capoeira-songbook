@@ -21,7 +21,7 @@ test("should be able to create and delete a songbook", async ({ page }) => {
     });
 
     await expect(songbookLink).toBeVisible();
-    const icon = songbookLink.locator('[data-testid="songbook-icon"]');
+    const icon = songbookLink.locator(".songbook-icon");
     await expect(icon).toHaveClass(/lucide-carrot/i);
     await expect(icon).toHaveCSS("stroke", "rgb(255, 102, 0)");
 
