@@ -10,13 +10,7 @@
         </h2>
 
         <div class="flex gap-1">
-            <!-- <CreateSongbookDialog
-                v-if="isAuthenticated"
-                size="icon"
-                variant="ghost"
-            >
-                <SearchIcon class="size-5" />
-            </CreateSongbookDialog> -->
+            <slot name="search" />
 
             <CreateSongbookDialog
                 v-if="isAuthenticated"
@@ -59,12 +53,7 @@
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
-import {
-    PencilIcon,
-    PlusIcon,
-    SearchIcon,
-    SettingsIcon,
-} from "lucide-vue-next";
+import { PencilIcon, PlusIcon, SettingsIcon } from "lucide-vue-next";
 import { computed, useSlots } from "vue";
 import { route } from "ziggy-js";
 

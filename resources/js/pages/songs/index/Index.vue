@@ -3,8 +3,14 @@
         <SubHeader>
             <template #title> Song list </template>
 
+            <template #search>
+                <SearchDialog v-model:searchQuery="searchQuery" />
+            </template>
+
             <template #menu>
-                <SongsMenu v-model:searchQuery="searchQuery" />
+                <SonglistToggleFullLyrics />
+                <SonglistToggleIcons />
+                <SonglistChangeColumnCount />
             </template>
         </SubHeader>
 
@@ -18,8 +24,11 @@
 import { ref, watchEffect } from "vue";
 
 import SongList from "@/components/SongList.vue";
-import SongsMenu from "@/components/SongsMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
+import SearchDialog from "@/components/dialogs/SearchDialog.vue";
+import SonglistChangeColumnCount from "@/components/inputs/SonglistChangeColumnCount.vue";
+import SonglistToggleFullLyrics from "@/components/inputs/SonglistToggleFullLyrics.vue";
+import SonglistToggleIcons from "@/components/inputs/SonglistToggleIcons.vue";
 
 import { useSongFilter } from "@/hooks/useSongFilter";
 
