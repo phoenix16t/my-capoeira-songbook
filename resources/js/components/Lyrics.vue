@@ -1,18 +1,18 @@
 <template>
     <Card data-testid="lyrics-container">
         <div class="mb-4 flex items-start justify-between">
-            <h3
-                class="line-clamp-3 w-full min-w-0 overflow-hidden text-lg font-semibold text-ellipsis"
-            >
-                <Link
-                    v-if="route().current() !== 'songs.show'"
-                    :href="route('songs.show', song.id)"
-                    class="hover:underline"
-                    data-testid="song-full-link"
-                >
-                    {{ song.titles[0]?.title }}
-                </Link>
-                <template v-else> {{ song.titles[0]?.title }}</template>
+            <h3 class="w-full text-lg font-semibold">
+                <EllipsisText>
+                    <Link
+                        v-if="route().current() !== 'songs.show'"
+                        :href="route('songs.show', song.id)"
+                        class="hover:underline"
+                        data-testid="song-full-link"
+                    >
+                        {{ song.titles[0]?.title }}
+                    </Link>
+                    <template v-else> {{ song.titles[0]?.title }}</template>
+                </EllipsisText>
             </h3>
 
             <AddToSongbooksDialog
@@ -49,6 +49,7 @@ import { route } from "ziggy-js";
 
 import AddToSongbooksDialog from "@/components/AddToSongbooksDialog.vue";
 import Card from "@/components/Card.vue";
+import EllipsisText from "@/components/EllipsisText.vue";
 
 import type { Song, Songbook } from "@/types";
 

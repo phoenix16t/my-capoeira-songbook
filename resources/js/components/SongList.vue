@@ -26,11 +26,9 @@
                         data-testid="song-title-link"
                     >
                         <Card :class="computedClass">
-                            <div
-                                class="line-clamp-3 w-full overflow-hidden text-ellipsis"
-                            >
+                            <EllipsisText>
                                 {{ song.titles?.[0]?.title }}
-                            </div>
+                            </EllipsisText>
                             <IconChain :songbooks="song.songbooks" />
                         </Card>
                     </Link>
@@ -67,13 +65,13 @@ import { route } from "ziggy-js";
 
 import AddToSongbooksDialog from "@/components/AddToSongbooksDialog.vue";
 import Card from "@/components/Card.vue";
+import EllipsisText from "@/components/EllipsisText.vue";
+import IconChain from "@/components/IconChain.vue";
 import Lyrics from "@/components/Lyrics.vue";
 
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
 import type { Song, Songbook } from "@/types";
-
-import IconChain from "./IconChain.vue";
 
 interface Props {
     songs: Song[];

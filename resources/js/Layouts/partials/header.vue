@@ -15,7 +15,7 @@
             </span>
         </Link>
 
-        <span class="flex items-center gap-4">
+        <span class="flex items-center gap-5">
             <Button
                 size="icon"
                 :variant="
@@ -27,7 +27,7 @@
                 asChild
             >
                 <Link :href="route('songs.index')">
-                    <MusicIcon class="size-5" />
+                    <MusicIcon class="size-6" />
                 </Link>
             </Button>
 
@@ -43,7 +43,7 @@
                 asChild
             >
                 <Link :href="route('songbooks.index')">
-                    <BookOpenIcon class="size-5" />
+                    <BookOpenIcon class="size-6" />
                 </Link>
             </Button>
 
@@ -53,11 +53,11 @@
                 variant="whiteGhost"
                 @click="logout"
             >
-                <DoorOpenIcon class="size-5" />
+                <DoorOpenIcon class="size-6" />
             </Button>
             <Button v-else size="icon" variant="whiteGhost" asChild>
                 <a :href="route('auth.google.redirect')">
-                    <KeyRoundIcon class="size-5" />
+                    <KeyRoundIcon class="size-6" />
                 </a>
             </Button>
         </span>

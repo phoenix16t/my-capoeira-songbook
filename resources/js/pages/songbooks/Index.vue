@@ -17,15 +17,19 @@
                     <Card
                         class="flex w-full overflow-hidden px-4 py-2 transition-all hover:shadow-lg"
                     >
-                        <div class="flex items-center justify-start gap-2">
+                        <div
+                            class="flex min-w-0 items-center justify-start gap-2"
+                        >
                             <component
                                 v-if="songbook.icon"
                                 :is="Icons[songbook.icon]"
-                                class="size-5 w-8"
+                                class="size-5 min-w-8"
                                 :color="songbook.color"
                                 data-testid="songbook-icon"
                             />
-                            {{ songbook.title }}
+                            <EllipsisText>
+                                {{ songbook.title }}
+                            </EllipsisText>
                         </div>
                     </Card>
                 </Link>
@@ -46,6 +50,7 @@ import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
 import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
+import EllipsisText from "@/components/EllipsisText.vue";
 import SubHeader from "@/components/SubHeader.vue";
 
 import type { Songbook } from "@/types";
