@@ -57,8 +57,8 @@ import { PencilIcon, PlusIcon, SettingsIcon } from "lucide-vue-next";
 import { computed, useSlots } from "vue";
 import { route } from "ziggy-js";
 
-import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
 import EllipsisText from "@/components/EllipsisText.vue";
+import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue";
 import { Button } from "@/components/ui/button";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
 import SheetContent from "@/components/ui/sheet/SheetContent.vue";

@@ -47,9 +47,9 @@ import { Link, usePage } from "@inertiajs/vue3";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
-import AddToSongbooksDialog from "@/components/AddToSongbooksDialog.vue";
 import Card from "@/components/Card.vue";
 import EllipsisText from "@/components/EllipsisText.vue";
+import AddToSongbooksDialog from "@/components/dialogs/AddToSongbooksDialog.vue";
 
 import type { Song, Songbook } from "@/types";
 

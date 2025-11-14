@@ -9,8 +9,14 @@
                 {{ songbook.title }}
             </template>
 
+            <template #search>
+                <SearchDialog v-model:searchQuery="searchQuery" />
+            </template>
+
             <template #menu>
-                <SongsMenu v-model:searchQuery="searchQuery" />
+                <SonglistToggleFullLyrics />
+                <SonglistToggleIcons />
+                <SonglistChangeColumnCount />
 
                 <DeleteSongbook :songbook="songbook" />
                 <!-- TODO: add ability to change icon and color -->
@@ -36,8 +42,11 @@ import Card from "@/components/Card.vue";
 import DeleteSongbook from "@/components/DeleteSongbook.vue";
 import SongList from "@/components/SongList.vue";
 import SongbookIcon from "@/components/SongbookIcon.vue";
-import SongsMenu from "@/components/SongsMenu.vue";
 import SubHeader from "@/components/SubHeader.vue";
+import SearchDialog from "@/components/dialogs/SearchDialog.vue";
+import SonglistChangeColumnCount from "@/components/inputs/SonglistChangeColumnCount.vue";
+import SonglistToggleFullLyrics from "@/components/inputs/SonglistToggleFullLyrics.vue";
+import SonglistToggleIcons from "@/components/inputs/SonglistToggleIcons.vue";
 
 import { useSongFilter } from "@/hooks/useSongFilter";
 

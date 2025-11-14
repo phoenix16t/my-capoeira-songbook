@@ -43,10 +43,10 @@ import { Link } from "@inertiajs/vue3";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
-import CreateSongbookDialog from "@/components/CreateSongbookDialog.vue";
 import EllipsisText from "@/components/EllipsisText.vue";
 import SongbookIcon from "@/components/SongbookIcon.vue";
 import SubHeader from "@/components/SubHeader.vue";
+import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue";
 
 import type { Songbook } from "@/types";
 

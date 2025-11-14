@@ -63,11 +63,11 @@ import { storeToRefs } from "pinia";
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
-import AddToSongbooksDialog from "@/components/AddToSongbooksDialog.vue";
 import Card from "@/components/Card.vue";
 import EllipsisText from "@/components/EllipsisText.vue";
 import IconChain from "@/components/IconChain.vue";
 import Lyrics from "@/components/Lyrics.vue";
+import AddToSongbooksDialog from "@/components/dialogs/AddToSongbooksDialog.vue";
 
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
