@@ -1,181 +1,42 @@
 <template>
-    <Button
-        :size="size"
-        :variant="variant"
-        data-testid="create-songbook-button"
-        @click="isModalOpen = true"
-    >
+    <Button :size="size" :variant="variant" @click="isModalOpen = true">
         <slot />
     </Button>
 
-    <Dialog v-model:open="isModalOpen">
-        <DialogContent class="sm:max-w-[425px]">
-            <DialogHeader>
-                <DialogTitle> Create a new songbook </DialogTitle>
-            </DialogHeader>
-            <div class="grid gap-4 py-4" data-testid="create-songbook-dialog">
-                <div class="grid grid-cols-4 items-center gap-4">
-                    <Label for="name" class="text-right"> Name </Label>
-                    <Input
-                        v-model="title"
-                        id="name"
-                        class="col-span-3"
-                        data-testid="create-songbook-name"
-                    />
-                </div>
-
-                <div class="grid grid-cols-4 items-center gap-4">
-                    <Label for="icon" class="text-right"> Icon </Label>
-                    <div class="col-span-3">
-                        <Select v-model="selectedIcon" id="icon">
-                            <SelectTrigger data-testid="create-songbook-select">
-                                <SelectValue placeholder="Select an icon">
-                                    <template #default>
-                                        <div
-                                            class="flex items-center justify-start gap-2"
-                                        >
-                                            <template v-if="selectedIcon">
-                                                <component
-                                                    :is="Icons[selectedIcon]"
-                                                    class="size-5 w-8"
-                                                    :color="color"
-                                                />
-                                                <span class="col-span-2">
-                                                    {{ selectedIcon }}
-                                                </span>
-                                            </template>
-                                            <span
-                                                v-else
-                                                class="col-span-2 text-gray-500"
-                                            >
-                                                No Icon
-                                            </span>
-                                        </div>
-                                    </template>
-                                </SelectValue>
-                            </SelectTrigger>
-                            <SelectContent class="w-full">
-                                <SelectGroup class="w-full">
-                                    <SelectItem :value="undefined">
-                                        <div
-                                            class="flex items-center justify-start gap-2"
-                                        >
-                                            No Icon
-                                        </div>
-                                    </SelectItem>
-                                    <SelectItem
-                                        v-for="(icon, name) in Icons"
-                                        :value="name"
-                                        data-testid="create-songbook-icon"
-                                    >
-                                        <div
-                                            class="flex items-center justify-start gap-2"
-                                        >
-                                            <component
-                                                :is="icon"
-                                                class="size-5 w-8"
-                                                :color="color"
-                                            />
-                                            {{ name }}
-                                        </div>
-                                    </SelectItem>
-                                </SelectGroup>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-4 items-center gap-4">
-                    <Label for="name" class="text-right"> Icon color </Label>
-                    <Input
-                        v-model="color"
-                        type="color"
-                        data-testid="create-songbook-color"
-                    />
-                </div>
-            </div>
-            <DialogFooter>
-                <Button variant="secondary" @click="isModalOpen = false">
-                    Cancel
-                </Button>
-                <Button
-                    @click="createSongbook"
-                    :disabled="!isSaveEnabled"
-                    data-testid="create-songbook-save"
-                >
-                    Save changes
-                </Button>
-            </DialogFooter>
-        </DialogContent>
-    </Dialog>
+    <SongbookModal
+        v-model:isModalOpen="isModalOpen"
+        titleText="Create new songbook"
+        submitLabel="Create"
+        @save="createSongbook"
+    />
 </template>
 
 <script setup lang="ts">
 import { router } from "@inertiajs/vue3";
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { route } from "ziggy-js";
 
+import SongbookModal from "@/components/dialogs/SongbookModal.vue";
 import { Button, type ButtonVariants } from "@/components/ui/button";
-import {
-    Dialog,
-    DialogContent,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-    Select,
-    SelectContent,
-    SelectGroup,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
 
-import type { IconKeys, Songbook } from "@/types";
+import type { Songbook } from "@/types";
 
 import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
-import { Icons } from "@/lib/icons";
 
 interface Props {
-    songbook?: Songbook;
     size?: ButtonVariants["size"];
     variant?: ButtonVariants["variant"];
 }
 defineProps<Props>();
 
-const title = ref("");
-const selectedIcon = ref<IconKeys | undefined>(undefined);
-const color = ref("#000000");
 const isModalOpen = ref(false);
 
-const isSaveEnabled = computed(() => !!title.value && !!selectedIcon.value);
-
-const createSongbook = () => {
-    if (!isSaveEnabled.value) {
-        return;
-    }
-
-    router.post(
-        route("songbooks.store"),
-        {
-            title: title.value,
-            icon: selectedIcon.value,
-            color: color.value,
-        },
-        {
-            onSuccess: () => {
-                handleSuccessToast(`Songbook ${title.value} created!`);
-            },
-            onError: () => {
-                handleErrorToast(`Error creating songbook`);
-            },
-            onFinish: () => {
-                isModalOpen.value = false;
-            },
-        },
-    );
+const createSongbook = (payload: Songbook) => {
+    router.post(route("songbooks.store"), payload, {
+        onSuccess: () =>
+            handleSuccessToast(`Songbook ${payload.title} created!`),
+        onError: () => handleErrorToast("Error creating songbook"),
+        onFinish: () => (isModalOpen.value = false),
+    });
 };
 </script>

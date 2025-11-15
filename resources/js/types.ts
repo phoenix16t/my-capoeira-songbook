@@ -41,8 +41,8 @@ export type IconKeys = keyof typeof Icons;
 
 export interface Songbook {
     id: number;
-    title: string;
     songs: Song[];
+    title: string;
     icon: IconKeys;
     color: string;
 }

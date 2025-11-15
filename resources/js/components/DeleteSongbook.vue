@@ -10,7 +10,9 @@
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle> Delete songbook? </DialogTitle>
+                <DialogTitle>
+                    Delete songbook {{ songbook.title }}?
+                </DialogTitle>
             </DialogHeader>
 
             <DialogFooter>
@@ -56,9 +58,7 @@ const isModalOpen = ref(false);
 const deleteSongbook = () => {
     router.delete(route("songbooks.destroy", props.songbook.id), {
         onSuccess: () => {
-            handleSuccessToast(
-                `${props.songbook.title} removed has been deleted`,
-            );
+            handleSuccessToast(`${props.songbook.title}  has been deleted`);
         },
         onError: () => {
             handleErrorToast(`Error deleting songbook`);
