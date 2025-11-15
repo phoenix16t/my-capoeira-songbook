@@ -3,12 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Songbook;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class SongbookController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Songbook::class, 'songbook');
+    }
+
     public function index()
     {
         $songbooks = auth()->user()?->songbooks()->get();
