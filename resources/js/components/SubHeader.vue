@@ -20,13 +20,14 @@
                 <PlusIcon class="size-5" />
             </CreateSongbookDialog>
 
-            <!-- <CreateSongbookDialog
-                v-if="isAuthenticated && route().current() === 'songbooks.show'"
+            <EditSongbookDialog
+                v-if="isAuthenticated && page.props.songbook"
+                :songbook="page.props.songbook"
                 size="icon"
                 variant="ghost"
             >
                 <PencilIcon class="size-5" />
-            </CreateSongbookDialog> -->
+            </EditSongbookDialog>
 
             <Sheet v-if="slots.menu">
                 <SheetTrigger asChild>
@@ -55,10 +56,10 @@
 import { usePage } from "@inertiajs/vue3";
 import { PencilIcon, PlusIcon, SettingsIcon } from "lucide-vue-next";
 import { computed, useSlots } from "vue";
-import { route } from "ziggy-js";
 
 import EllipsisText from "@/components/EllipsisText.vue";
 import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue";
+import EditSongbookDialog from "@/components/dialogs/EditSongbookDialog.vue";
 import { Button } from "@/components/ui/button";
 import Sheet from "@/components/ui/sheet/Sheet.vue";
 import SheetContent from "@/components/ui/sheet/SheetContent.vue";

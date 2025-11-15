@@ -20,9 +20,9 @@ class SongController extends Controller
         ]);
     }
 
-    public function show(string $id)
+    public function show(Song $song)
     {
-        $song = Song::with('titles', 'group', 'type', 'links', 'songbooks')->findOrFail($id);
+        $song->load('titles', 'group', 'type', 'links', 'songbooks');
         $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songs/show/Index', [

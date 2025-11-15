@@ -18,9 +18,9 @@ class SongbookController extends Controller
         ]);
     }
 
-    public function show(string $id)
+    public function show(Songbook $songbook)
     {
-        $songbook = Songbook::with('songs.titles', 'songs.songbooks', 'songs.type')->findOrFail($id);
+        $songbook->load('songs.titles', 'songs.songbooks', 'songs.type');
         $songbooks = auth()->user()?->songbooks()->get();
 
         return Inertia::render('songbooks/Show', [
@@ -64,9 +64,8 @@ class SongbookController extends Controller
         return redirect()->back()->with('success');
     }
 
-    public function destroy($id)
+    public function destroy(Songbook $songbook)
     {
-        $songbook = Songbook::findOrFail($id);
         $songbook->delete();
 
         return redirect()

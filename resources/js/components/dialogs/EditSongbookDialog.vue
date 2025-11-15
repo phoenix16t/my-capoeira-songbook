@@ -11,7 +11,7 @@
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
             <DialogHeader>
-                <DialogTitle> Create a new songbook </DialogTitle>
+                <DialogTitle> Edit songbook </DialogTitle>
             </DialogHeader>
             <div class="grid gap-4 py-4" data-testid="create-songbook-dialog">
                 <div class="grid grid-cols-4 items-center gap-4">
@@ -140,15 +140,15 @@ import { handleErrorToast, handleSuccessToast } from "@/lib/helpers";
 import { Icons } from "@/lib/icons";
 
 interface Props {
-    songbook?: Songbook;
+    songbook: Songbook;
     size?: ButtonVariants["size"];
     variant?: ButtonVariants["variant"];
 }
-defineProps<Props>();
+const props = defineProps<Props>();
 
-const title = ref("");
-const selectedIcon = ref<IconKeys | undefined>(undefined);
-const color = ref("#000000");
+const title = ref(props.songbook.title);
+const selectedIcon = ref<IconKeys>(props.songbook.icon);
+const color = ref(props.songbook.color);
 const isModalOpen = ref(false);
 
 const isSaveEnabled = computed(() => !!title.value && !!selectedIcon.value);
@@ -158,8 +158,8 @@ const createSongbook = () => {
         return;
     }
 
-    router.post(
-        route("songbooks.store"),
+    router.put(
+        route("songbooks.update", props.songbook.id),
         {
             title: title.value,
             icon: selectedIcon.value,

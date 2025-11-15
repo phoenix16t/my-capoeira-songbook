@@ -19,7 +19,6 @@
                 <SonglistChangeColumnCount />
 
                 <DeleteSongbook :songbook="songbook" />
-                <!-- TODO: add ability to change icon and color -->
             </template>
         </SubHeader>
 

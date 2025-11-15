@@ -43,8 +43,8 @@ export interface Songbook {
     id: number;
     title: string;
     songs: Song[];
-    icon?: IconKeys;
-    color?: string;
+    icon: IconKeys;
+    color: string;
 }
 
 export interface Settings {
