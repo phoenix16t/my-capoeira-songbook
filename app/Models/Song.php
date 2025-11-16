@@ -31,7 +31,8 @@ class Song extends Model
     public function songbooks()
     {
         return $this->belongsToMany(Songbook::class, 'songbook_songs')
-            ->where('user_id', auth()->id());
+            ->where('user_id', auth()->id())
+            ->withTimestamps();
     }
 
     public function group()

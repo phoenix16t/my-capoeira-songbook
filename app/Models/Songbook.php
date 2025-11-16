@@ -27,6 +27,7 @@ class Songbook extends Model
 
     public function songs()
     {
-        return $this->belongsToMany(Song::class, 'songbook_songs');
+        return $this->belongsToMany(Song::class, 'songbook_songs')
+            ->withTimestamps();
     }
 }
