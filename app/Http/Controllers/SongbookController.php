@@ -39,8 +39,8 @@ class SongbookController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'icon' => ['nullable', 'string', 'max:255'],
-            'color' => ['nullable', 'string', 'max:255'],
+            'icon' => ['required', 'string', 'max:255'],
+            'color' => ['required', 'string', 'max:255'],
         ]);
 
         Songbook::create([
@@ -57,8 +57,8 @@ class SongbookController extends Controller
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'icon' => ['nullable', 'string', 'max:255'],
-            'color' => ['nullable', 'string', 'max:255'],
+            'icon' => ['required', 'string', 'max:255'],
+            'color' => ['required', 'string', 'max:255'],
         ]);
 
         $songbook->update([

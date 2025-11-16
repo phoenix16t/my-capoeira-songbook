@@ -20,6 +20,11 @@ class Songbook extends Model
         'color'
     ];
 
+    protected $attributes = [
+        'icon' => 'Plus',
+        'color' => '#000000',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);
