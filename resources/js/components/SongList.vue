@@ -1,12 +1,14 @@
 <template>
     <div
         class="grid gap-4"
-        :class="{
-            'sm:grid-cols-1': numberOfColumns === 1,
-            'sm:grid-cols-2': numberOfColumns === 2,
-            'sm:grid-cols-3': numberOfColumns === 3,
-            'sm:grid-cols-4': numberOfColumns === 4,
-        }"
+        :class="
+            cn({
+                'sm:grid-cols-1': numberOfColumns === 1,
+                'sm:grid-cols-2': numberOfColumns === 2,
+                'sm:grid-cols-3': numberOfColumns === 3,
+                'sm:grid-cols-4': numberOfColumns === 4,
+            })
+        "
         data-testid="column-count"
     >
         <div
@@ -25,7 +27,17 @@
                         class="flex-grow overflow-hidden"
                         data-testid="song-title-link"
                     >
-                        <Card :class="computedClass">
+                        <Card
+                            :class="
+                                cn(
+                                    'flex flex-col justify-center px-4 py-2 transition-all hover:shadow-lg',
+                                    {
+                                        'rounded-r-none':
+                                            !!page.props.auth.user,
+                                    },
+                                )
+                            "
+                        >
                             <EllipsisText>
                                 {{ song.titles?.[0]?.title }}
                             </EllipsisText>
@@ -60,7 +72,6 @@
 <script setup lang="ts">
 import { Link, usePage } from "@inertiajs/vue3";
 import { storeToRefs } from "pinia";
-import { computed } from "vue";
 import { route } from "ziggy-js";
 
 import Card from "@/components/Card.vue";
@@ -72,6 +83,8 @@ import AddToSongbooksDialog from "@/components/dialogs/AddToSongbooksDialog.vue"
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
 import type { Song, Songbook } from "@/types";
+
+import { cn } from "@/lib/utils";
 
 interface Props {
     songs: Song[];
@@ -94,11 +107,4 @@ const columnSongs = (col: number) => {
     }
     return result;
 };
-
-const computedClass = computed(() =>
-    [
-        "flex flex-col justify-center px-4 py-2 transition-all hover:shadow-lg",
-        !!page.props.auth.user ? "rounded-r-none" : "",
-    ].join(" "),
-);
 </script>

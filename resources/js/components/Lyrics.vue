@@ -24,10 +24,12 @@
 
         <div
             v-for="(line, i) in lyrics"
-            :class="{
-                'py-2 font-bold': line.includes('(coro)'),
-                'mb-2': showInlineTranslation,
-            }"
+            :class="
+                cn({
+                    'py-2 font-bold': line.includes('(coro)'),
+                    'mb-2': showInlineTranslation,
+                })
+            "
         >
             <p class="text-gray-900">{{ line.replaceAll("(coro)", "") }}</p>
             <p
@@ -52,6 +54,8 @@ import EllipsisText from "@/components/EllipsisText.vue";
 import AddToSongbooksDialog from "@/components/dialogs/AddToSongbooksDialog.vue";
 
 import type { Song, Songbook } from "@/types";
+
+import { cn } from "@/lib/utils";
 
 import IconChain from "./IconChain.vue";
 

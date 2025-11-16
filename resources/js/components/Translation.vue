@@ -4,9 +4,11 @@
         <p
             v-for="line in translation"
             class="text-base text-gray-600 italic"
-            :class="{
-                'py-2 font-bold': line.includes('(chorus)'),
-            }"
+            :class="
+                cn({
+                    'py-2 font-bold': line.includes('(chorus)'),
+                })
+            "
         >
             {{ line?.replaceAll("(chorus)", "") }}
         </p>
@@ -19,6 +21,8 @@ import { computed } from "vue";
 import Card from "@/components/Card.vue";
 
 import type { Song } from "@/types";
+
+import { cn } from "@/lib/utils";
 
 interface Props {
     song: Song;

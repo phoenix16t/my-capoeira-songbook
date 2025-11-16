@@ -15,7 +15,11 @@
 
         <div
             class="grid grid-cols-1 gap-4 px-8 py-4"
-            :class="shouldShowDataColumn && 'sm:grid-cols-2'"
+            :class="
+                cn({
+                    'sm:grid-cols-2': shouldShowDataColumn,
+                })
+            "
         >
             <section class="pb-4">
                 <Lyrics :showInlineTranslation :song="song" />
@@ -56,6 +60,8 @@ import SongToggleTranslation from "@/components/inputs/SongToggleTranslation.vue
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
 import type { Settings, Song, Songbook } from "@/types";
+
+import { cn } from "@/lib/utils";
 
 import Details from "./partials/Details.vue";
 import Links from "./partials/Links.vue";

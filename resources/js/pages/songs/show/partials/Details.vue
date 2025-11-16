@@ -20,7 +20,14 @@
             </li>
             <li class="flex items-baseline gap-2">
                 <Label class="font-bold whitespace-nowrap"> Author: </Label>
-                <div class="leading-none" :class="!song.author && 'italic'">
+                <div
+                    class="leading-none"
+                    :class="
+                        cn({
+                            italic: !song.author,
+                        })
+                    "
+                >
                     {{ song.author || "Unknown" }}
                 </div>
             </li>
@@ -38,7 +45,11 @@
                 <Label class="font-bold whitespace-nowrap"> Group: </Label>
                 <div
                     class="leading-none"
-                    :class="!song.group?.name && 'italic'"
+                    :class="
+                        cn({
+                            italic: !song.group?.name,
+                        })
+                    "
                 >
                     {{ song.group?.name || "None" }}
                 </div>
@@ -52,6 +63,8 @@ import Card from "@/components/Card.vue";
 import { Label } from "@/components/ui/label";
 
 import type { Song, SongTitle } from "@/types";
+
+import { cn } from "@/lib/utils";
 
 interface Props {
     song: Song;
