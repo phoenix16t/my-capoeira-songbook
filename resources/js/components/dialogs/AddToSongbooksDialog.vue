@@ -1,11 +1,13 @@
 <template>
-    <button
-        :class="cn('flex cursor-pointer items-center justify-center', cls)"
-        data-testid="song-title-open-dialog-link"
-        @click.stop.prevent="isModalOpen = true"
-    >
-        <FileMusicIcon class="size-5" />
-    </button>
+    <Tooltip text="Add to songbook">
+        <button
+            :class="cn('flex cursor-pointer items-center justify-center', cls)"
+            data-testid="song-title-open-dialog-link"
+            @click.stop.prevent="isModalOpen = true"
+        >
+            <FileMusicIcon class="size-5" />
+        </button>
+    </Tooltip>
 
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
@@ -29,6 +31,7 @@ import { FileMusicIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
 import SongbookList from "@/components/SongbookList.vue";
+import Tooltip from "@/components/Tooltip.vue";
 import {
     Dialog,
     DialogContent,

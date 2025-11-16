@@ -29,42 +29,22 @@
                 <PencilIcon class="size-5" />
             </EditSongbookDialog>
 
-            <Sheet v-if="slots.menu">
-                <SheetTrigger asChild>
-                    <Button
-                        size="icon"
-                        variant="ghost"
-                        data-testid="toggle-menu"
-                    >
-                        <SettingsIcon class="inline size-5" />
-                    </Button>
-                </SheetTrigger>
-                <SheetContent>
-                    <SheetHeader>
-                        <SheetTitle class="text-lg"> Settings </SheetTitle>
-                    </SheetHeader>
-                    <div className="mt-4 flex flex-col gap-4">
-                        <slot name="menu" />
-                    </div>
-                </SheetContent>
-            </Sheet>
+            <ChangePageSettings v-if="slots.menu">
+                <slot name="menu" />
+            </ChangePageSettings>
         </div>
     </header>
 </template>
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
-import { PencilIcon, PlusIcon, SettingsIcon } from "lucide-vue-next";
+import { PencilIcon, PlusIcon } from "lucide-vue-next";
 import { computed, useSlots } from "vue";
 
+import ChangePageSettings from "@/components/ChangePageSettings.vue";
 import EllipsisText from "@/components/EllipsisText.vue";
 import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue";
 import EditSongbookDialog from "@/components/dialogs/EditSongbookDialog.vue";
-import { Button } from "@/components/ui/button";
-import Sheet from "@/components/ui/sheet/Sheet.vue";
-import SheetContent from "@/components/ui/sheet/SheetContent.vue";
-import SheetTitle from "@/components/ui/sheet/SheetTitle.vue";
-import SheetTrigger from "@/components/ui/sheet/SheetTrigger.vue";
 
 const page = usePage();
 const slots = useSlots();

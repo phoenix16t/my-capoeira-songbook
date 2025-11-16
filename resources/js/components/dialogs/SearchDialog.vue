@@ -1,7 +1,9 @@
 <template>
-    <Button size="icon" variant="ghost" @click="isModalOpen = true">
-        <SearchIcon class="size-5" />
-    </Button>
+    <Tooltip text="Search songs">
+        <Button size="icon" variant="ghost" @click="isModalOpen = true">
+            <SearchIcon class="size-5" />
+        </Button>
+    </Tooltip>
 
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
@@ -31,6 +33,7 @@
 import { SearchIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
+import Tooltip from "@/components/Tooltip.vue";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,

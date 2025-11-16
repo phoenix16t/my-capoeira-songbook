@@ -1,7 +1,9 @@
 <template>
-    <Button :size="size" :variant="variant" @click="isModalOpen = true">
-        <slot />
-    </Button>
+    <Tooltip text="Create a songbook">
+        <Button :size="size" :variant="variant" @click="isModalOpen = true">
+            <slot />
+        </Button>
+    </Tooltip>
 
     <SongbookModal
         v-model:isModalOpen="isModalOpen"
@@ -16,6 +18,7 @@ import { router } from "@inertiajs/vue3";
 import { ref } from "vue";
 import { route } from "ziggy-js";
 
+import Tooltip from "@/components/Tooltip.vue";
 import SongbookModal from "@/components/dialogs/SongbookModal.vue";
 import { Button, type ButtonVariants } from "@/components/ui/button";
 

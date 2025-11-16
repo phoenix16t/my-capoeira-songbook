@@ -16,50 +16,53 @@
         </Link>
 
         <span class="flex items-center gap-5">
-            <Button
-                size="icon"
-                :variant="
-                    currentRouteName === 'songs.index'
-                        ? 'whiteGhostCurrent'
-                        : 'whiteGhost'
-                "
-                data-testid="songs-page-button"
-                asChild
-            >
-                <Link :href="route('songs.index')">
-                    <MusicIcon class="size-6" />
-                </Link>
-            </Button>
+            <Tooltip text="See all songs">
+                <Button
+                    size="icon"
+                    :variant="
+                        currentRouteName === 'songs.index'
+                            ? 'whiteGhostCurrent'
+                            : 'whiteGhost'
+                    "
+                    data-testid="songs-page-button"
+                    asChild
+                >
+                    <Link :href="route('songs.index')">
+                        <MusicIcon class="size-6" />
+                    </Link>
+                </Button>
+            </Tooltip>
 
-            <Button
-                v-if="isAuthenticated"
-                size="icon"
-                :variant="
-                    currentRouteName === 'songbooks.index'
-                        ? 'whiteGhostCurrent'
-                        : 'whiteGhost'
-                "
-                data-testid="songbooks-page-button"
-                asChild
-            >
-                <Link :href="route('songbooks.index')">
-                    <BookOpenIcon class="size-6" />
-                </Link>
-            </Button>
+            <Tooltip text="See songbooks">
+                <Button
+                    v-if="isAuthenticated"
+                    size="icon"
+                    :variant="
+                        currentRouteName === 'songbooks.index'
+                            ? 'whiteGhostCurrent'
+                            : 'whiteGhost'
+                    "
+                    data-testid="songbooks-page-button"
+                    asChild
+                >
+                    <Link :href="route('songbooks.index')">
+                        <BookOpenIcon class="size-6" />
+                    </Link>
+                </Button>
+            </Tooltip>
 
-            <Button
-                v-if="isAuthenticated"
-                size="icon"
-                variant="whiteGhost"
-                @click="logout"
-            >
-                <DoorOpenIcon class="size-6" />
-            </Button>
-            <Button v-else size="icon" variant="whiteGhost" asChild>
-                <a :href="route('auth.google.redirect')">
-                    <KeyRoundIcon class="size-6" />
-                </a>
-            </Button>
+            <Tooltip v-if="isAuthenticated" text="Log out">
+                <Button size="icon" variant="whiteGhost" @click="logout">
+                    <DoorOpenIcon class="size-6" />
+                </Button>
+            </Tooltip>
+            <Tooltip v-else text="Log in">
+                <Button size="icon" variant="whiteGhost" asChild>
+                    <a :href="route('auth.google.redirect')">
+                        <KeyRoundIcon class="size-6" />
+                    </a>
+                </Button>
+            </Tooltip>
         </span>
     </header>
 </template>
@@ -75,6 +78,7 @@ import {
 import { computed } from "vue";
 import { route } from "ziggy-js";
 
+import Tooltip from "@/components/Tooltip.vue";
 import { Button } from "@/components/ui/button";
 
 import BerimbauIcon from "@/icons/berimbau.svg";

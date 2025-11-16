@@ -19,7 +19,7 @@ export default defineConfig({
         host: "localhost",
         port: 5173,
         hmr: {
-            host: "192.168.1.4",
+            host: "192.168.1.8",
         },
     },
     resolve: {
