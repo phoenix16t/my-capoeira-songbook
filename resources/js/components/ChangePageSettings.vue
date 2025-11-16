@@ -13,7 +13,7 @@
     <Sheet v-model:open="open">
         <SheetContent>
             <SheetHeader>
-                <SheetTitle class="text-lg"> Settings </SheetTitle>
+                <SheetTitle class="text-lg"> Page Settings </SheetTitle>
             </SheetHeader>
             <div className="mt-4 flex flex-col gap-4">
                 <slot />

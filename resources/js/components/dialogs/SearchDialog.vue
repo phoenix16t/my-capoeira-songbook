@@ -7,23 +7,14 @@
 
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
-            <DialogHeader>
-                <DialogTitle> Search Songs </DialogTitle>
-            </DialogHeader>
-
-            <Input
-                v-model="searchQuery"
-                id="search"
-                class="rounded border"
-                type="text"
-                data-testid="search"
-            />
+            <SongSearch v-model:searchQuery="searchQuery">
+                <template #header>
+                    <DialogTitle> Search Songs </DialogTitle>
+                </template>
+            </SongSearch>
 
             <DialogFooter>
-                <Button variant="secondary" @click="cancelSearch">
-                    Cancel
-                </Button>
-                <Button @click="isModalOpen = false"> Continue </Button>
+                <Button @click="isModalOpen = false"> Close </Button>
             </DialogFooter>
         </DialogContent>
     </Dialog>
@@ -44,12 +35,9 @@ import {
 } from "@/components/ui/dialog";
 import Input from "@/components/ui/input/Input.vue";
 
+import SongSearch from "../shared/SongSearch.vue";
+
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
 
 const isModalOpen = ref(false);
-
-const cancelSearch = () => {
-    searchQuery.value = "";
-    isModalOpen.value = false;
-};
 </script>

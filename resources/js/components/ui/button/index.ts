@@ -22,6 +22,8 @@ export const buttonVariants = cva(
                 whiteGhostCurrent:
                     "bg-accent text-accent-foreground dark:bg-accent/50",
                 link: "text-primary underline-offset-4 hover:underline",
+                smallLink:
+                    "text-sm text-cyan-600 italic underline-offset-4 hover:underline italic",
             },
             size: {
                 default: "h-9 px-4 py-2 has-[>svg]:px-3",

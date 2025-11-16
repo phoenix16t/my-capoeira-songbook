@@ -11,6 +11,12 @@
                 <SonglistToggleFullLyrics />
                 <SonglistToggleIcons />
                 <SonglistChangeColumnCount />
+
+                <SongSearch v-model:searchQuery="searchQuery">
+                    <template #header>
+                        <h3 class="text-lg">Search Songs</h3>
+                    </template>
+                </SongSearch>
             </template>
         </SubHeader>
 
@@ -29,6 +35,7 @@ import SearchDialog from "@/components/dialogs/SearchDialog.vue";
 import SonglistChangeColumnCount from "@/components/inputs/SonglistChangeColumnCount.vue";
 import SonglistToggleFullLyrics from "@/components/inputs/SonglistToggleFullLyrics.vue";
 import SonglistToggleIcons from "@/components/inputs/SonglistToggleIcons.vue";
+import SongSearch from "@/components/shared/SongSearch.vue";
 
 import { useSongFilter } from "@/hooks/useSongFilter";
 
