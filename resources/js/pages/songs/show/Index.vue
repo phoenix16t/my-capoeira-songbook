@@ -3,8 +3,6 @@
         <SubHeader>
             <template #title> Song Details </template>
 
-            <template #menuHeader>Song Details Settings</template>
-
             <template #menu>
                 <ChangePageSettings header="Song Details Settings">
                     <template #menu>

@@ -7,7 +7,7 @@
 
     <SongbookModal
         v-model:isModalOpen="isModalOpen"
-        titleText="Create new songbook"
+        titleText="Create a new songbook"
         submitLabel="Create"
         @save="createSongbook"
     />

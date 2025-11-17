@@ -1,6 +1,6 @@
 <template>
     <header
-        class="flex items-center justify-between border-b bg-white px-8 py-1 shadow-sm"
+        class="flex items-center justify-between border-b bg-white px-8 py-2 shadow-sm"
     >
         <h2 class="flex min-w-0 items-center text-xl font-semibold">
             <slot name="icon" />
@@ -9,8 +9,10 @@
             </EllipsisText>
         </h2>
 
+        <slot name="search" />
+
         <div class="flex gap-1">
-            <slot name="search" />
+            <slot name="mobile-search" />
 
             <CreateSongbookDialog size="icon" variant="ghost">
                 <PlusIcon class="size-5" />

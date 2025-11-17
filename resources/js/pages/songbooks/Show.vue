@@ -10,10 +10,23 @@
             </template>
 
             <template #search>
-                <SearchDialog v-model:searchQuery="searchQuery" />
+                <SongSearch
+                    v-if="!isSmallerThan('sm')"
+                    v-model:searchQuery="searchQuery"
+                    cls="flex-row items-center"
+                >
+                    <template #header>
+                        <SearchIcon class="mr-2 size-5" />
+                    </template>
+                </SongSearch>
             </template>
 
-            <template #menuHeader>Songbook Settings</template>
+            <template #mobile-search>
+                <SearchDialog
+                    v-if="isSmallerThan('sm')"
+                    v-model:searchQuery="searchQuery"
+                />
+            </template>
 
             <template #menu>
                 <ChangePageSettings header="Songbook Settings">
@@ -60,6 +73,7 @@
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
+import { SearchIcon } from "lucide-vue-next";
 import { ref, watchEffect } from "vue";
 
 import Card from "@/components/Card.vue";
@@ -76,6 +90,7 @@ import SonglistToggleIcons from "@/components/inputs/SonglistToggleIcons.vue";
 import ChangePageSettings from "@/components/page-menu/ChangePageSettings.vue";
 import SongSearch from "@/components/shared/SongSearch.vue";
 
+import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useSongFilter } from "@/hooks/useSongFilter";
 
 import type { Song, Songbook } from "@/types";
@@ -90,6 +105,7 @@ const searchQuery = ref<string>("");
 const songsRef = ref<Song[]>(props.songbook.songs);
 
 const page = usePage();
+const { isSmallerThan } = useBreakpoint();
 const { filteredSongs } = useSongFilter(songsRef, searchQuery);
 
 watchEffect(() => {

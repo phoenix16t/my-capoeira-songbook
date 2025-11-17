@@ -24,7 +24,7 @@ export function useBreakpoint() {
         return "xl";
     });
 
-    const isSmallerThan = (bp) => {
+    const isSmallerThan = (bp: string) => {
         const targetIndex = breakpointOrder.indexOf(bp);
         const currentIndex = breakpointOrder.indexOf(breakpoint.value);
         if (targetIndex === -1 || currentIndex === -1) {

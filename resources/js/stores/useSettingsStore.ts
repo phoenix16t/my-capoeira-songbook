@@ -10,7 +10,7 @@ import { handleErrorToast, handleSuccessToast } from "@/lib/helpers.js";
 
 export const useSettingsStore = defineStore("settings", () => {
     const page = usePage();
-    const { breakpoint, isSmallerThan } = useBreakpoint();
+    const { isSmallerThan } = useBreakpoint();
 
     const isAuthenticated = computed(() => !!page.props.auth.user);
 

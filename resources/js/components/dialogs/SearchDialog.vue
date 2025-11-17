@@ -10,6 +10,14 @@
             <SongSearch v-model:searchQuery="searchQuery">
                 <template #header>
                     <DialogTitle> Search Songs </DialogTitle>
+                    <Button
+                        variant="smallLink"
+                        size="icon"
+                        class="ml-2"
+                        @click="searchQuery = ''"
+                    >
+                        Clear
+                    </Button>
                 </template>
             </SongSearch>
 
@@ -30,10 +38,8 @@ import {
     Dialog,
     DialogContent,
     DialogFooter,
-    DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import Input from "@/components/ui/input/Input.vue";
 
 import SongSearch from "../shared/SongSearch.vue";
 

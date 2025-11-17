@@ -19,7 +19,7 @@
             </SheetHeader>
             <div className="mt-4 flex flex-col gap-4">
                 <slot name="menu" />
-                <div v-if="slots.actions" class="flex flex-col gap-1">
+                <div v-if="hasActionsSlot" class="flex flex-col gap-1">
                     <h3 class="text-lg">Actions</h3>
                     <slot name="actions" />
                 </div>
@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { SettingsIcon } from "lucide-vue-next";
-import { ref, useSlots } from "vue";
+import { computed, ref, useSlots } from "vue";
 
 import Tooltip from "@/components/Tooltip.vue";
 import { Button } from "@/components/ui/button";
@@ -46,4 +46,8 @@ defineProps<Props>();
 const slots = useSlots();
 
 const open = ref(false);
+
+const hasActionsSlot = computed(() => {
+    return slots.actions?.().some((action) => !!action.key);
+});
 </script>

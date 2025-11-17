@@ -1,15 +1,7 @@
 <template>
-    <div class="flex flex-col">
+    <div :class="cn('flex flex-col', cls)">
         <div class="flex items-baseline">
-            <h3 class="text-lg">Search Songs</h3>
-            <Button
-                variant="smallLink"
-                size="icon"
-                class="ml-2"
-                @click="searchQuery = ''"
-            >
-                Clear
-            </Button>
+            <slot name="header" />
         </div>
         <Input
             v-model="searchQuery"
@@ -22,8 +14,13 @@
 </template>
 
 <script setup lang="ts">
-import { Button } from "@/components/ui/button";
 import Input from "@/components/ui/input/Input.vue";
+
+import { cn } from "@/lib/utils";
+
+defineProps<{
+    cls?: string;
+}>();
 
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
 </script>
