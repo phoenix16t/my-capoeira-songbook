@@ -35,7 +35,7 @@
 
             <Tooltip text="See songbooks">
                 <Button
-                    v-if="isAuthenticated"
+                    v-if="page.props.isAuthenticated"
                     size="icon"
                     :variant="
                         currentRouteName === 'songbooks.index'
@@ -51,7 +51,7 @@
                 </Button>
             </Tooltip>
 
-            <Tooltip v-if="isAuthenticated" text="Log out">
+            <Tooltip v-if="page.props.isAuthenticated" text="Log out">
                 <Button size="icon" variant="whiteGhost" @click="logout">
                     <DoorOpenIcon class="size-6" />
                 </Button>
@@ -85,7 +85,6 @@ import BerimbauIcon from "@/icons/berimbau.svg";
 
 const page = usePage();
 
-const isAuthenticated = computed(() => !!page.props.auth.user);
 const currentRouteName = computed(() => page.props.currentRouteName);
 
 const logout = () => {

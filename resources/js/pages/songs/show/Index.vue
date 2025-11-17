@@ -3,13 +3,19 @@
         <SubHeader>
             <template #title> Song Details </template>
 
+            <template #menuHeader>Song Details Settings</template>
+
             <template #menu>
-                <div>
-                    <SongToggleTranslation />
-                    <SongSwitchTranslationType />
-                </div>
-                <SongToggleDetails />
-                <SongToggleSongbooks />
+                <ChangePageSettings header="Song Details Settings">
+                    <template #menu>
+                        <div>
+                            <SongToggleTranslation />
+                            <SongSwitchTranslationType />
+                        </div>
+                        <SongToggleDetails />
+                        <SongToggleSongbooks />
+                    </template>
+                </ChangePageSettings>
             </template>
         </SubHeader>
 
@@ -56,6 +62,7 @@ import SongSwitchTranslationType from "@/components/inputs/SongSwitchTranslation
 import SongToggleDetails from "@/components/inputs/SongToggleDetails.vue";
 import SongToggleSongbooks from "@/components/inputs/SongToggleSongbooks.vue";
 import SongToggleTranslation from "@/components/inputs/SongToggleTranslation.vue";
+import ChangePageSettings from "@/components/page-menu/ChangePageSettings.vue";
 
 import { useSettingsStore } from "@/stores/useSettingsStore";
 

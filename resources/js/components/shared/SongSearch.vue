@@ -1,8 +1,7 @@
 <template>
     <div class="flex flex-col">
         <div class="flex items-baseline">
-            <slot name="header" />
-
+            <h3 class="text-lg">Search Songs</h3>
             <Button
                 variant="smallLink"
                 size="icon"

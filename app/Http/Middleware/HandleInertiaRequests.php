@@ -46,6 +46,7 @@ class HandleInertiaRequests extends Middleware
                         : null,
                 ];
             },
+            'isAuthenticated' => fn () => $request->user() !== null,
             'currentRouteName' => Route::currentRouteName(),
             'flash' => [
                 'message' => fn () => $request->session()->get('message'),
