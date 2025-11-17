@@ -10,15 +10,10 @@
             </template>
 
             <template #search>
-                <SongSearch
+                <QuickSearch
                     v-if="!isSmallerThan('sm')"
                     v-model:searchQuery="searchQuery"
-                    cls="flex-row items-center"
-                >
-                    <template #header>
-                        <SearchIcon class="mr-2 size-5" />
-                    </template>
-                </SongSearch>
+                />
             </template>
 
             <template #mobile-search>
@@ -35,7 +30,9 @@
                         <SonglistToggleIcons />
                         <SonglistChangeColumnCount />
 
-                        <SongSearch v-model:searchQuery="searchQuery" />
+                        <MenuSearch v-model:searchQuery="searchQuery">
+                            <h3 class="text-lg">Search Songs</h3>
+                        </MenuSearch>
                     </template>
                     <template #actions>
                         <CreateSongbookDialog
@@ -73,7 +70,6 @@
 
 <script setup lang="ts">
 import { usePage } from "@inertiajs/vue3";
-import { SearchIcon } from "lucide-vue-next";
 import { ref, watchEffect } from "vue";
 
 import Card from "@/components/Card.vue";
@@ -88,7 +84,8 @@ import SonglistChangeColumnCount from "@/components/inputs/SonglistChangeColumnC
 import SonglistToggleFullLyrics from "@/components/inputs/SonglistToggleFullLyrics.vue";
 import SonglistToggleIcons from "@/components/inputs/SonglistToggleIcons.vue";
 import ChangePageSettings from "@/components/page-menu/ChangePageSettings.vue";
-import SongSearch from "@/components/shared/SongSearch.vue";
+import MenuSearch from "@/components/search/MenuSearch.vue";
+import QuickSearch from "@/components/search/QuickSearch.vue";
 
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useSongFilter } from "@/hooks/useSongFilter";

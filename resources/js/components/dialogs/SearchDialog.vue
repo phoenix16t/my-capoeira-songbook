@@ -7,19 +7,9 @@
 
     <Dialog v-model:open="isModalOpen">
         <DialogContent class="sm:max-w-[425px]">
-            <SongSearch v-model:searchQuery="searchQuery">
-                <template #header>
-                    <DialogTitle> Search Songs </DialogTitle>
-                    <Button
-                        variant="smallLink"
-                        size="icon"
-                        class="ml-2"
-                        @click="searchQuery = ''"
-                    >
-                        Clear
-                    </Button>
-                </template>
-            </SongSearch>
+            <MenuSearch v-model:searchQuery="searchQuery">
+                <DialogTitle> Search Songs </DialogTitle>
+            </MenuSearch>
 
             <DialogFooter>
                 <Button @click="isModalOpen = false"> Close </Button>
@@ -32,6 +22,7 @@
 import { SearchIcon } from "lucide-vue-next";
 import { ref } from "vue";
 
+import MenuSearch from "@/components//search/MenuSearch.vue";
 import Tooltip from "@/components/Tooltip.vue";
 import { Button } from "@/components/ui/button";
 import {
@@ -40,8 +31,6 @@ import {
     DialogFooter,
     DialogTitle,
 } from "@/components/ui/dialog";
-
-import SongSearch from "../shared/SongSearch.vue";
 
 const searchQuery = defineModel<string>("searchQuery", { default: "" });
 
