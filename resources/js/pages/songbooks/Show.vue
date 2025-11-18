@@ -80,12 +80,12 @@ import SubHeader from "@/components/SubHeader.vue";
 import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue";
 import EditSongbookDialog from "@/components/dialogs/EditSongbookDialog.vue";
 import SearchDialog from "@/components/dialogs/SearchDialog.vue";
-import SonglistChangeColumnCount from "@/components/inputs/SonglistChangeColumnCount.vue";
-import SonglistToggleFullLyrics from "@/components/inputs/SonglistToggleFullLyrics.vue";
-import SonglistToggleIcons from "@/components/inputs/SonglistToggleIcons.vue";
 import ChangePageSettings from "@/components/page-menu/ChangePageSettings.vue";
 import MenuSearch from "@/components/search/MenuSearch.vue";
 import QuickSearch from "@/components/search/QuickSearch.vue";
+import SonglistChangeColumnCount from "@/components/settings/SonglistChangeColumnCount.vue";
+import SonglistToggleFullLyrics from "@/components/settings/SonglistToggleFullLyrics.vue";
+import SonglistToggleIcons from "@/components/settings/SonglistToggleIcons.vue";
 
 import { useBreakpoint } from "@/hooks/useBreakpoint";
 import { useSongFilter } from "@/hooks/useSongFilter";

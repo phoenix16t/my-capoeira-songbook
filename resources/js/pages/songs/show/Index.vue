@@ -56,11 +56,11 @@ import Lyrics from "@/components/Lyrics.vue";
 import SongbookList from "@/components/SongbookList.vue";
 import SubHeader from "@/components/SubHeader.vue";
 import Translation from "@/components/Translation.vue";
-import SongSwitchTranslationType from "@/components/inputs/SongSwitchTranslationType.vue";
-import SongToggleDetails from "@/components/inputs/SongToggleDetails.vue";
-import SongToggleSongbooks from "@/components/inputs/SongToggleSongbooks.vue";
-import SongToggleTranslation from "@/components/inputs/SongToggleTranslation.vue";
 import ChangePageSettings from "@/components/page-menu/ChangePageSettings.vue";
+import SongSwitchTranslationType from "@/components/settings/SongSwitchTranslationType.vue";
+import SongToggleDetails from "@/components/settings/SongToggleDetails.vue";
+import SongToggleSongbooks from "@/components/settings/SongToggleSongbooks.vue";
+import SongToggleTranslation from "@/components/settings/SongToggleTranslation.vue";
 
 import { useSettingsStore } from "@/stores/useSettingsStore";
 
