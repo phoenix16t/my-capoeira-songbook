@@ -3,17 +3,11 @@
         <SubHeader>
             <template #title> Song List </template>
 
-            <template #search>
-                <QuickSearch
-                    v-if="!isSmallerThan('sm')"
+            <template #new_search>
+                <NewSearch
                     v-model:searchQuery="searchQuery"
-                />
-            </template>
-
-            <template #mobile-search>
-                <SearchDialog
-                    v-if="isSmallerThan('sm')"
-                    v-model:searchQuery="searchQuery"
+                    class="max-w-sm"
+                    :count="filteredSongs.length"
                 />
             </template>
 
@@ -58,6 +52,7 @@ import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue"
 import SearchDialog from "@/components/dialogs/SearchDialog.vue";
 import ChangePageSettings from "@/components/page-menu/ChangePageSettings.vue";
 import MenuSearch from "@/components/search/MenuSearch.vue";
+import NewSearch from "@/components/search/NewSearch.vue";
 import QuickSearch from "@/components/search/QuickSearch.vue";
 import SonglistChangeColumnCount from "@/components/settings/SonglistChangeColumnCount.vue";
 import SonglistToggleFullLyrics from "@/components/settings/SonglistToggleFullLyrics.vue";

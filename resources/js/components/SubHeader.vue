@@ -9,11 +9,9 @@
             </EllipsisText>
         </h2>
 
-        <slot name="search" />
+        <slot name="new_search" />
 
         <div class="flex gap-1">
-            <slot name="mobile-search" />
-
             <CreateSongbookDialog size="icon" variant="ghost">
                 <PlusIcon class="size-5" />
             </CreateSongbookDialog>

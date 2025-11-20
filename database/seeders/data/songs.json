@@ -56,7 +56,7 @@
         "group": null,
         "beat": "X",
         "type": 1,
-        "links": [],
+        "links": ["https://youtu.be/jhk_WCZIMDY"],
         "author": ""
     },
     {
@@ -86,7 +86,7 @@
         "group": null,
         "beat": 1,
         "type": 1,
-        "links": [],
+        "links": ["https://www.youtube.com/watch?v=DmAaf8vVKJY"],
         "author": ""
     },
     {
@@ -116,7 +116,7 @@
         "group": null,
         "beat": "X",
         "type": 1,
-        "links": [],
+        "links": ["https://www.youtube.com/watch?v=B-5hv93DnDI"],
         "author": ""
     },
     {
@@ -144,7 +144,7 @@
         "group": null,
         "beat": "1",
         "type": 1,
-        "links": [],
+        "links": ["https://youtu.be/fNk3m-Gxbhg"],
         "author": ""
     },
     {
@@ -178,21 +178,21 @@
         "group": null,
         "beat": "X",
         "type": 1,
-        "links": [],
+        "links": ["https://youtu.be/p4t47JNGSDQ"],
         "author": ""
     },
     {
-        "titles": ["Ai ai, Aidê"],
+        "titles": ["Ai, ai, Aidê"],
         "lyrics": [
-            "Ai ai, Aidê",
+            "Ai, ai, Aidê",
             "Joga bonito que eu quero ver",
-            "Ai ai, Aidê (coro)",
+            "Ai, ai, Aidê (coro)",
             "Joga bonito, que eu quero aprender",
-            "Ai ai, Aidê (coro)",
+            "Ai, ai, Aidê (coro)",
             "Joga bonito, que o povo quer ver",
-            "Ai ai, Aidê (coro)",
+            "Ai, ai, Aidê (coro)",
             "Aidê, aidê, aidê, aidê",
-            "Ai ai, Aidê (coro)"
+            "Ai, ai, Aidê (coro)"
         ],
         "translation": [
             "Oh, oh, Aidê",
@@ -208,7 +208,7 @@
         "group": null,
         "beat": "1",
         "type": 1,
-        "links": [],
+        "links": ["https://www.youtube.com/watch?v=duFWbYmhN2g"],
         "author": ""
     },
     {
@@ -240,7 +240,7 @@
         "group": null,
         "beat": "2",
         "type": 1,
-        "links": [],
+        "links": ["https://youtu.be/gc2oIqQfbZg"],
         "author": ""
     },
     {
@@ -296,7 +296,7 @@
         "group": null,
         "beat": "X",
         "type": 1,
-        "links": [],
+        "links": ["https://www.youtube.com/watch?v=u5Zt1KffYhc"],
         "author": ""
     },
     {
@@ -330,7 +330,7 @@
         "group": null,
         "beat": "X",
         "type": 1,
-        "links": [],
+        "links": ["https://www.youtube.com/watch?v=NXr0crSIpX0"],
         "author": ""
     },
     {
@@ -362,7 +362,7 @@
         "group": null,
         "beat": "X",
         "type": 1,
-        "links": [],
+        "links": ["https://www.youtube.com/watch?v=6u5BI1eBRr4"],
         "author": ""
     },
     {
