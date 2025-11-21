@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Models\User;
 
@@ -22,16 +24,23 @@ class GoogleAuthController extends Controller
             $user = User::where('email', $googleUser->email)->first();
             if ($user) {
                 $user->google_id = $googleUser->id;
-                $user->save();
             } else {
-                $user = User::create([
-                    'name' => $googleUser->name,
-                    'email' => $googleUser->email,
-                    'google_id' => $googleUser->id,
-                    'password' => bcrypt(\Illuminate\Support\Str::random(16)),
-                ]);
+                $user = new User();
+                $user->email = $googleUser->email;
+                $user->password = bcrypt(Str::random(16));
             }
         }
+
+        $user->name = $googleUser->name;
+
+        $url = $googleUser->avatar_original ?? $googleUser->avatar;
+        $contents = Http::get($url)->body();
+        $filename = 'avatars/' . $user->id . '.jpg';
+        Storage::disk('public')->put($filename, $contents);
+        $user->avatar = '/storage/' . $filename;
+
+        $user->save();
+
         Auth::login($user);
         return redirect('/?welcome=1');
     }

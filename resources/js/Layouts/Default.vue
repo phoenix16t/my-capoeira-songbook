@@ -3,11 +3,19 @@
         <div
             class="flex h-[100dvh] w-full max-w-[1000px] flex-col bg-gray-50 text-gray-900 shadow-2xl"
         >
-            <Header />
-            <div class="flex flex-grow flex-col overflow-hidden bg-gray-50">
-                <slot />
-                <Toaster />
-            </div>
+            <SidebarProvider>
+                <AppSidebar />
+                <SidebarInset>
+                    <Header />
+                    <main
+                        class="flex flex-grow flex-col overflow-hidden bg-gray-50"
+                    >
+                        <SidebarTrigger class="-ml-1" />
+                        <slot />
+                        <Toaster />
+                    </main>
+                </SidebarInset>
+            </SidebarProvider>
         </div>
     </div>
 </template>
@@ -18,6 +26,12 @@ import { onMounted, watchEffect } from "vue";
 
 import Header from "@/layouts/partials/Header.vue";
 
+import AppSidebar from "@/components/AppSidebar.vue";
+import {
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+} from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 import { handleSuccessToast } from "@/lib/helpers";
