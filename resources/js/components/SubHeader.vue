@@ -1,7 +1,17 @@
 <template>
     <header
-        class="flex items-center justify-between border-b bg-white px-8 py-2 shadow-sm"
+        :class="
+            cn(
+                'sticky top-0 flex w-full items-center justify-between border-b bg-white px-8 py-2 shadow-sm',
+                {
+                    'h-16': state === 'expanded',
+                    'h-12': state !== 'expanded',
+                },
+            )
+        "
     >
+        <SidebarTrigger />
+
         <h2 class="flex min-w-0 items-center text-xl font-semibold">
             <slot name="icon" />
             <EllipsisText :clamp="2">
@@ -37,6 +47,13 @@ import { PencilIcon, PlusIcon } from "lucide-vue-next";
 import EllipsisText from "@/components/EllipsisText.vue";
 import CreateSongbookDialog from "@/components/dialogs/CreateSongbookDialog.vue";
 import EditSongbookDialog from "@/components/dialogs/EditSongbookDialog.vue";
+
+import { cn } from "@/lib/utils";
+
+import SidebarTrigger from "./ui/sidebar/SidebarTrigger.vue";
+import { useSidebar } from "./ui/sidebar/utils";
+
+const { state } = useSidebar();
 
 const page = usePage();
 </script>

@@ -6,11 +6,9 @@
             <SidebarProvider>
                 <AppSidebar />
                 <SidebarInset>
-                    <Header />
                     <main
                         class="flex flex-grow flex-col overflow-hidden bg-gray-50"
                     >
-                        <SidebarTrigger class="-ml-1" />
                         <slot />
                         <Toaster />
                     </main>
@@ -24,14 +22,8 @@
 import { usePage } from "@inertiajs/vue3";
 import { onMounted, watchEffect } from "vue";
 
-import Header from "@/layouts/partials/Header.vue";
-
 import AppSidebar from "@/components/AppSidebar.vue";
-import {
-    SidebarInset,
-    SidebarProvider,
-    SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "@/components/ui/sonner";
 
 import { handleSuccessToast } from "@/lib/helpers";
