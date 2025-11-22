@@ -2,7 +2,7 @@
     <header
         :class="
             cn(
-                'sticky top-0 flex w-full items-center justify-between border-b bg-white px-8 py-2 shadow-sm',
+                'sticky top-0 flex w-full items-center justify-between border-b bg-white px-8 py-2 shadow-sm transition-all',
                 {
                     'h-16': state === 'expanded',
                     'h-12': state !== 'expanded',
