@@ -1,20 +1,40 @@
+<template>
+    <SidebarMenu>
+        <SidebarMenuItem>
+            <UserDetails
+                v-if="!page.props.auth.user"
+                class="py-4"
+                :user="user"
+            />
+            <Accordion v-if="!!page.props.auth.user" type="single" collapsible>
+                <AccordionItem value="item-1">
+                    <AccordionTrigger>
+                        <UserDetails :user="user" />
+                    </AccordionTrigger>
+                    <AccordionContent class="block">
+                        <Button class="w-full" @click="logout">
+                            <LogOut />
+                            Log out
+                        </Button>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
+        </SidebarMenuItem>
+    </SidebarMenu>
+</template>
+
 <script setup lang="ts">
-import { ChevronsUpDown, LogOut } from "lucide-vue-next";
+import { router, usePage } from "@inertiajs/vue3";
+import { route } from "ziggy-js";
 
 import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-    SidebarMenu,
-    SidebarMenuButton,
-    SidebarMenuItem,
-    useSidebar,
-} from "@/components/ui/sidebar";
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Button } from "@/components/ui/button";
+import { SidebarMenu, SidebarMenuItem } from "@/components/ui/sidebar";
 
 import UserDetails from "./UserDetails.vue";
 
@@ -26,64 +46,14 @@ defineProps<{
     };
 }>();
 
-const { isMobile } = useSidebar();
-</script>
+const page = usePage();
 
-<template>
-    <SidebarMenu>
-        <SidebarMenuItem>
-            <DropdownMenu>
-                <DropdownMenuTrigger as-child>
-                    <SidebarMenuButton
-                        size="lg"
-                        class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                    >
-                        <UserDetails :user="user" />
-                        <ChevronsUpDown class="ml-auto size-4" />
-                    </SidebarMenuButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent
-                    class="w-[--reka-dropdown-menu-trigger-width] min-w-56 rounded-lg"
-                    :side="isMobile ? 'bottom' : 'right'"
-                    align="end"
-                    :side-offset="4"
-                >
-                    <DropdownMenuLabel class="p-0 font-normal">
-                        <div
-                            class="flex items-center gap-2 px-1 py-1.5 text-left text-sm"
-                        >
-                            <UserDetails :user="user" />
-                        </div>
-                    </DropdownMenuLabel>
-                    <!-- <DropdownMenuSeparator /> -->
-                    <!-- <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                            <Sparkles />
-                            Upgrade to Pro
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                            <BadgeCheck />
-                            Account
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <CreditCard />
-                            Billing
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <Bell />
-                            Notifications
-                        </DropdownMenuItem>
-                    </DropdownMenuGroup> -->
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>
-                        <LogOut />
-                        Log out
-                    </DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        </SidebarMenuItem>
-    </SidebarMenu>
-</template>
+const logout = () => {
+    router.visit(route("logout"), {
+        method: "post",
+        onSuccess: () => {
+            window.location.reload();
+        },
+    });
+};
+</script>
