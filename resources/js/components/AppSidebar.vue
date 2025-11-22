@@ -14,8 +14,8 @@ import {
 
 import NavMain from "@/components/NavMain.vue";
 import NavProjects from "@/components/NavProjects.vue";
-import TeamSwitcher from "@/components/TeamSwitcher.vue";
 import NavUser from "@/components/nav-user/NavUser.vue";
+import { Item, ItemContent, ItemTitle } from "@/components/ui/item";
 import type { SidebarProps } from "@/components/ui/sidebar";
 import {
     Sidebar,
@@ -24,6 +24,13 @@ import {
     SidebarHeader,
     SidebarRail,
 } from "@/components/ui/sidebar";
+import {
+    SidebarMenu,
+    SidebarMenuButton,
+    SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
+import BerimbauIcon from "@/icons/berimbau.svg";
 
 const props = withDefaults(defineProps<SidebarProps>(), {
     side: "left",
@@ -164,8 +171,35 @@ const data = {
 
 <template>
     <Sidebar v-bind="props">
-        <SidebarHeader>
-            <TeamSwitcher :teams="data.teams" />
+        <SidebarHeader class="bg-blue-400 p-2">
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <SidebarMenuButton
+                        size="lg"
+                        class="cursor-pointer hover:bg-blue-500 active:bg-transparent"
+                    >
+                        <Item class="asdf !p-0">
+                            <ItemContent class="flex flex-row items-center">
+                                <div class="[transform:scaleX(-1)]">
+                                    <BerimbauIcon
+                                        class="size-12 -rotate-z-15 fill-current text-black group-data-[collapsible=icon]:size-8"
+                                    />
+                                </div>
+                                <ItemTitle
+                                    class="flex flex-col items-start gap-0 text-lg"
+                                >
+                                    <span class="whitespace-nowrap">
+                                        My Capoeira
+                                    </span>
+                                    <span class="whitespace-nowrap">
+                                        Songbook</span
+                                    >
+                                </ItemTitle>
+                            </ItemContent>
+                        </Item>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+            </SidebarMenu>
         </SidebarHeader>
         <SidebarContent>
             <NavMain :items="data.navMain" />
